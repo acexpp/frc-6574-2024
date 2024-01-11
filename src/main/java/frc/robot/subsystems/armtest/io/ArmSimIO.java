@@ -1,0 +1,29 @@
+package frc.robot.subsystems.armtest.io;
+
+import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
+import frc.robot.subsystems.armtest.ArmState;
+import frc.robot.subsystems.armtest.ArmState.InputState;
+import frc.robot.subsystems.armtest.ArmState.OutputState;
+
+public class ArmSimIO implements ArmIO{
+
+    private final SingleJointedArmSim sim = new SingleJointedArmSim(DCMotor.getNEO(1), 50, SingleJointedArmSim.estimateMOI(Units.inchesToMeters(25), 
+    Units.lbsToKilograms(20)), Units.inchesToMeters(25), -2 * Math.PI, 2 * Math.PI, true, 0);
+
+    @Override
+    public InputState getState() {
+        sim.update(0.02);
+        return new ArmState.InputState(
+            Units.radiansToDegrees(sim.getAngleRads()), 
+            Units.radiansToDegrees(sim.getVelocityRadPerSec()));
+    }
+
+    @Override
+    public void setState(OutputState output) {
+        output.voltage().ifPresent((volts) -> {
+            sim.setInputVoltage(0);
+        });
+    }
+}
