@@ -26,7 +26,10 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
+import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.armtest.ArmSubsystem;
+import frc.robot.subsystems.armtest.io.ArmSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -53,6 +56,9 @@ import com.pathplanner.lib.util.ReplanningConfig;
  * (including subsystems, commands, and button mappings) should be declared here.
  */
 public class RobotContainer {
+
+  public final MechanismSimulator sim;
+  private final ArmSubsystem arm;
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
@@ -64,7 +70,18 @@ public class RobotContainer {
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
-  public RobotContainer() {
+  public RobotContainer(boolean isSim) {
+
+    if (isSim) {
+        arm = new ArmSubsystem(
+          new ArmSimIO()
+        );
+    }
+    else {
+      arm = null;
+    }
+    sim = new MechanismSimulator(arm);
+
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");
