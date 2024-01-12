@@ -20,6 +20,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 //import edu.wpi.first.wpilibj.PS4Controller.Button;
@@ -81,7 +82,10 @@ public class RobotContainer {
       arm = null;
     }
     sim = new MechanismSimulator(arm);
-
+    
+    SmartDashboard.putData("Arm 0", (Sendable) this.arm.setArmPosition(0));
+    SmartDashboard.putData("Arm 1", (Sendable) this.arm.setArmPosition(78));
+    SmartDashboard.putData("Arm 2", (Sendable) this.arm.setArmPosition(90));
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");

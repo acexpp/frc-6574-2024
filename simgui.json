@@ -1,10 +1,57 @@
 {
   "NTProvider": {
     "types": {
-      "/FMSInfo": "FMSInfo"
+      "/AdvantageKit/RealOutputs/Robot Simulation": "Mechanism2d",
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Arm 0": "Command",
+      "/SmartDashboard/Arm 1": "Command",
+      "/SmartDashboard/Arm 2": "Command",
+      "/SmartDashboard/Auto Chooser": "String Chooser"
+    },
+    "windows": {
+      "/AdvantageKit/RealOutputs/Robot Simulation": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Arm 0": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Arm 1": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Arm 2": {
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  },
+  "NetworkTables": {
+    "transitory": {
+      "LiveWindow": {
+        "open": true
+      },
+      "Shuffleboard": {
+        ".metadata": {
+          "open": true
+        },
+        "open": true
+      }
     }
   },
   "NetworkTables Info": {
     "visible": true
+  },
+  "Plot": {
+    "Plot <0>": {
+      "window": {
+        "visible": false
+      }
+    }
   }
 }

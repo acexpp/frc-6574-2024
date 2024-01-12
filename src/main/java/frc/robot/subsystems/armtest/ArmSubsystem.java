@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.armtest.io.ArmIO;
 
-public class ArmSubsystem extends SubsystemBase{
+public class ArmSubsystem extends SubsystemBase {
 
     private final ArmIO io;
 
@@ -26,8 +26,8 @@ public class ArmSubsystem extends SubsystemBase{
     public ArmSubsystem(ArmIO armIO) {
         this.io = armIO;
 
-        this.controller = new ProfiledPIDController(0, 0, 0, new Constraints(null, null));
-        this.ff = new ArmFeedforward(0, 0, 0);
+        this.controller = new ProfiledPIDController(.001, 0, 0, new Constraints(100, 100));
+        this.ff = new ArmFeedforward(0, 2.6057, 0);
     }
 
     @Override
