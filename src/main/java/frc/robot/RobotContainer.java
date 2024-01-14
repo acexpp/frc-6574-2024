@@ -31,6 +31,8 @@ import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.armtest.ArmSubsystem;
 import frc.robot.subsystems.armtest.io.ArmSimIO;
+import frc.robot.subsystems.elevator.ElevatorSubsystem;
+import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -60,6 +62,7 @@ public class RobotContainer {
 
   public final MechanismSimulator sim;
   private final ArmSubsystem arm;
+  private final ElevatorSubsystem elevator;
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
 
@@ -74,18 +77,26 @@ public class RobotContainer {
   public RobotContainer(boolean isSim) {
 
     if (isSim) {
-        arm = new ArmSubsystem(
-          new ArmSimIO()
-        );
+      arm = new ArmSubsystem(
+        new ArmSimIO()
+      );
+      elevator = new ElevatorSubsystem(
+      new ElevatorSimIO()
+      );
     }
     else {
       arm = null;
+      elevator = null;
     }
-    sim = new MechanismSimulator(arm);
+    sim = new MechanismSimulator(arm, elevator);
     
     SmartDashboard.putData("Arm 0", (Sendable) this.arm.setArmPosition(0));
-    SmartDashboard.putData("Arm 1", (Sendable) this.arm.setArmPosition(78));
+    SmartDashboard.putData("Arm 1", (Sendable) this.arm.setArmPosition(45));
     SmartDashboard.putData("Arm 2", (Sendable) this.arm.setArmPosition(90));
+    SmartDashboard.putData("Arm 3", (Sendable) this.arm.setArmPosition(78));
+    SmartDashboard.putData("Arm 4", (Sendable) this.arm.setArmPosition(135));
+    SmartDashboard.putData("Arm 5", (Sendable) this.arm.setArmPosition(180));
+    SmartDashboard.putData("Arm 6", (Sendable) this.arm.setArmPosition(220));
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");

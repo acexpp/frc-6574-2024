@@ -6,6 +6,10 @@
       "/SmartDashboard/Arm 0": "Command",
       "/SmartDashboard/Arm 1": "Command",
       "/SmartDashboard/Arm 2": "Command",
+      "/SmartDashboard/Arm 3": "Command",
+      "/SmartDashboard/Arm 4": "Command",
+      "/SmartDashboard/Arm 5": "Command",
+      "/SmartDashboard/Arm 6": "Command",
       "/SmartDashboard/Auto Chooser": "String Chooser"
     },
     "windows": {
@@ -25,6 +29,26 @@
         }
       },
       "/SmartDashboard/Arm 2": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Arm 3": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Arm 4": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Arm 5": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Arm 6": {
         "window": {
           "visible": true
         }

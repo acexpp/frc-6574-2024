@@ -28,6 +28,8 @@ public class ArmSubsystem extends SubsystemBase {
 
         this.controller = new ProfiledPIDController(.001, 0, 0, new Constraints(100, 100));
         this.ff = new ArmFeedforward(0, 2.6057, 0);
+
+        //this.controller.enableContinuousInput(0, 360); //Testing/demo stuff, don't use this in real robot code
     }
 
     @Override
