@@ -6,7 +6,7 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
 import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
 import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 import frc.robot.subsystems.armtest.ArmState;
@@ -16,8 +16,7 @@ import frc.robot.subsystems.elevator.ElevatorSubsystem;
 
 public class MechanismSimulator {
     private final Mechanism2d panel;
-    private final MechanismRoot2d armRoot;
-    private final MechanismRoot2d eRoot;
+    private final MechanismRoot2d root;
     private final MechanismLigament2d arm;
     private final MechanismLigament2d elevator;
 
@@ -29,11 +28,10 @@ public class MechanismSimulator {
         this.elevatorSubsystem = elevatorS;
 
         this.panel = new Mechanism2d(Units.inchesToMeters(100), Units.inchesToMeters(100));
-        this.eRoot = panel.getRoot("elevator", Units.inchesToMeters(7.35), Units.inchesToMeters(10));
-        this.elevator = eRoot.append(
-            new MechanismLigament2d("elevator", Units.inchesToMeters(10), 45, 6, new Color8Bit(Color.kRed))
+        this.root = panel.getRoot("daroot", Units.inchesToMeters(7.35), Units.inchesToMeters(10));
+        this.elevator = root.append(
+            new MechanismLigament2d("elevator", Units.inchesToMeters(10), 45, 10, new Color8Bit(Color.kRed))
         );
-        this.armRoot = panel.getRoot("arm", Units.inchesToMeters(7.35), Units.inchesToMeters(10));
         this.arm = elevator.append(
             new MechanismLigament2d("arm", Units.inchesToMeters(25), 0, 6, new Color8Bit(Color.kYellow))
         );
@@ -45,7 +43,7 @@ public class MechanismSimulator {
             this.arm.setAngle(currentState.currentAngleDegrees());
         }
         ElevatorState.InputState currentState2 = elevatorSubsystem.getState();
-        if (currentState != null) {
+        if (currentState2 != null) {
             this.elevator.setLength(currentState2.currentHeightMeters());
         }
         Logger.recordOutput("Robot Simulation", panel);

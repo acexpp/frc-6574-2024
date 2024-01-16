@@ -5,10 +5,12 @@ import java.util.Optional;
 import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.trajectory.TrapezoidProfile.Constraints;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.subsystems.armtest.ArmState;
 import frc.robot.subsystems.elevator.ElevatorState.GoalState;
 import frc.robot.subsystems.elevator.io.ElevatorIO;
 
@@ -21,13 +23,13 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     private ElevatorState.InputState currentState;
 
-    private ElevatorState.GoalState goal = new GoalState(35);
+    private ElevatorState.GoalState goal = new GoalState(Units.inchesToMeters(35));
 
     public ElevatorSubsystem(ElevatorIO elevatorIO) {
         this.io = elevatorIO;
 
         this.controller = new ProfiledPIDController(.001, 0, 0, new Constraints(100, 100));
-        this.ff = new ElevatorFeedforward(0, 2.6057, 0);
+        this.ff = new ElevatorFeedforward(0, 1, 0);
     }
 
     @Override

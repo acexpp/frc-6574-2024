@@ -11,6 +11,12 @@
       "/SmartDashboard/Arm 5": "Command",
       "/SmartDashboard/Arm 6": "Command",
       "/SmartDashboard/Auto Chooser": "String Chooser",
+      "/SmartDashboard/Elev 0": "Command",
+      "/SmartDashboard/Elev 1": "Command",
+      "/SmartDashboard/Elev 2": "Command",
+      "/SmartDashboard/Elev 3": "Command",
+      "/SmartDashboard/Elev A": "Command",
+      "/SmartDashboard/Elev B": "Command",
       "/SmartDashboard/Elevator 0": "Command",
       "/SmartDashboard/Elevator 1": "Command",
       "/SmartDashboard/Elevator 2": "Command",
@@ -57,22 +63,32 @@
           "visible": true
         }
       },
-      "/SmartDashboard/Elevator 0": {
+      "/SmartDashboard/Elev 0": {
         "window": {
           "visible": true
         }
       },
-      "/SmartDashboard/Elevator 1": {
+      "/SmartDashboard/Elev 1": {
         "window": {
           "visible": true
         }
       },
-      "/SmartDashboard/Elevator 2": {
+      "/SmartDashboard/Elev 2": {
         "window": {
           "visible": true
         }
       },
-      "/SmartDashboard/Elevator 3": {
+      "/SmartDashboard/Elev 3": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Elev A": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Elev B": {
         "window": {
           "visible": true
         }
@@ -102,6 +118,18 @@
     }
   },
   "NetworkTables Info": {
+    "Connections": {
+      "open": true
+    },
+    "Server": {
+      "Publishers": {
+        "open": true
+      },
+      "Subscribers": {
+        "open": true
+      },
+      "open": true
+    },
     "visible": true
   },
   "Plot": {

@@ -20,6 +20,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
@@ -90,6 +91,8 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevator);
     
+    
+
     SmartDashboard.putData("Arm 0", (Sendable) this.arm.setArmPosition(0));
     SmartDashboard.putData("Arm 1", (Sendable) this.arm.setArmPosition(45));
     SmartDashboard.putData("Arm 2", (Sendable) this.arm.setArmPosition(90));
@@ -97,10 +100,10 @@ public class RobotContainer {
     SmartDashboard.putData("Arm 4", (Sendable) this.arm.setArmPosition(135));
     SmartDashboard.putData("Arm 5", (Sendable) this.arm.setArmPosition(180));
     SmartDashboard.putData("Arm 6", (Sendable) this.arm.setArmPosition(220));
-    SmartDashboard.putData("Elevator 0", (Sendable) this.elevator.setElevatorPosition(5));
-    SmartDashboard.putData("Elevator 1", (Sendable) this.elevator.setElevatorPosition(15));
-    SmartDashboard.putData("Elevator 2", (Sendable) this.elevator.setElevatorPosition(25));
-    SmartDashboard.putData("Elevator 3", (Sendable) this.elevator.setElevatorPosition(35));
+    SmartDashboard.putData("Elev 1", (Sendable) this.elevator.setElevatorPosition(Units.inchesToMeters(10.0)));
+    SmartDashboard.putData("Elev 2", (Sendable) this.elevator.setElevatorPosition(Units.inchesToMeters(5.0)));
+    //SmartDashboard.putData("Elev 2", (Sendable) this.elevator.setElevatorPosition(25));
+    //SmartDashboard.putData("Elev 3", (Sendable) this.elevator.setElevatorPosition(35));
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");
@@ -128,6 +131,8 @@ public class RobotContainer {
     SmartDashboard.putData("Auto Chooser", autoChooser);
     
   }
+
+  
 
   /**
    * Use this method to define your button->command mappings. Buttons can be
