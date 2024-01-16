@@ -10,7 +10,11 @@
       "/SmartDashboard/Arm 4": "Command",
       "/SmartDashboard/Arm 5": "Command",
       "/SmartDashboard/Arm 6": "Command",
-      "/SmartDashboard/Auto Chooser": "String Chooser"
+      "/SmartDashboard/Auto Chooser": "String Chooser",
+      "/SmartDashboard/Elevator 0": "Command",
+      "/SmartDashboard/Elevator 1": "Command",
+      "/SmartDashboard/Elevator 2": "Command",
+      "/SmartDashboard/Elevator 3": "Command"
     },
     "windows": {
       "/AdvantageKit/RealOutputs/Robot Simulation": {
@@ -52,10 +56,39 @@
         "window": {
           "visible": true
         }
+      },
+      "/SmartDashboard/Elevator 0": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Elevator 1": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Elevator 2": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Elevator 3": {
+        "window": {
+          "visible": true
+        }
       }
     }
   },
   "NetworkTables": {
+    "Persistent Values": {
+      "open": false
+    },
+    "Retained Values": {
+      "open": false
+    },
+    "Transitory Values": {
+      "open": false
+    },
     "transitory": {
       "LiveWindow": {
         "open": true

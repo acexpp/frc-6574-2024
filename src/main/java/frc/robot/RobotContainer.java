@@ -97,6 +97,10 @@ public class RobotContainer {
     SmartDashboard.putData("Arm 4", (Sendable) this.arm.setArmPosition(135));
     SmartDashboard.putData("Arm 5", (Sendable) this.arm.setArmPosition(180));
     SmartDashboard.putData("Arm 6", (Sendable) this.arm.setArmPosition(220));
+    SmartDashboard.putData("Elevator 0", (Sendable) this.elevator.setElevatorPosition(5));
+    SmartDashboard.putData("Elevator 1", (Sendable) this.elevator.setElevatorPosition(15));
+    SmartDashboard.putData("Elevator 2", (Sendable) this.elevator.setElevatorPosition(25));
+    SmartDashboard.putData("Elevator 3", (Sendable) this.elevator.setElevatorPosition(35));
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");
