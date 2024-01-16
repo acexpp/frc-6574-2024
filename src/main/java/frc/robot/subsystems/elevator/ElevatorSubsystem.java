@@ -23,13 +23,13 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     private ElevatorState.InputState currentState;
 
-    private ElevatorState.GoalState goal = new GoalState(Units.inchesToMeters(35));
+    private ElevatorState.GoalState goal = new GoalState(Units.inchesToMeters(20));
 
     public ElevatorSubsystem(ElevatorIO elevatorIO) {
         this.io = elevatorIO;
 
-        this.controller = new ProfiledPIDController(.001, 0, 0, new Constraints(100, 100));
-        this.ff = new ElevatorFeedforward(0, 1, 0);
+        this.controller = new ProfiledPIDController(10, 0, 0, new Constraints(100, 100));
+        this.ff = new ElevatorFeedforward(0, 2.6057, 0);
     }
 
     @Override
