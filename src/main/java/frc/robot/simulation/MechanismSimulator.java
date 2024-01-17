@@ -30,7 +30,7 @@ public class MechanismSimulator {
         this.panel = new Mechanism2d(Units.inchesToMeters(100), Units.inchesToMeters(100));
         this.root = panel.getRoot("daroot", Units.inchesToMeters(7.35), Units.inchesToMeters(10));
         this.elevator = root.append(
-            new MechanismLigament2d("elevator", Units.inchesToMeters(10), 45, 10, new Color8Bit(Color.kRed))
+            new MechanismLigament2d("elevator", Units.inchesToMeters(10), 90, 10, new Color8Bit(Color.kRed))
         );
         this.arm = elevator.append(
             new MechanismLigament2d("arm", Units.inchesToMeters(25), 0, 6, new Color8Bit(Color.kYellow))

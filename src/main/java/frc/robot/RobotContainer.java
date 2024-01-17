@@ -96,8 +96,8 @@ public class RobotContainer {
     SmartDashboard.putData("Arm 0", (Sendable) this.arm.setArmPosition(0));
     SmartDashboard.putData("Arm 1", (Sendable) this.arm.setArmPosition(45));
     SmartDashboard.putData("Arm 2", (Sendable) this.arm.setArmPosition(90));
-    SmartDashboard.putData("Arm 3", (Sendable) this.arm.setArmPosition(78));
-    SmartDashboard.putData("Arm 4", (Sendable) this.arm.setArmPosition(135));
+    SmartDashboard.putData("Arm 3", (Sendable) this.arm.setArmPosition(-90));
+    SmartDashboard.putData("Arm 4", (Sendable) this.arm.setArmPosition(270));
     SmartDashboard.putData("Arm 5", (Sendable) this.arm.setArmPosition(180));
     SmartDashboard.putData("Arm 6", (Sendable) this.arm.setArmPosition(220));
     SmartDashboard.putData("Elev 0", (Sendable) this.elevator.setElevatorPosition(Units.inchesToMeters(10.0)));
