@@ -9,8 +9,8 @@ import frc.robot.subsystems.armtest.ArmState.OutputState;
 
 public class ArmSimIO implements ArmIO{
 
-    private final SingleJointedArmSim sim = new SingleJointedArmSim(DCMotor.getNEO(1), 50, SingleJointedArmSim.estimateMOI(Units.inchesToMeters(25), 
-    Units.lbsToKilograms(20)), Units.inchesToMeters(25), -2 * Math.PI, 2 * Math.PI, true, 0);
+    private final SingleJointedArmSim sim = new SingleJointedArmSim(DCMotor.getNEO(1), 50, SingleJointedArmSim.estimateMOI(Units.inchesToMeters(14), 
+    Units.lbsToKilograms(5)), Units.inchesToMeters(14), -2 * Math.PI, 2 * Math.PI, true, 0);
 
     @Override
     public InputState getState() {

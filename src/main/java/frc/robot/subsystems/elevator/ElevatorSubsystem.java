@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.subsystems.armtest.ArmState;
 import frc.robot.subsystems.elevator.ElevatorState.GoalState;
 import frc.robot.subsystems.elevator.io.ElevatorIO;
 
@@ -23,12 +22,12 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     private ElevatorState.InputState currentState;
 
-    private ElevatorState.GoalState goal = new GoalState(Units.inchesToMeters(20));
+    private ElevatorState.GoalState goal = new GoalState(Units.inchesToMeters(25));
 
     public ElevatorSubsystem(ElevatorIO elevatorIO) {
         this.io = elevatorIO;
 
-        this.controller = new ProfiledPIDController(10, 0, 0, new Constraints(100, 100));
+        this.controller = new ProfiledPIDController(100, 0, 0, new Constraints(100, 100));
         this.ff = new ElevatorFeedforward(0, 2.6057, 0);
     }
 

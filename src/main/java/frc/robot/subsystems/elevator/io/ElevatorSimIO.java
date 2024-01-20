@@ -12,9 +12,9 @@ public class ElevatorSimIO implements ElevatorIO{
     private final ElevatorSim sim = new ElevatorSim(
         DCMotor.getNEO(1), 
         50, Units.lbsToKilograms(35), 
-        Units.inchesToMeters(0.8), Units.inchesToMeters(5), 
-        Units.inchesToMeters(40), true,
-        Units.inchesToMeters(5));
+        Units.inchesToMeters(0.8), Units.inchesToMeters(25), 
+        Units.inchesToMeters(34.5), true,
+        Units.inchesToMeters(25));
 
     @Override
     public InputState getState() {
