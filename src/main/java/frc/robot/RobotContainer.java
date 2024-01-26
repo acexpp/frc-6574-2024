@@ -30,6 +30,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.LimelightFront;
 import frc.robot.subsystems.armtest.ArmSubsystem;
 import frc.robot.subsystems.armtest.io.ArmSimIO;
 import frc.robot.subsystems.elevator.ElevatorSubsystem;
@@ -72,6 +73,8 @@ public class RobotContainer {
 
   private final SendableChooser<Command> autoChooser;
 
+  private final LimelightFront limelight;
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
@@ -90,6 +93,8 @@ public class RobotContainer {
       elevator = null;
     }
     sim = new MechanismSimulator(arm, elevator);
+
+    limelight = LimelightFront.getInstance();
     
     
 

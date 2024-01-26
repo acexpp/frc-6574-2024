@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.4682680793933023,
-      "y": 6.992561413694256
+      "x": 1.36,
+      "y": 6.0460358758555355
     },
-    "rotation": 0
+    "rotation": 180.0
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Example Path"
+            "pathName": "Drive to Note"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Drive from Note"
           }
         }
       ]
