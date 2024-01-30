@@ -142,18 +142,4 @@ public final class Constants {
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
   }
-
-  //All values from other code, needs updating
-  public static final class LimelightConstants {
-    public static final double kLimelightHeight = 22.8346; 
-    public static final double kLimelightPanningAngle = 0;
-    public static final double kLimelightAngle = 0;
-
-    public static final double kLimelightHeadingBound = 1.0;
-    public static final double kLimeLightTranslationScoringAngleBound = 0.3;
-    public static final double kLimeLightTranslationSingleSSAngleBound = 1.0;
-
-    public static final double kDriveScaleScoreAlign = 1.0;
-    public static final double kDriveScaleSingleSSAlign = 1.0;
-  }
 }

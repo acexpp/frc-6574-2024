@@ -11,12 +11,11 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGReader;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 
-
+import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.subsystems.LimelightFront;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -40,9 +39,9 @@ public class Robot extends LoggedRobot {
     Logger.recordMetadata("ProjectName", "MyProject"); // Set a metadata value
 
     if (isReal()) {
-        Logger.addDataReceiver(new WPILOGWriter()); // Log to a USB stick ("/U/logs")
+        //Logger.addDataReceiver(new WPILOGWriter()); // Log to a USB stick ("/U/logs")
         //Logger.addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables
-        new PowerDistribution(1, ModuleType.kRev); // Enables power distribution logging
+        //new PowerDistribution(1, ModuleType.kRev); // Enables power distribution logging
     } else {
         setUseTiming(false); // Run as fast as possible
         //String logPath = LogFileUtil.findReplayLog(); // Pull the replay log from AdvantageScope (or prompt the user)
@@ -54,7 +53,11 @@ public class Robot extends LoggedRobot {
     Logger.start(); // Start logging! No more data receivers, replay sources, or metadata values may be added.
     m_robotContainer = new RobotContainer(true);
 
-    LimelightFront.getInstance().setPipeline(0);
+    // Make sure you only configure port forwarding once in your robot code.
+    // Do not place these function calls in any periodic functions
+    for (int port = 5800; port <= 5807; port++) {
+        PortForwarder.add(port, "limelight.local", port);
+    }
   }
 
   /**
