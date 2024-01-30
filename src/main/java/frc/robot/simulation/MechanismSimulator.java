@@ -19,6 +19,7 @@ public class MechanismSimulator {
     private final MechanismRoot2d root;
     private final MechanismLigament2d arm;
     private final MechanismLigament2d elevator;
+    
 
     private final ArmSubsystem armSubsystem;
     private final ElevatorSubsystem elevatorSubsystem;
@@ -32,6 +33,7 @@ public class MechanismSimulator {
         this.elevator = root.append(
             new MechanismLigament2d("elevator", Units.inchesToMeters(10), 90, 10, new Color8Bit(Color.kRed))
         );
+        
         this.arm = elevator.append(
             new MechanismLigament2d("arm", Units.inchesToMeters(25), 0, 6, new Color8Bit(Color.kYellow))
         );
