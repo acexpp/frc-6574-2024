@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import java.util.HashMap;
 
 import com.ctre.phoenix.sensors.WPI_PigeonIMU;
+import com.ctre.phoenix6.mechanisms.swerve.SwerveModule;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
@@ -20,13 +21,10 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.DriverStation;
-import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -51,6 +49,9 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kRearRightTurningCanId,
       DriveConstants.kBackRightChassisAngularOffset);
 
+  public MAXSwerveModule[] swerveModules = new MAXSwerveModule[] {
+    m_frontLeft, m_frontRight, m_rearRight, m_rearLeft
+  };
 
   // The gyro sensor
   private final WPI_PigeonIMU m_gyro = new WPI_PigeonIMU(DriveConstants.pigeonCanId);
@@ -78,6 +79,7 @@ public class DriveSubsystem extends SubsystemBase {
   /** Creates a new DriveSubsystem. */
   public DriveSubsystem() {
 
+    //Creates a holonomic autobuilder for PathPlanner 
     AutoBuilder.configureHolonomic(
                 this::getPose, // Robot pose supplier
                 this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
@@ -289,5 +291,17 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public double getTurnRate() {
     return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+  }
+
+  public Rotation2d getRotation2d(){
+    return Rotation2d.fromDegrees(getHeading());
+  }
+
+  public SwerveModulePosition[] getModulePositions(){
+    SwerveModulePosition[] positions = new SwerveModulePosition[4];
+    for(int x = 0; x < swerveModules.length; x++){
+      positions[x] = swerveModules[x].getPosition();
+    }
+    return positions;
   }
 }

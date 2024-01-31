@@ -139,15 +139,41 @@ public final class Constants {
         kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
   }
 
-  public static final class IntakeConstants{
-    public static final int kIntakeLinkageLeftCanId=11;
-    public static final int kIntakeLinkageRightCanId=12;
-    public static final int kIntakeRollerBottomCanId=13;
-    public static final int kIntakeRollerTopCanId=14;
+  //ALL TEMPORARY VALUES
+  public static final class RobotConstants{
+
+    //Intake Constants
+    public static final int kIntakeLinkageLeftCanId = 11;
+    public static final int kIntakeLinkageRightCanId = 12;
+    public static final int kIntakeRollerBottomCanId = 13;
+    public static final int kIntakeRollerTopCanId = 14;
+
+    //Elevator Constants
+    public static final int elevatorLeftMotorCANID = 15;
+    public static final int elevatorRightMotorCANID = 16;
     
   }  
 
   public static final class NeoMotorConstants {
     public static final double kFreeSpeedRpm = 5676;
+  }
+
+  // UPDATE SOON PLEASE AND THANK YOU ^-^
+  public static final class VisionConstants {
+
+    public static final String tapeLimelight = "limelight-tape";
+    public static final String tagLimelightName = "limelight-tags";
+
+    public static double HEIGHT_OF_HIGH_NODE = 0.90; //Elevation of Target
+    public static double HEIGHT_OF_MID_NODE = 0.60;
+    public static double HEIGHT_OF_TAG = 0.45;
+    public static double LIMELIGHT_FLOOR_CLEREANCE= 0.04819; //Elevation of the Limelight
+    public static double LIMELIGHT_VERTICAL_ANGLE = 0;
+
+    public static final int normalTracking_Pipeline = 0,
+                            lowAlign_Pipeline = 1,
+                            midAlign_Pipeline = 2,
+                            highAlign_Pipeline = 3;
+
   }
 }

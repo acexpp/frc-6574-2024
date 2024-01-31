@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.subsystems.elevator.ElevatorState.GoalState;
 import frc.robot.subsystems.elevator.io.ElevatorIO;
 
-public class ElevatorSubsystem extends SubsystemBase {
+public class ElevatorSimSubsystem extends SubsystemBase {
     
     private final ElevatorIO io;
 
@@ -22,9 +22,10 @@ public class ElevatorSubsystem extends SubsystemBase {
 
     private ElevatorState.InputState currentState;
 
+    //Initial state of the elevator in simulation when enabled (meters)
     private ElevatorState.GoalState goal = new GoalState(Units.inchesToMeters(25));
 
-    public ElevatorSubsystem(ElevatorIO elevatorIO) {
+    public ElevatorSimSubsystem(ElevatorIO elevatorIO) {
         this.io = elevatorIO;
 
         this.controller = new ProfiledPIDController(100, 0, 0, new Constraints(100, 100));
@@ -54,6 +55,7 @@ public class ElevatorSubsystem extends SubsystemBase {
         return this.currentState;
     }
 
+    //Sets the elevator to a new position in meters
     public Command setElevatorPosition(double meters) {
         return new InstantCommand(() -> this.goal = new ElevatorState.GoalState(meters));
     }

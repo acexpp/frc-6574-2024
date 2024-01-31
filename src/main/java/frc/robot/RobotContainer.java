@@ -7,51 +7,27 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.geometry.Translation2d;
-import edu.wpi.first.math.trajectory.Trajectory;
-import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.math.trajectory.TrajectoryGenerator;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
-//import edu.wpi.first.wpilibj.PS4Controller.Button;
-import frc.robot.Constants.AutoConstants;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.OIConstants;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.armtest.ArmSubsystem;
 import frc.robot.subsystems.armtest.io.ArmSimIO;
-import frc.robot.subsystems.elevator.ElevatorSubsystem;
+import frc.robot.subsystems.elevator.Elevator;
+import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-
-import java.util.HashMap;
-import java.util.List;
-
-//import com.ctre.phoenix.platform.can.AutocacheState;
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.commands.PathPlannerAuto;
-import com.pathplanner.lib.path.PathConstraints;
-import com.pathplanner.lib.path.PathPlannerPath;
-import com.pathplanner.lib.path.PathPlannerTrajectory;
-import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
-import com.pathplanner.lib.util.PIDConstants;
-import com.pathplanner.lib.util.ReplanningConfig;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -63,9 +39,11 @@ public class RobotContainer {
 
   public final MechanismSimulator sim;
   private final ArmSubsystem arm;
-  private final ElevatorSubsystem elevator;
+  private final ElevatorSimSubsystem elevatorSim;
+
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  public static Elevator elevator = new Elevator();
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -81,19 +59,19 @@ public class RobotContainer {
       arm = new ArmSubsystem(
         new ArmSimIO()
       );
-      elevator = new ElevatorSubsystem(
+      elevatorSim = new ElevatorSimSubsystem(
       new ElevatorSimIO()
       );
     }
     else {
       arm = null;
-      elevator = null;
+      elevatorSim = null;
     }
-    sim = new MechanismSimulator(arm, elevator);
+    sim = new MechanismSimulator(arm, elevatorSim);
 
     
 
-
+    // Mechanism2D Simulation buttons - mostly for testing ^-^
     SmartDashboard.putData("Arm 0", (Sendable) this.arm.setArmPosition(0));
     SmartDashboard.putData("Arm 1", (Sendable) this.arm.setArmPosition(45));
     SmartDashboard.putData("Arm 2", (Sendable) this.arm.setArmPosition(90));
@@ -101,10 +79,10 @@ public class RobotContainer {
     SmartDashboard.putData("Arm 4", (Sendable) this.arm.setArmPosition(270));
     SmartDashboard.putData("Arm 5", (Sendable) this.arm.setArmPosition(180));
     SmartDashboard.putData("Arm 6", (Sendable) this.arm.setArmPosition(220));
-    SmartDashboard.putData("Elev 0", (Sendable) this.elevator.setElevatorPosition(Units.inchesToMeters(25)));
-    SmartDashboard.putData("Elev 1", (Sendable) this.elevator.setElevatorPosition(Units.inchesToMeters(30)));
-    SmartDashboard.putData("Elev 2", (Sendable) this.elevator.setElevatorPosition(Units.inchesToMeters(32)));
-    SmartDashboard.putData("Elev 3", (Sendable) this.elevator.setElevatorPosition(Units.inchesToMeters(34.5)));
+    SmartDashboard.putData("Elev 0", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(25)));
+    SmartDashboard.putData("Elev 1", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(30)));
+    SmartDashboard.putData("Elev 2", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(32)));
+    SmartDashboard.putData("Elev 3", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(34.5)));
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");
@@ -145,6 +123,8 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
+
+    //Driver buttons
     new JoystickButton(m_driverController, Button.kX.value)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
@@ -153,6 +133,8 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_robotDrive.zeroHeading(),
             m_robotDrive));
+
+    //Operator buttons - TO BE ADDED
           
   }
 

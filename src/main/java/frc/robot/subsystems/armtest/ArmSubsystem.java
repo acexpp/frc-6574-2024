@@ -21,6 +21,7 @@ public class ArmSubsystem extends SubsystemBase {
 
     private ArmState.InputState currentState;
 
+    //Initial state of the arm in simulation when enabled (degrees)
     private ArmState.GoalState goal = new ArmState.GoalState(45);
 
     public ArmSubsystem(ArmIO armIO) {
@@ -55,6 +56,7 @@ public class ArmSubsystem extends SubsystemBase {
         return this.currentState;
     }
 
+    //Sets the arm to a new position in meters
     public Command setArmPosition(double degrees) {
         return new InstantCommand(() -> this.goal = new ArmState.GoalState(degrees));
     }

@@ -40,7 +40,7 @@ public class Robot extends LoggedRobot {
 
     if (isReal()) {
         //Logger.addDataReceiver(new WPILOGWriter()); // Log to a USB stick ("/U/logs")
-        //Logger.addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables
+        Logger.addDataReceiver(new NT4Publisher()); // Publish data to NetworkTables
         //new PowerDistribution(1, ModuleType.kRev); // Enables power distribution logging
     } else {
         setUseTiming(false); // Run as fast as possible
@@ -135,6 +135,7 @@ public class Robot extends LoggedRobot {
   @Override
   public void simulationInit() {}
 
+  /** This function is called periodically during simulation */
   @Override
   public void simulationPeriodic() {
     m_robotContainer.sim.periodic();
