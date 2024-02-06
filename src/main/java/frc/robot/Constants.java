@@ -143,14 +143,25 @@ public final class Constants {
   public static final class RobotConstants{
 
     //Intake Constants
-    public static final int kIntakeLinkageLeftCanId = 11;
-    public static final int kIntakeLinkageRightCanId = 12;
-    public static final int kIntakeRollerBottomCanId = 13;
-    public static final int kIntakeRollerTopCanId = 14;
+    public static final int kIntakeTransitionCANID = 11;
+    public static final int kIntakeRollerBottomCANID = 12;
+    public static final int kIntakeRollerTopCANID = 13;
+
+    public static final int intakeMoveLeftCANID = 14;
+    public static final int intakeMoveRightCANID = 15;
+
+    //Shooter Constants
+    public static final int shooterLeftCANID = 16;
+    public static final int shooterRightCANID = 17;
+    public static final int shooterWristCANID = 18;
 
     //Elevator Constants
-    public static final int elevatorLeftMotorCANID = 15;
-    public static final int elevatorRightMotorCANID = 16;
+    public static final int elevatorLeftMotorCANID = 19;
+    public static final int elevatorRightMotorCANID = 20;
+
+    //Intake Speed Constants
+    public static final int intakeSpeed = 1;
+    public static final int shooterSpeed = -1;
     
   }  
 
@@ -160,20 +171,11 @@ public final class Constants {
 
   // UPDATE SOON PLEASE AND THANK YOU ^-^
   public static final class VisionConstants {
-
-    public static final String tapeLimelight = "limelight-tape";
+    
     public static final String tagLimelightName = "limelight-tags";
 
-    public static double HEIGHT_OF_HIGH_NODE = 0.90; //Elevation of Target
-    public static double HEIGHT_OF_MID_NODE = 0.60;
-    public static double HEIGHT_OF_TAG = 0.45;
     public static double LIMELIGHT_FLOOR_CLEREANCE= 0.04819; //Elevation of the Limelight
     public static double LIMELIGHT_VERTICAL_ANGLE = 0;
-
-    public static final int normalTracking_Pipeline = 0,
-                            lowAlign_Pipeline = 1,
-                            midAlign_Pipeline = 2,
-                            highAlign_Pipeline = 3;
 
   }
 }

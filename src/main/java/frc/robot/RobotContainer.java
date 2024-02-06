@@ -18,6 +18,10 @@ import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.IntakeMove;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.ShooterWrist;
 import frc.robot.subsystems.armtest.ArmSubsystem;
 import frc.robot.subsystems.armtest.io.ArmSimIO;
 import frc.robot.subsystems.elevator.Elevator;
@@ -44,6 +48,11 @@ public class RobotContainer {
   // The robot's subsystems
   private final DriveSubsystem m_robotDrive = new DriveSubsystem();
   public static Elevator elevator = new Elevator();
+  public static Shooter shooter = new Shooter();
+  public static ShooterWrist shooterW = new ShooterWrist();
+  public static Intake intake = new Intake();
+  public static IntakeMove intakeMove = new IntakeMove();
+  
 
   // The driver's controller
   XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
@@ -111,7 +120,9 @@ public class RobotContainer {
     
   }
 
-  
+  public DriveSubsystem getDrivetrain(){
+    return m_robotDrive;
+  }
 
   /**
    * Use this method to define your button->command mappings. Buttons can be

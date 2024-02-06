@@ -16,7 +16,6 @@ import com.revrobotics.SparkPIDController;
 
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
-import com.revrobotics.SparkPIDController;
 
 import frc.robot.Constants.ModuleConstants;
 

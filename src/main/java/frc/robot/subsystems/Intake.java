@@ -13,33 +13,26 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
 
-  public CANSparkMax kIntakeLinkageLeft;
-  public CANSparkMax kIntakeLinkageRight;
+  public CANSparkMax kIntakeTransition;
   public CANSparkMax kIntakeRollerBottom;
   public CANSparkMax kIntakeRollerTop;
   
   /** Creates a new Intake. */
   public Intake() {
-    kIntakeLinkageLeft = new CANSparkMax(Constants.RobotConstants.kIntakeLinkageLeftCanId, MotorType.kBrushless);
-    kIntakeLinkageLeft.restoreFactoryDefaults();
-    kIntakeLinkageLeft.setIdleMode(IdleMode.kBrake);
-    kIntakeLinkageLeft.setSmartCurrentLimit(25);
+    kIntakeTransition = new CANSparkMax(Constants.RobotConstants.kIntakeTransitionCANID, MotorType.kBrushless);
+    kIntakeTransition.restoreFactoryDefaults();
+    kIntakeTransition.setIdleMode(IdleMode.kBrake);
+    kIntakeTransition.setSmartCurrentLimit(25);
 
-    kIntakeLinkageRight = new CANSparkMax(Constants.RobotConstants.kIntakeLinkageRightCanId, MotorType.kBrushless);
-    kIntakeLinkageRight.restoreFactoryDefaults();
-    kIntakeLinkageRight.setIdleMode(IdleMode.kBrake);
-    kIntakeLinkageRight.setSmartCurrentLimit(25);
-
-    kIntakeRollerBottom = new CANSparkMax(Constants.RobotConstants.kIntakeRollerBottomCanId, MotorType.kBrushless);
+    kIntakeRollerBottom = new CANSparkMax(Constants.RobotConstants.kIntakeRollerBottomCANID, MotorType.kBrushless);
     kIntakeRollerBottom.restoreFactoryDefaults();
     kIntakeRollerBottom.setIdleMode(IdleMode.kBrake);
     kIntakeRollerBottom.setSmartCurrentLimit(25);
 
-    kIntakeRollerTop = new CANSparkMax(Constants.RobotConstants.kIntakeRollerTopCanId, MotorType.kBrushless);
+    kIntakeRollerTop = new CANSparkMax(Constants.RobotConstants.kIntakeRollerTopCANID, MotorType.kBrushless);
     kIntakeRollerTop.restoreFactoryDefaults();
     kIntakeRollerTop.setIdleMode(IdleMode.kBrake);
     kIntakeRollerTop.setSmartCurrentLimit(25);
-
   }
   @Override
   public void periodic() {
@@ -47,16 +40,14 @@ public class Intake extends SubsystemBase {
   }
 
   public void setIntakeSpeed(double speed) {
-    kIntakeLinkageLeft.set(speed);
-    kIntakeLinkageRight.set(speed);
+    kIntakeTransition.set(speed);
     kIntakeRollerBottom.set(speed);
     kIntakeRollerTop.set(speed);
 
   }
 
   public void setOutakeSpeed() {
-    kIntakeLinkageLeft.set(-1);
-    kIntakeLinkageRight.set(-1);
+    kIntakeTransition.set(-1);
     kIntakeRollerBottom.set(-1);
     kIntakeRollerTop.set(-1);
 
