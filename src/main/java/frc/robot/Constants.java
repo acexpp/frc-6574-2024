@@ -159,6 +159,10 @@ public final class Constants {
     public static final int elevatorLeftMotorCANID = 19;
     public static final int elevatorRightMotorCANID = 20;
 
+    //Climber Constants
+    public static final int climberLeftCANID = 21;
+    public static final int climberRightCANID = 22;
+
     //Intake Speed Constants
     public static final int intakeSpeed = 1;
     public static final int shooterSpeed = -1;
@@ -174,7 +178,7 @@ public final class Constants {
     
     public static final String tagLimelightName = "limelight-tags";
 
-    public static double LIMELIGHT_FLOOR_CLEREANCE= 0.04819; //Elevation of the Limelight
+    public static double LIMELIGHT_FLOOR_CLEREANCE = 0.04819; //Elevation of the Limelight
     public static double LIMELIGHT_VERTICAL_ANGLE = 0;
 
   }
