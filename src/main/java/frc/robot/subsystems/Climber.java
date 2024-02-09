@@ -29,8 +29,7 @@ public class Climber extends SubsystemBase {
 
   private double maxSpeed = 0.25;
   private float maxElevatorExtension = 32.5f;
-
-  /** Creates a new Elevator. Gatorvator*/
+  
   public Climber() {
     leftMotor = new CANSparkMax(Constants.RobotConstants.climberLeftCANID, MotorType.kBrushless);
     rightMotor = new CANSparkMax(Constants.RobotConstants.climberRightCANID, MotorType.kBrushless);

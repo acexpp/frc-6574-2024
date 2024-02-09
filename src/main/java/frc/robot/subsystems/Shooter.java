@@ -3,32 +3,34 @@
 // the WPILib BSD license file in the root directory of this project.
 
 
-//THIS SUBSYTEM USES KRAKENS - CHANGE PLS :))
+//THIS SUBSYTEM USES KRAKENS - FIGHT PHOENIX API >:((
 package frc.robot.subsystems;
-
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.hardware.TalonFX;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
 
-  public CANSparkMax kIntakeShooterLeft;
-  public CANSparkMax kIntakeShooterRight;
+  public TalonFX kIntakeShooterLeft;
+  public TalonFX kIntakeShooterRight;
+  public TalonFXConfiguration swerveAngleFXConfig = new TalonFXConfiguration();
+
   
   /** Creates a new Intake. */
   public Shooter() {
-    kIntakeShooterLeft = new CANSparkMax(Constants.RobotConstants.shooterLeftCANID, MotorType.kBrushless);
-    kIntakeShooterLeft.restoreFactoryDefaults();
-    kIntakeShooterLeft.setIdleMode(IdleMode.kBrake);
-    kIntakeShooterLeft.setSmartCurrentLimit(25);
+    kIntakeShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
+    kIntakeShooterLeft.getConfigurator().apply(new TalonFXConfiguration());
+    kIntakeShooterLeft.setNeutralMode(NeutralModeValue.Brake);
+    //FIGURE OUT HOW TO SET CURRENT LIMIT >:((
 
-    kIntakeShooterRight = new CANSparkMax(Constants.RobotConstants.shooterRightCANID, MotorType.kBrushless);
-    kIntakeShooterRight.restoreFactoryDefaults();
-    kIntakeShooterRight.setIdleMode(IdleMode.kBrake);
-    kIntakeShooterRight.setSmartCurrentLimit(25);
+    kIntakeShooterRight = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
+    kIntakeShooterRight.getConfigurator().apply(new TalonFXConfiguration());
+    kIntakeShooterRight.setNeutralMode(NeutralModeValue.Brake);
+    //FIGURE OUT HOW TO SET CURRENT LIMIT >:((
   }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

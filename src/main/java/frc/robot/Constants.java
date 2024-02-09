@@ -166,6 +166,11 @@ public final class Constants {
     //Intake Speed Constants
     public static final int intakeSpeed = 1;
     public static final int shooterSpeed = -1;
+
+    //Position Constants - PLACEHOLDERS :)
+    public static final int shooterWristHome = 0;
+    public static final int testElevatorPosition = 0;
+    public static final int shooterWristTestPos = 0;
     
   }  
 

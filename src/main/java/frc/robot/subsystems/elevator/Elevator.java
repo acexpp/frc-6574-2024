@@ -25,7 +25,9 @@ public class Elevator extends SubsystemBase {
   private double maxSpeed = 0.25;
   private float maxElevatorExtension = 32.5f;
 
-  /** Creates a new Elevator. Gatorvator*/
+  //RIP Gatorvator ⚰️🐊
+  //Your code will be of great use to us
+  //You will not be forgotten 😘😘😘
   public Elevator() {
     leftMotor = new CANSparkMax(Constants.RobotConstants.elevatorLeftMotorCANID, MotorType.kBrushless);
     rightMotor = new CANSparkMax(Constants.RobotConstants.elevatorRightMotorCANID, MotorType.kBrushless);
