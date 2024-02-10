@@ -18,7 +18,7 @@ public class Shooter extends SubsystemBase {
   public CurrentLimitsConfigs currentLimitConfig = new CurrentLimitsConfigs();
 
   
-  /** Creates a new Intake. */
+  /** Creates a new Shooter. */
   public Shooter() {
     kIntakeShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
     kIntakeShooterLeft.getConfigurator().apply(shooterAngleFXConfig);

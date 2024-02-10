@@ -31,7 +31,7 @@ public class IntakeMove extends SubsystemBase {
   //private double maxSpeed = 0.25;
   //private double deadBand = 0.1;
 
-  /** Creates a new Intake. */
+  /** Creates a new IntakeMove. */
   public IntakeMove() {
     intakeMoveLeft = new CANSparkMax(Constants.RobotConstants.intakeMoveLeftCANID, MotorType.kBrushless);
     intakeMoveLeft.restoreFactoryDefaults();

@@ -27,7 +27,7 @@ public class ShooterWrist extends SubsystemBase {
   //private double maxSpeed = 0.25;
   //private double deadBand = 0.1;
 
-  /** Creates a new Intake. */
+  /** Creates a new ShooterWrist. */
   public ShooterWrist() {
     shooterWristMotor = new CANSparkMax(Constants.RobotConstants.shooterWristCANID, MotorType.kBrushless);
     shooterWristMotor.restoreFactoryDefaults();
@@ -68,7 +68,7 @@ public class ShooterWrist extends SubsystemBase {
   @Override
 
   public void periodic() {
-    SmartDashboard.putNumber("Wrist", getAbsoluteEncoderPosition());
+    SmartDashboard.putNumber("Shooter Wrist Position", getAbsoluteEncoderPosition());
     //SmartDashboard.putNumber("Wrist Joystick", RobotContainer.operator.getRawAxis(5));
     //SmartDashboard.putNumber("Wrist encoder", wristMotor.getEncoder().getPosition());
 

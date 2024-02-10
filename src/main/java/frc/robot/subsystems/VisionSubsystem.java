@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.MatBuilder;
 import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.Nat;
-import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
@@ -24,7 +23,7 @@ import frc.robot.LimelightHelpers;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.VisionConstants;
 
-/** Add your docs here. */
+/** Limelight subsystem taken fro team 4400 Cerbotics - looks to be updated from last time I checked their code base */
 public class VisionSubsystem {
   private final DriveSubsystem m_drive;
 
@@ -98,7 +97,7 @@ public class VisionSubsystem {
     public double getEstimationAngle(){
         return m_poseEstimator.getEstimatedPosition().getRotation().getDegrees();
     }
-    
+
   public void odometryWvision(){
     m_poseEstimator.update(m_drive.getRotation2d(), m_drive.getModulePositions());
 
