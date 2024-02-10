@@ -2,9 +2,8 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-
-//THIS SUBSYTEM USES KRAKENS - FIGHT PHOENIX API >:((
 package frc.robot.subsystems;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
@@ -15,20 +14,21 @@ public class Shooter extends SubsystemBase {
 
   public TalonFX kIntakeShooterLeft;
   public TalonFX kIntakeShooterRight;
-  public TalonFXConfiguration swerveAngleFXConfig = new TalonFXConfiguration();
+  public TalonFXConfiguration shooterAngleFXConfig = new TalonFXConfiguration();
+  public CurrentLimitsConfigs currentLimitConfig = new CurrentLimitsConfigs();
 
   
   /** Creates a new Intake. */
   public Shooter() {
     kIntakeShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
-    kIntakeShooterLeft.getConfigurator().apply(new TalonFXConfiguration());
+    kIntakeShooterLeft.getConfigurator().apply(shooterAngleFXConfig);
     kIntakeShooterLeft.setNeutralMode(NeutralModeValue.Brake);
-    //FIGURE OUT HOW TO SET CURRENT LIMIT >:((
+    kIntakeShooterLeft.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
 
     kIntakeShooterRight = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
-    kIntakeShooterRight.getConfigurator().apply(new TalonFXConfiguration());
+    kIntakeShooterRight.getConfigurator().apply(shooterAngleFXConfig);
     kIntakeShooterRight.setNeutralMode(NeutralModeValue.Brake);
-    //FIGURE OUT HOW TO SET CURRENT LIMIT >:((
+    kIntakeShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
   }
 
   @Override
