@@ -16,6 +16,9 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
+import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
+import frc.robot.commands.ShooterWristCommands.ShootNote;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Intake;
@@ -28,6 +31,7 @@ import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -143,6 +147,12 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_robotDrive.zeroHeading(),
             m_robotDrive));
+    new JoystickButton(m_driverController, Button.kA.value)
+        .onTrue(new ReturnToHome());
+    new JoystickButton(m_driverController, Button.kB.value)
+        .onTrue(new ScoreNoteTest());
+    new JoystickButton(m_driverController, Button.kRightBumper.value)
+        .whileTrue(new ShootNote());
 
     //Operator buttons - TO BE ADDED
           
