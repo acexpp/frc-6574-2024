@@ -164,7 +164,7 @@ public final class Constants {
     public static final int climberRightCANID = 22;
 
     //Intake Speed Constants
-    public static final double intakeSpeed = 1;
+    public static final double intakeSpeed = .5;
     public static final double shooterSpeed = 1;
 
     //Position Constants - PLACEHOLDERS :)

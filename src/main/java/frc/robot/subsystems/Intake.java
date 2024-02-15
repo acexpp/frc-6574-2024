@@ -27,12 +27,12 @@ public class Intake extends SubsystemBase {
     kIntakeRollerBottom = new CANSparkMax(Constants.RobotConstants.kIntakeRollerBottomCANID, MotorType.kBrushless);
     kIntakeRollerBottom.restoreFactoryDefaults();
     kIntakeRollerBottom.setIdleMode(IdleMode.kBrake);
-    kIntakeRollerBottom.setSmartCurrentLimit(25);
+    kIntakeRollerBottom.setSmartCurrentLimit(35);
 
     kIntakeRollerTop = new CANSparkMax(Constants.RobotConstants.kIntakeRollerTopCANID, MotorType.kBrushless);
     kIntakeRollerTop.restoreFactoryDefaults();
     kIntakeRollerTop.setIdleMode(IdleMode.kBrake);
-    kIntakeRollerTop.setSmartCurrentLimit(25);
+    kIntakeRollerTop.setSmartCurrentLimit(35);
   }
   @Override
   public void periodic() {
@@ -40,8 +40,8 @@ public class Intake extends SubsystemBase {
   }
 
   public void setIntakeSpeed(double speed) {
-    kIntakeTransition.set(speed);
     kIntakeRollerBottom.set(speed);
+    kIntakeTransition.set(-speed);
     kIntakeRollerTop.set(speed);
 
   }

@@ -76,7 +76,7 @@ public class Climber extends SubsystemBase {
 
 
   public void driveClimber(double speed) {
-    rightMotor.set(speed * maxSpeed);
+    leftMotor.set(speed * maxSpeed);
   }
 
  /*public void setPosition(double position) {

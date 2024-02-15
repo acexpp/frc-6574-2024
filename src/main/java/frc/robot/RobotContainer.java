@@ -16,6 +16,7 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.IntakeNote;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
@@ -34,7 +35,10 @@ import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -157,6 +161,18 @@ public class RobotContainer {
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     m_driverController.b().onTrue(new SetClimberDown());
+    //m_driverController.leftBumper().whileTrue(new IntakeNote());
+    m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(
+      new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
+      new SequentialCommandGroup(
+        new WaitCommand(0.3),
+        new RunCommand(() -> intake.setIntakeSpeed(Constants.RobotConstants.intakeSpeed), intake)
+      )
+    ));
+    m_driverController.leftBumper().whileFalse(new ParallelCommandGroup(
+      new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
+      new RunCommand(() -> intake.setIntakeSpeed(0), intake)
+    ));
     /*
     new JoystickButton(m_driverController, Button.kA.value)
         .onTrue(new ReturnToHome());
