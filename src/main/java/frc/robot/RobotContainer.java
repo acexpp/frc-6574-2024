@@ -14,12 +14,15 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.XboxController.Button;
+//import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
+import frc.robot.commands.ClimberCommands.SetClimberDown;
+import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
 import frc.robot.commands.ShooterWristCommands.ShootNote;
 import frc.robot.simulation.MechanismSimulator;
+import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeMove;
@@ -31,8 +34,8 @@ import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -55,10 +58,11 @@ public class RobotContainer {
   public static ShooterWrist shooterW = new ShooterWrist();
   public static Intake intake = new Intake();
   public static IntakeMove intakeMove = new IntakeMove();
+  public static Climber climber = new Climber();
   
 
   // The driver's controller
-  XboxController m_driverController = new XboxController(OIConstants.kDriverControllerPort);
+  CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
 
   private final SendableChooser<Command> autoChooser;
 
@@ -139,6 +143,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     //Driver buttons
+    /*
     new JoystickButton(m_driverController, Button.kX.value)
         .whileTrue(new RunCommand(
             () -> m_robotDrive.setX(),
@@ -147,13 +152,19 @@ public class RobotContainer {
         .whileTrue(new RunCommand(
             () -> m_robotDrive.zeroHeading(),
             m_robotDrive));
+    */
+    m_driverController.y().whileTrue(new RunCommand(() -> shooter.leftMotor.));
+    m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
+    /*
     new JoystickButton(m_driverController, Button.kA.value)
         .onTrue(new ReturnToHome());
     new JoystickButton(m_driverController, Button.kB.value)
         .onTrue(new ScoreNoteTest());
-    new JoystickButton(m_driverController, Button.kRightBumper.value)
-        .whileTrue(new ShootNote());
-
+    */
+    /*
+    new JoystickButton(m_driverController, Button.kStart.value)
+        .onTrue(new IntakeNoteFromFloor());
+    */
     //Operator buttons - TO BE ADDED
           
   }

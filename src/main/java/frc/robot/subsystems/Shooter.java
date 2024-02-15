@@ -36,15 +36,9 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setIntakeSpeed(double speed) {
+  public void setShooterSpeed(double speed) {
     kIntakeShooterLeft.set(speed);
     kIntakeShooterRight.set(speed);
-
-  }
-
-  public void setOutakeSpeed() {
-    kIntakeShooterLeft.set(-1);
-    kIntakeShooterRight.set(-1);
 
   }
 }

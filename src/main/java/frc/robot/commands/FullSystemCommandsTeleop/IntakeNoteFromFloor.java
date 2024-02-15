@@ -4,20 +4,22 @@ package frc.robot.commands.FullSystemCommandsTeleop;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.RobotConstants;
+import frc.robot.commands.IntakeNote;
 import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
+import frc.robot.commands.IntakeMoveCommands.SetIntakeMovePosition;
 import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
-import frc.robot.commands.ShooterWristCommands.ShootNote;
 
-public class ScoreNoteTest extends SequentialCommandGroup {
+public class IntakeNoteFromFloor extends SequentialCommandGroup {
   /** Creates a new ScoreConeMid. */
-  public ScoreNoteTest() {
+  public IntakeNoteFromFloor() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new SetElevatorPosition(RobotConstants.testElevatorPosition),
+      new SetElevatorPosition(RobotConstants.elevatorHomePosition),
       new ParallelCommandGroup(
                                new SetShooterWristPosition(RobotConstants.shooterWristTestPos),
-                               new ShootNote())
+                               new SetIntakeMovePosition(RobotConstants.intakeMoveTestPosition),
+                               new IntakeNote())
 
     );
   }

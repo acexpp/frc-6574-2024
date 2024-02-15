@@ -28,8 +28,8 @@ public class Climber extends SubsystemBase {
   private SparkPIDController climberPIDController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
-  private double maxSpeed = 0.25;
-  private float maxElevatorExtension = 32.5f;
+  private double maxSpeed = 0.4;
+  //private float maxElevatorExtension = 32.5f;
   
   public Climber() {
     leftMotor = new CANSparkMax(Constants.RobotConstants.climberLeftCANID, MotorType.kBrushless);
@@ -50,13 +50,13 @@ public class Climber extends SubsystemBase {
 
     rightMotor.follow(leftMotor, true);
 
-    leftMotor.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+    //leftMotor.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
 
-    leftMotor.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, maxElevatorExtension);
+    //leftMotor.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, maxElevatorExtension);
 
-    leftMotor.getEncoder().setPosition(0);
+    //leftMotor.getEncoder().setPosition(0);
 
-    climberPIDController = leftMotor.getPIDController();
+   /*  climberPIDController = leftMotor.getPIDController();
     leftMotor.getEncoder();
 
     kP = 0.15;
@@ -72,7 +72,7 @@ public class Climber extends SubsystemBase {
     climberPIDController.setD(kD);
     climberPIDController.setIZone(kIz);
     climberPIDController.setFF(kFF);
-    climberPIDController.setOutputRange(kMinOutput, kMaxOutput);
+    climberPIDController.setOutputRange(kMinOutput, kMaxOutput);*/
   }
 
 
@@ -80,14 +80,14 @@ public class Climber extends SubsystemBase {
     rightMotor.set(speed * maxSpeed);
   }
 
-  public void setPosition(double position) {
+ /*public void setPosition(double position) {
     climberPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
   }
 
   public void stopMotors() {
     leftMotor.stopMotor();
     rightMotor.stopMotor();
-  }
+  }*/
 
   @Override
   public void periodic() {

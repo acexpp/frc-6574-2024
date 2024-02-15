@@ -18,7 +18,7 @@ import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ReturnToHome extends SequentialCommandGroup {
-  /** Creates a new ReturnWAEHome. */
+  /** Creates a new ReturnToHome. */
   public ReturnToHome() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
@@ -31,6 +31,7 @@ public class ReturnToHome extends SequentialCommandGroup {
       new InstantCommand(() -> RobotContainer.intakeMove.stop()),
       new InstantCommand(() -> RobotContainer.elevator.stopMotors()),
       new InstantCommand(() -> RobotContainer.shooterW.stop())
+      //new InstantCommand(() -> RobotContainer.climber.stopMotors())
     );
   }
 }
