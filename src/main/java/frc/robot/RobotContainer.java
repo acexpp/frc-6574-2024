@@ -153,8 +153,8 @@ public class RobotContainer {
             () -> m_robotDrive.zeroHeading(),
             m_robotDrive));
     */
-    m_driverController.y().whileTrue(new RunCommand(() -> shooter.leftMotor.));
-    m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
+    m_driverController.x().whileTrue(new RunCommand(() -> shooter.setShooterSpeed(.4)));
+    //m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     /*
     new JoystickButton(m_driverController, Button.kA.value)
         .onTrue(new ReturnToHome());

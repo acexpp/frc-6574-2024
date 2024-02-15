@@ -21,14 +21,14 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   public Shooter() {
     kIntakeShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
-    kIntakeShooterLeft.getConfigurator().apply(shooterAngleFXConfig);
+    //kIntakeShooterLeft.getConfigurator().apply(shooterAngleFXConfig);
     kIntakeShooterLeft.setNeutralMode(NeutralModeValue.Brake);
-    kIntakeShooterLeft.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
+    //kIntakeShooterLeft.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
 
-    kIntakeShooterRight = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
-    kIntakeShooterRight.getConfigurator().apply(shooterAngleFXConfig);
+    kIntakeShooterRight = new TalonFX(Constants.RobotConstants.shooterRightCANID);
+    //kIntakeShooterRight.getConfigurator().apply(shooterAngleFXConfig);
     kIntakeShooterRight.setNeutralMode(NeutralModeValue.Brake);
-    kIntakeShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
+    //kIntakeShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
   }
 
   @Override
