@@ -165,7 +165,7 @@ public final class Constants {
 
     //Intake Speed Constants
     public static final double intakeSpeed = 1;
-    public static final double shooterSpeed = .5;
+    public static final double shooterSpeed = 1;
 
     //Position Constants - PLACEHOLDERS :)
     public static final int shooterWristHome = 0;

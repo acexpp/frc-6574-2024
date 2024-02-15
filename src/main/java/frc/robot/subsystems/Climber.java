@@ -25,7 +25,6 @@ public class Climber extends SubsystemBase {
   public CANSparkMax leftMotor;
   public CANSparkMax rightMotor;
   private SparkLimitSwitch climberReverseLimit;
-  private SparkPIDController climberPIDController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
 
   private double maxSpeed = 0.4;

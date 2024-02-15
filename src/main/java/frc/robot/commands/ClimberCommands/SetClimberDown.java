@@ -20,6 +20,6 @@ public class SetClimberDown extends Command{
     // Called once the command ends or is interrupted.
     @Override
     public void end(boolean interrupted) {
-      //RobotContainer.climber.stop();
+      RobotContainer.climber.driveClimber(0);
     }
 }

@@ -56,7 +56,7 @@ public class DriveSubsystem extends SubsystemBase {
   private final Pigeon2 m_gyro = new Pigeon2(DriveConstants.pigeonCanId);
 
   // The Limelight subsystem
-  private VisionSubsystem limelight = new VisionSubsystem(this);
+  //private VisionSubsystem limelight = new VisionSubsystem(this);
 
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
@@ -122,8 +122,8 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
 
-    SmartDashboard.putNumber("Vision Odometry X", limelight.estimatedPose2d().getX());
-    SmartDashboard.putNumber("Vision Odometry Y", limelight.estimatedPose2d().getY());
+    //SmartDashboard.putNumber("Vision Odometry X", limelight.estimatedPose2d().getX());
+    //SmartDashboard.putNumber("Vision Odometry Y", limelight.estimatedPose2d().getY());
 
     SmartDashboard.putNumber("Gyro Odometry X", m_odometry.getPoseMeters().getX());
     SmartDashboard.putNumber("Gyro Odometry Y", m_odometry.getPoseMeters().getY());
@@ -314,6 +314,7 @@ public class DriveSubsystem extends SubsystemBase {
     return positions;
   }
 
+  /*
   public Pose2d getVisionPose(){
     return limelight.estimatedPose2d();
   }
@@ -325,6 +326,7 @@ public class DriveSubsystem extends SubsystemBase {
   public void setAllianceForVision(Alliance alliance){
     limelight.setAlliance(alliance);
   }
+  */
 
   public double getAverageDriveSpeed(){
     double sumVelocities = 0.0;

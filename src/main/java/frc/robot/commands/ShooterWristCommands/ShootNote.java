@@ -21,6 +21,7 @@ public class ShootNote extends Command {
   @Override
   public void initialize() {
     RobotContainer.shooter.setShooterSpeed(RobotConstants.shooterSpeed);
+    System.out.println("Starting Shooter");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,7 +31,7 @@ public class ShootNote extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter.setShooterSpeed(.4);
+    RobotContainer.shooter.setShooterSpeed(0);
   }
 
   // Returns true when the command should end.
