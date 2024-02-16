@@ -33,7 +33,7 @@ public class SetElevatorPositionInstant extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //RobotContainer.elevator.stopMotors();
+    RobotContainer.elevator.stopMotors();
   }
 
   // Returns true when the command should end.

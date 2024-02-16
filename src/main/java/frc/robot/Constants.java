@@ -121,6 +121,7 @@ public final class Constants {
 
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
     public static final double kDriveDeadband = 0.05;
   }
 
@@ -164,7 +165,7 @@ public final class Constants {
     public static final int climberRightCANID = 22;
 
     //Intake Speed Constants
-    public static final double intakeSpeed = .5;
+    public static final double intakeSpeed = .8;
     public static final double shooterSpeed = 1;
 
     //Position Constants - PLACEHOLDERS :)

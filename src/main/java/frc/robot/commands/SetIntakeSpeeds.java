@@ -7,10 +7,10 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
-public class SetIntakeS extends Command {
+public class SetIntakeSpeeds extends Command {
   private double speed;
   /** Creates a new setWristIntakeSpeed. */
-  public SetIntakeS(double speed) {
+  public SetIntakeSpeeds(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake);
     this.speed = speed;

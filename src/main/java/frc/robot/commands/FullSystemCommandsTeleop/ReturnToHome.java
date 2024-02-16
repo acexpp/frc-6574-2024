@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
-import frc.robot.commands.SetIntakeSpeedInstant;
+import frc.robot.commands.SetIntakeSpeedsInstant;
 import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -23,7 +23,7 @@ public class ReturnToHome extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new SetIntakeSpeedInstant(0),
+      new SetIntakeSpeedsInstant(0),
       new ParallelCommandGroup(
         new SetElevatorPosition(0),
         new SetShooterWristPosition(RobotConstants.shooterWristHome)

@@ -22,9 +22,8 @@ public class SetIntakeMovePosition extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Beginning SetWristPosition");
-    RobotContainer.intakeMove.setPositionLeft(position);
-    RobotContainer.intakeMove.setPositionRight(position);
+    System.out.println("Beginning SetIntakePosition");
+    RobotContainer.intakeMove.setPosition(position);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -36,14 +35,14 @@ public class SetIntakeMovePosition extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //RobotContainer.wrist.stop();
+    RobotContainer.intakeMove.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(RobotContainer.intakeMove.getAbsoluteEncoderPositionLeft() - position) <= tolerance) {
-      System.out.println("SetWristPosition Complete");
+    if (Math.abs(RobotContainer.intakeMove.getEncoderPositionLeft() - position) <= tolerance) {
+      System.out.println("SetIntakePosition Complete");
       return true;
     }
     else {

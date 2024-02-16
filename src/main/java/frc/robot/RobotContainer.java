@@ -16,11 +16,13 @@ import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
+import frc.robot.commands.IntakeMoveCommands.SetIntakeMovePosition;
 import frc.robot.commands.ShooterWristCommands.ShootNote;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
@@ -67,6 +69,7 @@ public class RobotContainer {
 
   // The driver's controller
   CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
+  CommandXboxController m_operatorController = new CommandXboxController(OIConstants.kOperatorControllerPort);
 
   private final SendableChooser<Command> autoChooser;
 
@@ -90,7 +93,7 @@ public class RobotContainer {
     sim = new MechanismSimulator(arm, elevatorSim);
 
     
-
+    /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
     SmartDashboard.putData("Arm 0", (Sendable) this.arm.setArmPosition(0));
     SmartDashboard.putData("Arm 1", (Sendable) this.arm.setArmPosition(45));
@@ -103,6 +106,7 @@ public class RobotContainer {
     SmartDashboard.putData("Elev 1", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(30)));
     SmartDashboard.putData("Elev 2", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(32)));
     SmartDashboard.putData("Elev 3", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(34.5)));
+    */
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");
@@ -145,46 +149,29 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-
-    //Driver buttons
-    /*
-    new JoystickButton(m_driverController, Button.kX.value)
-        .whileTrue(new RunCommand(
-            () -> m_robotDrive.setX(),
-            m_robotDrive));
-    new JoystickButton(m_driverController, Button.kY.value)
-        .whileTrue(new RunCommand(
-            () -> m_robotDrive.zeroHeading(),
-            m_robotDrive));
-            */
-    m_driverController.rightBumper().whileTrue(new ShootNote());
+    //Driver Buttons - WIP
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
-    m_driverController.b().onTrue(new SetClimberDown());
     //m_driverController.leftBumper().whileTrue(new IntakeNote());
-    m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(
+
+    //Operator buttons - WIP
+    m_operatorController.rightBumper().whileTrue(new ShootNote());
+    /* 
+    m_operatorController.leftBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(
         new WaitCommand(0.3),
         new RunCommand(() -> intake.setIntakeSpeed(Constants.RobotConstants.intakeSpeed), intake)
       )
     ));
-    m_driverController.leftBumper().whileFalse(new ParallelCommandGroup(
+    m_operatorController.leftBumper().whileFalse(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0), intake)
     ));
-    /*
-    new JoystickButton(m_driverController, Button.kA.value)
-        .onTrue(new ReturnToHome());
-    new JoystickButton(m_driverController, Button.kB.value)
-        .onTrue(new ScoreNoteTest());
     */
-    /*
-    new JoystickButton(m_driverController, Button.kStart.value)
-        .onTrue(new IntakeNoteFromFloor());
-    */
-    //Operator buttons - TO BE ADDED
-          
+    m_operatorController.leftBumper().whileTrue(new IntakeNote());
+    m_operatorController.b().onTrue(new SetClimberDown());
+    //m_operatorController.x().onTrue(new SetIntakeMovePosition(RobotConstants.intakeMoveTestPosition));
   }
 
   /**
