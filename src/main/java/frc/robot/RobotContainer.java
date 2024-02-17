@@ -172,7 +172,7 @@ public class RobotContainer {
     m_operatorController.leftBumper().whileTrue(new IntakeNote());
     m_operatorController.b().onTrue(new SetClimberDown());
     m_operatorController.a().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestDown, RobotConstants.intakeRightTestDown));
-    m_operatorController.x().whileTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestUp), RobotConstants.intakeRightTestUp);
+    m_operatorController.x().whileTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestUp, RobotConstants.intakeRightTestUp));
     //m_operatorController.a().whileTrue(new RunCommand(() -> intakeMove.intakeMoveLeft.set(0.2), intakeMove));
     //m_operatorController.a().whileFalse(new RunCommand(() -> intakeMove.intakeMoveLeft.set(0), intakeMove));
   }

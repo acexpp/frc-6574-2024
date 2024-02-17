@@ -26,7 +26,8 @@ public class IntakeMove extends SubsystemBase {
   private SparkLimitSwitch intakeReverseLimit;
   private SparkPIDController intakeMoveLeftPidController;
   private SparkPIDController intakeMoveRightPidController;
-  public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
+  public double kPl, kIl, kDl, kIzl, kFFl, kMaxOutput, kMinOutput;
+  public double kPr, kIr, kDr, kIzr, kFFr;
 
   //private double maxSpeed = 0.25;
   //private double deadBand = 0.1;
@@ -65,31 +66,37 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveRightPidController = intakeMoveRight.getPIDController();
     intakeMoveRight.getEncoder();
 
-    kP = 7; //2.5 last working value
-    kI = 0;
-    kD = 0;
-    kIz = 0;
-    kFF = 0.11;
+    kPl = 0.1; 
+    kIl = 0;
+    kDl = 0;
+    kIzl = 0;
+    kFFl = 0.11;
+
+    kPr = 0.1;
+    kIr = 0;
+    kDr = 0;
+    kIzr = 0;
+    kFFr = 0.11;
     kMaxOutput = .2;
   
     kMinOutput = -.2;
 
-    intakeMoveLeftPidController.setP(kP);
-    intakeMoveLeftPidController.setI(kI);
-    intakeMoveLeftPidController.setD(kD);
-    intakeMoveLeftPidController.setIZone(kIz);
-    intakeMoveLeftPidController.setFF(kFF);
+    intakeMoveLeftPidController.setP(kPl);
+    intakeMoveLeftPidController.setI(kIl);
+    intakeMoveLeftPidController.setD(kDl);
+    intakeMoveLeftPidController.setIZone(kIzl);
+    intakeMoveLeftPidController.setFF(kFFl);
     intakeMoveLeftPidController.setOutputRange(kMinOutput, kMaxOutput);
 
     intakeMoveLeftPidController.setPositionPIDWrappingEnabled(true);
     intakeMoveLeftPidController.setPositionPIDWrappingMinInput(0);
     intakeMoveLeftPidController.setPositionPIDWrappingMaxInput(1);
 
-    intakeMoveRightPidController.setP(kP);
-    intakeMoveRightPidController.setI(kI);
-    intakeMoveRightPidController.setD(kD);
-    intakeMoveRightPidController.setIZone(kIz);
-    intakeMoveRightPidController.setFF(kFF);
+    intakeMoveRightPidController.setP(kPr);
+    intakeMoveRightPidController.setI(kIr);
+    intakeMoveRightPidController.setD(kDr);
+    intakeMoveRightPidController.setIZone(kIzr);
+    intakeMoveRightPidController.setFF(kFFr);
     intakeMoveRightPidController.setOutputRange(kMinOutput, kMaxOutput);
 
     intakeMoveRightPidController.setPositionPIDWrappingEnabled(true);

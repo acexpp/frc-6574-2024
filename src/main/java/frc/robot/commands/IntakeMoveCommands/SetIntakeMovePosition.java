@@ -4,6 +4,7 @@
 
 package frc.robot.commands.IntakeMoveCommands;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
 
@@ -24,7 +25,7 @@ public class SetIntakeMovePosition extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Beginning SetIntakePosition");
+    SmartDashboard.putString("Intake Move", "Beginning SetIntakePosition");
     RobotContainer.intakeMove.setPosition(positionL, positionR);
   }
 
@@ -44,7 +45,7 @@ public class SetIntakeMovePosition extends Command {
   @Override
   public boolean isFinished() {
     if (Math.abs(RobotContainer.intakeMove.getAbsoluteEncoderPositionLeft() - positionL) <= tolerance) {
-      System.out.println("SetIntakePosition Complete");
+      SmartDashboard.putString("Intake Move", "SetIntakePosition Complete");
       return true;
     }
     else {
