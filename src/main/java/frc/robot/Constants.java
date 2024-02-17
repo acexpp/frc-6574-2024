@@ -173,10 +173,10 @@ public final class Constants {
     public static final int testElevatorPosition = 0;
     public static final int shooterWristTestPos = 0;
     public static final int elevatorHomePosition = 0;
-    public static final double intakeLeftTestDown = 0.154;
-    public static final double intakeRightTestDown = 0.729;
-    public static final double intakeLeftTestUp = 0.785;
-    public static final double intakeRightTestUp = 0.079;
+    public static final double intakeLeftTestDown = 0.166;
+    public static final double intakeRightTestDown = 0.323;
+    public static final double intakeLeftTestUp = 0.777;
+    public static final double intakeRightTestUp = 0.977;
     
   }  
 

@@ -48,8 +48,10 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeft.setSmartCurrentLimit(30);
     intakeMoveRight.setSmartCurrentLimit(30);
 
-    intakeMoveLeft.setInverted(true);
+    intakeMoveLeft.setInverted(false);
     intakeMoveRight.setInverted(true);
+    intakeMoveLeft.getAbsoluteEncoder().setInverted(false);
+    intakeMoveRight.getAbsoluteEncoder().setInverted(true);
 
     //intakeMoveRight.follow(intakeMoveLeft, true);
 
@@ -66,14 +68,14 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveRightPidController = intakeMoveRight.getPIDController();
     //intakeMoveRight.getEncoder();
 
-    kPl = 0.5; 
+    kPl = 0.2; 
     kIl = 0;
     kDl = 0;
     kIzl = 0;
     kFFl = 0;
     //kFFl = -0.11;
 
-    kPr = 0.5;
+    kPr = 0.2;
     kIr = 0;
     kDr = 0;
     kIzr = 0;
@@ -83,6 +85,7 @@ public class IntakeMove extends SubsystemBase {
   
     kMinOutput = -.25;
 
+    intakeMoveLeftPidController.setFeedbackDevice(intakeMoveLeft.getAbsoluteEncoder());
     intakeMoveLeftPidController.setP(kPl);
     intakeMoveLeftPidController.setI(kIl);
     intakeMoveLeftPidController.setD(kDl);
@@ -94,6 +97,7 @@ public class IntakeMove extends SubsystemBase {
     //intakeMoveLeftPidController.setPositionPIDWrappingMinInput(0);
     //intakeMoveLeftPidController.setPositionPIDWrappingMaxInput(1);
 
+    intakeMoveRightPidController.setFeedbackDevice(intakeMoveRight.getAbsoluteEncoder());
     intakeMoveRightPidController.setP(kPr);
     intakeMoveRightPidController.setI(kIr);
     intakeMoveRightPidController.setD(kDr);
@@ -144,7 +148,7 @@ public class IntakeMove extends SubsystemBase {
 
   public void setSpeed(double speed)
   {
-    intakeMoveLeft.set(-speed);
+    intakeMoveLeft.set(speed);
     intakeMoveRight.set(speed);
   }
 
