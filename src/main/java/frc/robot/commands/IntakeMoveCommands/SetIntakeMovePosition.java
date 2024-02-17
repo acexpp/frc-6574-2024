@@ -9,11 +9,13 @@ import frc.robot.RobotContainer;
 
 public class SetIntakeMovePosition extends Command {
   /** Creates a new SetWristPosition. */
-  private double position;
+  private double positionL;
+  private double positionR;
   private double tolerance = 0.030;
   
-  public SetIntakeMovePosition(double position) {
-    this.position = position;
+  public SetIntakeMovePosition(double positionLeft, double positionRight) {
+    this.positionL = positionLeft;
+    this.positionR = positionRight;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intakeMove);
 
@@ -23,7 +25,7 @@ public class SetIntakeMovePosition extends Command {
   @Override
   public void initialize() {
     System.out.println("Beginning SetIntakePosition");
-    RobotContainer.intakeMove.setPosition(position);
+    RobotContainer.intakeMove.setPosition(positionL, positionR);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -41,7 +43,7 @@ public class SetIntakeMovePosition extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(RobotContainer.intakeMove.getAbsoluteEncoderPositionLeft() - position) <= tolerance) {
+    if (Math.abs(RobotContainer.intakeMove.getAbsoluteEncoderPositionLeft() - positionL) <= tolerance) {
       System.out.println("SetIntakePosition Complete");
       return true;
     }

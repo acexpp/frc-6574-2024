@@ -36,7 +36,7 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeft = new CANSparkMax(Constants.RobotConstants.intakeMoveLeftCANID, MotorType.kBrushless);
     intakeMoveRight = new CANSparkMax(Constants.RobotConstants.intakeMoveRightCANID, MotorType.kBrushless);
 
-    intakeReverseLimit = intakeMoveLeft.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyClosed);
+    //intakeReverseLimit = intakeMoveLeft.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyClosed);
 
     intakeMoveLeft.restoreFactoryDefaults();
     intakeMoveRight.restoreFactoryDefaults();
@@ -47,18 +47,23 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeft.setSmartCurrentLimit(30);
     intakeMoveRight.setSmartCurrentLimit(30);
 
-    intakeMoveLeft.setInverted(false);
+    intakeMoveLeft.setInverted(true);
+    intakeMoveRight.setInverted(false);
 
-    intakeMoveRight.follow(intakeMoveLeft, true);
+    //intakeMoveRight.follow(intakeMoveLeft, true);
 
     //intakeMoveLeft.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
 
     //intakeMoveLeft.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, maxIntakeExtension);
 
     intakeMoveLeft.getEncoder().setPosition(0);
+    intakeMoveRight.getEncoder().setPosition(0);
 
     intakeMoveLeftPidController = intakeMoveLeft.getPIDController();
     intakeMoveLeft.getEncoder();
+
+    intakeMoveRightPidController = intakeMoveRight.getPIDController();
+    intakeMoveRight.getEncoder();
 
     kP = 7; //2.5 last working value
     kI = 0;
@@ -79,12 +84,24 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeftPidController.setPositionPIDWrappingEnabled(true);
     intakeMoveLeftPidController.setPositionPIDWrappingMinInput(0);
     intakeMoveLeftPidController.setPositionPIDWrappingMaxInput(1);
+
+    intakeMoveRightPidController.setP(kP);
+    intakeMoveRightPidController.setI(kI);
+    intakeMoveRightPidController.setD(kD);
+    intakeMoveRightPidController.setIZone(kIz);
+    intakeMoveRightPidController.setFF(kFF);
+    intakeMoveRightPidController.setOutputRange(kMinOutput, kMaxOutput);
+
+    intakeMoveRightPidController.setPositionPIDWrappingEnabled(true);
+    intakeMoveRightPidController.setPositionPIDWrappingMinInput(0);
+    intakeMoveRightPidController.setPositionPIDWrappingMaxInput(1);
   }
 
   @Override
 
   public void periodic() {
-    SmartDashboard.putNumber("Intake Position", getAbsoluteEncoderPositionLeft());
+    SmartDashboard.putNumber("Intake Position Left", getAbsoluteEncoderPositionLeft());
+    SmartDashboard.putNumber("Intake Position Right", getAbsoluteEncoderPositionRight());
     //SmartDashboard.putNumber("Wrist Joystick", RobotContainer.operator.getRawAxis(5));
     //SmartDashboard.putNumber("Wrist encoder", wristMotor.getEncoder().getPosition());
 
@@ -119,6 +136,7 @@ public class IntakeMove extends SubsystemBase {
   public void setSpeed(double speed)
   {
     intakeMoveLeft.set(speed);
+    intakeMoveRight.set(speed);
   }
 
   public void stop()
@@ -136,8 +154,9 @@ public class IntakeMove extends SubsystemBase {
     return intakeMoveRight.getAbsoluteEncoder().getPosition();
   }
 
-  public void setPosition(double position) {
-    intakeMoveLeftPidController.setReference(position, CANSparkMax.ControlType.kPosition);
+  public void setPosition(double positionLeft, double positionRight) {
+    intakeMoveLeftPidController.setReference(positionLeft, CANSparkMax.ControlType.kPosition);
+    intakeMoveRightPidController.setReference(positionRight, CANSparkMax.ControlType.kPosition);
   }
 
 }
