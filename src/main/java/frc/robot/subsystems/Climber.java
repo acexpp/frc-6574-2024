@@ -42,8 +42,8 @@ public class Climber extends SubsystemBase {
     leftMotor.setIdleMode(IdleMode.kBrake);
     rightMotor.setIdleMode(IdleMode.kBrake);
 
-    leftMotor.setSmartCurrentLimit(25); // These need to increase to probably 35 or so
-    rightMotor.setSmartCurrentLimit(25);
+    leftMotor.setSmartCurrentLimit(35); // These need to increase to probably 35 or so
+    rightMotor.setSmartCurrentLimit(35);
 
     leftMotor.setInverted(false);
 

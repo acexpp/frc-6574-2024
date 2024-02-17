@@ -14,6 +14,7 @@ public class ShootNote extends Command {
   public ShootNote() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter);
+    addRequirements(RobotContainer.intake);
     //this.speed = speed;
   }
 
@@ -21,6 +22,7 @@ public class ShootNote extends Command {
   @Override
   public void initialize() {
     RobotContainer.shooter.setShooterSpeed(RobotConstants.shooterSpeed);
+    RobotContainer.intake.kIntakeTransition.set(-0.8);
     System.out.println("Starting Shooter");
   }
 
@@ -32,6 +34,7 @@ public class ShootNote extends Command {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.shooter.setShooterSpeed(0);
+    RobotContainer.intake.setIntakeSpeed(0, 0);
   }
 
   // Returns true when the command should end.

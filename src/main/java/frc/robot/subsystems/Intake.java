@@ -39,10 +39,10 @@ public class Intake extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setIntakeSpeed(double speed) {
-    kIntakeRollerBottom.set(speed);
-    kIntakeTransition.set(-speed); // we need to change this so that we can change all three of these speed independently - Jacob
-    kIntakeRollerTop.set(speed);
+  public void setIntakeSpeed(double speedI, double speedT) {
+    kIntakeRollerBottom.set(speedI);
+    kIntakeTransition.set(-speedT); // we need to change this so that we can change all three of these speed independently - Jacob
+    kIntakeRollerTop.set(speedI);
 
   }
 // In hindset the below command likely won't work mechanically - Jacob

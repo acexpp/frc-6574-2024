@@ -166,6 +166,7 @@ public final class Constants {
 
     //Intake Speed Constants
     public static final double intakeSpeed = .8;
+    public static final double transitionSpeed = .4;
     public static final double shooterSpeed = 1;
 
     //Position Constants - PLACEHOLDERS :)

@@ -68,14 +68,14 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveRightPidController = intakeMoveRight.getPIDController();
     //intakeMoveRight.getEncoder();
 
-    kPl = 0.2; 
+    kPl = 0.1; 
     kIl = 0;
     kDl = 0;
     kIzl = 0;
     kFFl = 0;
     //kFFl = -0.11;
 
-    kPr = 0.2;
+    kPr = 0.1;
     kIr = 0;
     kDr = 0;
     kIzr = 0;
@@ -115,6 +115,8 @@ public class IntakeMove extends SubsystemBase {
   public void periodic() {
     SmartDashboard.putNumber("Intake Position Left", getAbsoluteEncoderPositionLeft());
     SmartDashboard.putNumber("Intake Position Right", getAbsoluteEncoderPositionRight());
+    SmartDashboard.putNumber("output left", intakeMoveLeft.getAppliedOutput());
+    SmartDashboard.putNumber("output left", intakeMoveRight.getAppliedOutput());
     //SmartDashboard.putNumber("Wrist Joystick", RobotContainer.operator.getRawAxis(5));
     //SmartDashboard.putNumber("Wrist encoder", wristMotor.getEncoder().getPosition());
 

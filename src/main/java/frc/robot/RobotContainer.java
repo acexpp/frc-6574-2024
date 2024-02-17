@@ -19,6 +19,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
+import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
@@ -155,26 +156,27 @@ public class RobotContainer {
     //m_driverController.leftBumper().whileTrue(new IntakeNote());
 
     //Operator buttons - WIP
-    m_operatorController.rightBumper().whileTrue(new ShootNote());
-    /* 
-    m_operatorController.leftBumper().whileTrue(new ParallelCommandGroup(
+    //m_operatorController.rightBumper().whileTrue(new ShootNote());
+    m_operatorController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(
-        new WaitCommand(0.3),
-        new RunCommand(() -> intake.setIntakeSpeed(Constants.RobotConstants.intakeSpeed), intake)
+        new WaitCommand(0.5),
+        new RunCommand(() -> intake.setIntakeSpeed(0, 0.8), intake)
       )
     ));
-    m_operatorController.leftBumper().whileFalse(new ParallelCommandGroup(
+    m_operatorController.rightBumper().whileFalse(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
-      new RunCommand(() -> intake.setIntakeSpeed(0), intake)
+      new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
-    */
     m_operatorController.leftBumper().whileTrue(new IntakeNote());
-    //m_operatorController.b().onTrue(new SetClimberDown());
-    m_operatorController.b().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestDown, RobotConstants.intakeRightTestDown));
-    m_operatorController.x().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestUp, RobotConstants.intakeRightTestUp));
-    m_operatorController.a().whileTrue(new RunCommand(() -> intakeMove.setSpeed(0.1), intakeMove));
+    //m_operatorController.b().whileTrue(new SetClimberDown());
+    //m_operatorController.a().whileTrue(new SetClimberUp());
+    //m_operatorController.b().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestDown, RobotConstants.intakeRightTestDown));
+    //m_operatorController.x().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestUp, RobotConstants.intakeRightTestUp));
+    m_operatorController.a().whileTrue(new RunCommand(() -> intakeMove.setSpeed(0.2), intakeMove));
     m_operatorController.a().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
+    m_operatorController.leftTrigger().whileTrue(new RunCommand(() -> intakeMove.setSpeed(-0.2), intakeMove));
+    m_operatorController.leftTrigger().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
   }
 
   /**
