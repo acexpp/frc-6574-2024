@@ -22,7 +22,7 @@ public class IntakeNote extends Command {
   @Override
   public void initialize() {
     RobotContainer.intake.setIntakeSpeed(RobotConstants.intakeSpeed);
-    //RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed);
+    RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

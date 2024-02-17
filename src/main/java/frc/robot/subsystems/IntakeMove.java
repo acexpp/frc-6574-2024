@@ -48,8 +48,8 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeft.setSmartCurrentLimit(30);
     intakeMoveRight.setSmartCurrentLimit(30);
 
-    intakeMoveLeft.setInverted(true);
-    intakeMoveRight.setInverted(false);
+    intakeMoveLeft.setInverted(false);
+    intakeMoveRight.setInverted(true);
 
     //intakeMoveRight.follow(intakeMoveLeft, true);
 
@@ -57,29 +57,31 @@ public class IntakeMove extends SubsystemBase {
 
     //intakeMoveLeft.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, maxIntakeExtension);
 
-    intakeMoveLeft.getEncoder().setPosition(0);
-    intakeMoveRight.getEncoder().setPosition(0);
+    //intakeMoveLeft.getEncoder().setPosition(0);
+    //intakeMoveRight.getEncoder().setPosition(0);
 
     intakeMoveLeftPidController = intakeMoveLeft.getPIDController();
-    intakeMoveLeft.getEncoder();
+    //intakeMoveLeft.getEncoder();
 
     intakeMoveRightPidController = intakeMoveRight.getPIDController();
-    intakeMoveRight.getEncoder();
+    //intakeMoveRight.getEncoder();
 
-    kPl = 0.1; 
+    kPl = 1.9; 
     kIl = 0;
     kDl = 0;
     kIzl = 0;
-    kFFl = 0.11;
+    kFFl = 0;
+    //kFFl = -0.11;
 
-    kPr = 0.1;
+    kPr = 1.9;
     kIr = 0;
     kDr = 0;
     kIzr = 0;
-    kFFr = 0.11;
-    kMaxOutput = .2;
+    kFFr = 0;
+    //kFFr = 0.11;
+    kMaxOutput = .25;
   
-    kMinOutput = -.2;
+    kMinOutput = -.25;
 
     intakeMoveLeftPidController.setP(kPl);
     intakeMoveLeftPidController.setI(kIl);
