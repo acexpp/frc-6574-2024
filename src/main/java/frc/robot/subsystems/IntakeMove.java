@@ -48,7 +48,7 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeft.setSmartCurrentLimit(30);
     intakeMoveRight.setSmartCurrentLimit(30);
 
-    intakeMoveLeft.setInverted(false);
+    intakeMoveLeft.setInverted(true);
     intakeMoveRight.setInverted(true);
 
     //intakeMoveRight.follow(intakeMoveLeft, true);
@@ -66,14 +66,14 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveRightPidController = intakeMoveRight.getPIDController();
     //intakeMoveRight.getEncoder();
 
-    kPl = 1.9; 
+    kPl = 0.5; 
     kIl = 0;
     kDl = 0;
     kIzl = 0;
     kFFl = 0;
     //kFFl = -0.11;
 
-    kPr = 1.9;
+    kPr = 0.5;
     kIr = 0;
     kDr = 0;
     kIzr = 0;
@@ -90,9 +90,9 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeftPidController.setFF(kFFl);
     intakeMoveLeftPidController.setOutputRange(kMinOutput, kMaxOutput);
 
-    intakeMoveLeftPidController.setPositionPIDWrappingEnabled(true);
-    intakeMoveLeftPidController.setPositionPIDWrappingMinInput(0);
-    intakeMoveLeftPidController.setPositionPIDWrappingMaxInput(1);
+    //intakeMoveLeftPidController.setPositionPIDWrappingEnabled(true);
+    //intakeMoveLeftPidController.setPositionPIDWrappingMinInput(0);
+    //intakeMoveLeftPidController.setPositionPIDWrappingMaxInput(1);
 
     intakeMoveRightPidController.setP(kPr);
     intakeMoveRightPidController.setI(kIr);
@@ -101,9 +101,9 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveRightPidController.setFF(kFFr);
     intakeMoveRightPidController.setOutputRange(kMinOutput, kMaxOutput);
 
-    intakeMoveRightPidController.setPositionPIDWrappingEnabled(true);
-    intakeMoveRightPidController.setPositionPIDWrappingMinInput(0);
-    intakeMoveRightPidController.setPositionPIDWrappingMaxInput(1);
+    //intakeMoveRightPidController.setPositionPIDWrappingEnabled(true);
+    //intakeMoveRightPidController.setPositionPIDWrappingMinInput(0);
+    //intakeMoveRightPidController.setPositionPIDWrappingMaxInput(1);
   }
 
   @Override
@@ -144,7 +144,7 @@ public class IntakeMove extends SubsystemBase {
 
   public void setSpeed(double speed)
   {
-    intakeMoveLeft.set(speed);
+    intakeMoveLeft.set(-speed);
     intakeMoveRight.set(speed);
   }
 
