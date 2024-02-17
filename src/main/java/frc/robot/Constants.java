@@ -79,7 +79,7 @@ public final class Constants {
     public static final boolean kTurningEncoderInverted = true;
 
     // Calculations required for driving motor conversion factors and feed forward
-    public static final double kDrivingMotorFreeSpeedRps = NeoMotorConstants.kFreeSpeedRpm / 60;
+    public static final double kDrivingMotorFreeSpeedRps = NeoMotorConstants.kFreeSpeedRpm / 60; //Please make sure this constant is correct, we are using neo votex
     public static final double kWheelDiameterMeters = 0.0762;
     public static final double kWheelCircumferenceMeters = kWheelDiameterMeters * Math.PI;
     // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15 teeth on the bevel pinion
@@ -173,7 +173,8 @@ public final class Constants {
     public static final int testElevatorPosition = 0;
     public static final int shooterWristTestPos = 0;
     public static final int elevatorHomePosition = 0;
-    public static final int intakeMoveTestPosition = 0;
+    public static final double intakeMoveTestPositionDown = 0.156;
+    public static final double intakeMoveTestPositionUp = 0.777;
     
   }  
 

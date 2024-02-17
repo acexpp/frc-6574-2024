@@ -28,8 +28,8 @@ public class ElevatorSimSubsystem extends SubsystemBase {
     public ElevatorSimSubsystem(ElevatorIO elevatorIO) {
         this.io = elevatorIO;
 
-        this.controller = new ProfiledPIDController(100, 0, 0, new Constraints(100, 100));
-        this.ff = new ElevatorFeedforward(0, 2.6057, 0);
+        this.controller = new ProfiledPIDController(100, 0, 0, new Constraints(100, 100)); 
+        this.ff = new ElevatorFeedforward(0, 2.6057, 0); 
     }
 
     @Override

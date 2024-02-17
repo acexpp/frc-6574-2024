@@ -41,11 +41,11 @@ public class Intake extends SubsystemBase {
 
   public void setIntakeSpeed(double speed) {
     kIntakeRollerBottom.set(speed);
-    kIntakeTransition.set(-speed);
+    kIntakeTransition.set(-speed); // we need to change this so that we can change all three of these speed independently - Jacob
     kIntakeRollerTop.set(speed);
 
   }
-
+// In hindset the below command likely won't work mechanically - Jacob
   public void setOutakeSpeed() {
     kIntakeTransition.set(-1);
     kIntakeRollerBottom.set(-1);

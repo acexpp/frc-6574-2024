@@ -44,14 +44,14 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeft.setIdleMode(IdleMode.kBrake);
     intakeMoveRight.setIdleMode(IdleMode.kBrake);
 
-    intakeMoveLeft.setSmartCurrentLimit(25);
-    intakeMoveRight.setSmartCurrentLimit(25);
+    intakeMoveLeft.setSmartCurrentLimit(30);
+    intakeMoveRight.setSmartCurrentLimit(30);
 
     intakeMoveLeft.setInverted(false);
 
     intakeMoveRight.follow(intakeMoveLeft, true);
 
-    intakeMoveLeft.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
+    //intakeMoveLeft.enableSoftLimit(CANSparkMax.SoftLimitDirection.kForward, true);
 
     //intakeMoveLeft.setSoftLimit(CANSparkMax.SoftLimitDirection.kForward, maxIntakeExtension);
 
@@ -60,13 +60,14 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeftPidController = intakeMoveLeft.getPIDController();
     intakeMoveLeft.getEncoder();
 
-    kP = 2.8; //2.5 last working value
+    kP = 7; //2.5 last working value
     kI = 0;
     kD = 0;
     kIz = 0;
-    kFF = 0;
-    kMaxOutput = .5;
-    kMinOutput = -.5;
+    kFF = 0.11;
+    kMaxOutput = .2;
+  
+    kMinOutput = -.2;
 
     intakeMoveLeftPidController.setP(kP);
     intakeMoveLeftPidController.setI(kI);
@@ -83,7 +84,7 @@ public class IntakeMove extends SubsystemBase {
   @Override
 
   public void periodic() {
-    SmartDashboard.putNumber("Intake Position", getEncoderPositionLeft());
+    SmartDashboard.putNumber("Intake Position", getAbsoluteEncoderPositionLeft());
     //SmartDashboard.putNumber("Wrist Joystick", RobotContainer.operator.getRawAxis(5));
     //SmartDashboard.putNumber("Wrist encoder", wristMotor.getEncoder().getPosition());
 
@@ -127,12 +128,12 @@ public class IntakeMove extends SubsystemBase {
   }
 
 
-  public double getEncoderPositionLeft() {
-    return intakeMoveLeft.getEncoder().getPosition();
+  public double getAbsoluteEncoderPositionLeft() {
+    return intakeMoveLeft.getAbsoluteEncoder().getPosition();
   }
 
-  public double getEncoderPositionRight() {
-    return intakeMoveRight.getEncoder().getPosition();
+  public double getAbsoluteEncoderPositionRight() {
+    return intakeMoveRight.getAbsoluteEncoder().getPosition();
   }
 
   public void setPosition(double position) {

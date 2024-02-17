@@ -41,7 +41,7 @@ public class SetIntakeMovePosition extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(RobotContainer.intakeMove.getEncoderPositionLeft() - position) <= tolerance) {
+    if (Math.abs(RobotContainer.intakeMove.getAbsoluteEncoderPositionLeft() - position) <= tolerance) {
       System.out.println("SetIntakePosition Complete");
       return true;
     }
