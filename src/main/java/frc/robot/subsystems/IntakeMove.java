@@ -42,16 +42,16 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveLeft.restoreFactoryDefaults();
     intakeMoveRight.restoreFactoryDefaults();
 
-    intakeMoveLeft.setIdleMode(IdleMode.kBrake);
-    intakeMoveRight.setIdleMode(IdleMode.kBrake);
+    intakeMoveLeft.setIdleMode(IdleMode.kCoast);
+    intakeMoveRight.setIdleMode(IdleMode.kCoast);
 
     intakeMoveLeft.setSmartCurrentLimit(30);
     intakeMoveRight.setSmartCurrentLimit(30);
 
     intakeMoveLeft.setInverted(false);
     intakeMoveRight.setInverted(true);
-    intakeMoveLeft.getAbsoluteEncoder().setInverted(false);
-    intakeMoveRight.getAbsoluteEncoder().setInverted(true);
+    intakeMoveLeft.getAbsoluteEncoder(Type.kDutyCycle).setInverted(false);
+    intakeMoveRight.getAbsoluteEncoder(Type.kDutyCycle).setInverted(true);
 
     //intakeMoveRight.follow(intakeMoveLeft, true);
 
@@ -68,14 +68,14 @@ public class IntakeMove extends SubsystemBase {
     intakeMoveRightPidController = intakeMoveRight.getPIDController();
     //intakeMoveRight.getEncoder();
 
-    kPl = 0.1; 
+    kPl = 10; 
     kIl = 0;
     kDl = 0;
     kIzl = 0;
     kFFl = 0;
     //kFFl = -0.11;
 
-    kPr = 0.1;
+    kPr = 10;
     kIr = 0;
     kDr = 0;
     kIzr = 0;
@@ -85,7 +85,7 @@ public class IntakeMove extends SubsystemBase {
   
     kMinOutput = -.25;
 
-    intakeMoveLeftPidController.setFeedbackDevice(intakeMoveLeft.getAbsoluteEncoder());
+    intakeMoveLeftPidController.setFeedbackDevice(intakeMoveLeft.getAbsoluteEncoder(Type.kDutyCycle));
     intakeMoveLeftPidController.setP(kPl);
     intakeMoveLeftPidController.setI(kIl);
     intakeMoveLeftPidController.setD(kDl);
@@ -97,7 +97,7 @@ public class IntakeMove extends SubsystemBase {
     //intakeMoveLeftPidController.setPositionPIDWrappingMinInput(0);
     //intakeMoveLeftPidController.setPositionPIDWrappingMaxInput(1);
 
-    intakeMoveRightPidController.setFeedbackDevice(intakeMoveRight.getAbsoluteEncoder());
+    intakeMoveRightPidController.setFeedbackDevice(intakeMoveRight.getAbsoluteEncoder(Type.kDutyCycle));
     intakeMoveRightPidController.setP(kPr);
     intakeMoveRightPidController.setI(kIr);
     intakeMoveRightPidController.setD(kDr);
@@ -162,11 +162,11 @@ public class IntakeMove extends SubsystemBase {
 
 
   public double getAbsoluteEncoderPositionLeft() {
-    return intakeMoveLeft.getAbsoluteEncoder().getPosition();
+    return intakeMoveLeft.getAbsoluteEncoder(Type.kDutyCycle).getPosition();
   }
 
   public double getAbsoluteEncoderPositionRight() {
-    return intakeMoveRight.getAbsoluteEncoder().getPosition();
+    return intakeMoveRight.getAbsoluteEncoder(Type.kDutyCycle).getPosition();
   }
 
   public void setPosition(double positionLeft, double positionRight) {

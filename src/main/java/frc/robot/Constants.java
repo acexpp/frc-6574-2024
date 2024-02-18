@@ -174,11 +174,11 @@ public final class Constants {
     public static final int testElevatorPosition = 0;
     public static final int shooterWristTestPos = 0;
     public static final int elevatorHomePosition = 0;
-    public static final double intakeLeftTestDown = 0.166;
-    public static final double intakeRightTestDown = 0.323;
-    public static final double intakeLeftTestUp = 0.777;
-    public static final double intakeRightTestUp = 0.977;
-    
+    public static final double intakeLeftTestDown = 0.451;
+    public static final double intakeRightTestDown = 0.592;
+    public static final double intakeLeftTestUp = 0.106;
+    public static final double intakeRightTestUp = 0.262;
+
   }  
 
   public static final class NeoMotorConstants {

@@ -153,30 +153,34 @@ public class RobotContainer {
     //Driver Buttons - WIP
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
-    //m_driverController.leftBumper().whileTrue(new IntakeNote());
-
-    //Operator buttons - WIP
-    //m_operatorController.rightBumper().whileTrue(new ShootNote());
-    m_operatorController.rightBumper().whileTrue(new ParallelCommandGroup(
+    m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(
         new WaitCommand(0.5),
         new RunCommand(() -> intake.setIntakeSpeed(0, 0.8), intake)
       )
     ));
-    m_operatorController.rightBumper().whileFalse(new ParallelCommandGroup(
+    m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
+    //m_driverController.leftBumper().whileTrue(new IntakeNote());
+
+    //Operator buttons - WIP
+    //m_operatorController.rightBumper().whileTrue(new ShootNote());
     m_operatorController.leftBumper().whileTrue(new IntakeNote());
-    //m_operatorController.b().whileTrue(new SetClimberDown());
-    //m_operatorController.a().whileTrue(new SetClimberUp());
-    //m_operatorController.b().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestDown, RobotConstants.intakeRightTestDown));
-    //m_operatorController.x().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestUp, RobotConstants.intakeRightTestUp));
-    m_operatorController.a().whileTrue(new RunCommand(() -> intakeMove.setSpeed(0.2), intakeMove));
-    m_operatorController.a().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
-    m_operatorController.leftTrigger().whileTrue(new RunCommand(() -> intakeMove.setSpeed(-0.2), intakeMove));
-    m_operatorController.leftTrigger().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
+    m_operatorController.b().whileTrue(new SetClimberDown());
+    m_operatorController.a().whileTrue(new SetClimberUp());
+    m_operatorController.povDown().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestDown, RobotConstants.intakeRightTestDown));
+    m_operatorController.povUp().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestUp, RobotConstants.intakeRightTestUp));
+    //m_operatorController.povUp().whileTrue(new RunCommand(() -> intakeMove.setSpeed(0.1), intakeMove));
+    //m_operatorController.povUp().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
+    //m_operatorController.povDown().whileTrue(new RunCommand(() -> intakeMove.setSpeed(-0.1), intakeMove));
+    //m_operatorController.povDown().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
+    m_operatorController.povLeft().whileTrue(new RunCommand(() -> shooterW.setSpeed(0.1), shooterW));
+    m_operatorController.povLeft().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
+    m_operatorController.povRight().whileTrue(new RunCommand(() -> shooterW.setSpeed(-0.1), shooterW));
+    m_operatorController.povRight().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
   }
 
   /**
