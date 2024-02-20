@@ -22,6 +22,7 @@ import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -54,9 +55,6 @@ public class DriveSubsystem extends SubsystemBase {
 
   // The gyro sensor
   private final Pigeon2 m_gyro = new Pigeon2(DriveConstants.pigeonCanId);
-
-  // The Limelight subsystem
-  //private VisionSubsystem limelight = new VisionSubsystem(this);
 
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
@@ -122,8 +120,8 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
 
-    //SmartDashboard.putNumber("Vision Odometry X", limelight.estimatedPose2d().getX());
-    //SmartDashboard.putNumber("Vision Odometry Y", limelight.estimatedPose2d().getY());
+    SmartDashboard.putNumber("Vision Odometry X", RobotContainer.limelight.estimatedPose2d().getX());
+    SmartDashboard.putNumber("Vision Odometry Y", RobotContainer.limelight.estimatedPose2d().getY());
 
     SmartDashboard.putNumber("Gyro Odometry X", m_odometry.getPoseMeters().getX());
     SmartDashboard.putNumber("Gyro Odometry Y", m_odometry.getPoseMeters().getY());
@@ -314,19 +312,17 @@ public class DriveSubsystem extends SubsystemBase {
     return positions;
   }
 
-  /*
   public Pose2d getVisionPose(){
-    return limelight.estimatedPose2d();
+    return RobotContainer.limelight.estimatedPose2d();
   }
 
   public void resetVisionPose(Pose2d pose){
-    limelight.resetPoseEstimator(pose);
+    RobotContainer.limelight.resetPoseEstimator(pose);
   }
 
   public void setAllianceForVision(Alliance alliance){
-    limelight.setAlliance(alliance);
+    RobotContainer.limelight.setAlliance(alliance);
   }
-  */
 
   public double getAverageDriveSpeed(){
     double sumVelocities = 0.0;

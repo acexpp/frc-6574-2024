@@ -11,20 +11,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.util.Units;
-import edu.wpi.first.util.sendable.Sendable;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
+import frc.robot.commands.ShootNote;
+import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
 import frc.robot.commands.IntakeMoveCommands.SetIntakeMovePosition;
-import frc.robot.commands.ShooterWristCommands.ShootNote;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveSubsystem;
@@ -32,6 +31,7 @@ import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.IntakeMove;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterWrist;
+import frc.robot.subsystems.VisionSubsystem;
 import frc.robot.subsystems.armtest.ArmSubsystem;
 import frc.robot.subsystems.armtest.io.ArmSimIO;
 import frc.robot.subsystems.elevator.Elevator;
@@ -59,7 +59,8 @@ public class RobotContainer {
   private final ElevatorSimSubsystem elevatorSim;
 
   // The robot's subsystems
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  public static final DriveSubsystem m_robotDrive = new DriveSubsystem();
+  public static VisionSubsystem limelight = new VisionSubsystem(m_robotDrive);
   public static Elevator elevator = new Elevator();
   public static Shooter shooter = new Shooter();
   public static ShooterWrist shooterW = new ShooterWrist();
@@ -69,8 +70,8 @@ public class RobotContainer {
   
 
   // The driver's controller
-  CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
-  CommandXboxController m_operatorController = new CommandXboxController(OIConstants.kOperatorControllerPort);
+  public static CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
+  public static CommandXboxController m_operatorController = new CommandXboxController(OIConstants.kOperatorControllerPort);
 
   private final SendableChooser<Command> autoChooser;
 
@@ -164,6 +165,8 @@ public class RobotContainer {
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
+    m_driverController.rightBumper().whileTrue(new ShootNote());
+    m_driverController.a().onTrue(new LimelightDriveToTarget());
     //m_driverController.leftBumper().whileTrue(new IntakeNote());
 
     //Operator buttons - WIP

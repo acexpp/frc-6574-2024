@@ -9,7 +9,6 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
-import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.SparkPIDController;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -23,7 +22,6 @@ public class IntakeMove extends SubsystemBase {
   public CANSparkMax intakeMoveRight;
   //private RelativeEncoder wristEncoder;
 
-  private SparkLimitSwitch intakeReverseLimit;
   private SparkPIDController intakeMoveLeftPidController;
   private SparkPIDController intakeMoveRightPidController;
   public double kPl, kIl, kDl, kIzl, kFFl, kMaxOutput, kMinOutput;

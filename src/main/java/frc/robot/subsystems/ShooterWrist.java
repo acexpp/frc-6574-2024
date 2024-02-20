@@ -41,7 +41,6 @@ public class ShooterWrist extends SubsystemBase {
     //m_AbsoluteEncoder.setVelocityConversionFactor(1);
     shooterWristMotor.setInverted(true);
     shooterWristMotor.setIdleMode(IdleMode.kBrake);
-    m_AbsoluteEncoder.setZeroOffset(0.6526145);
 
     shooterWristMotor.setSmartCurrentLimit(45);
 
