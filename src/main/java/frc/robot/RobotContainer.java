@@ -45,6 +45,7 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.NamedCommands;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -94,6 +95,8 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevatorSim);
 
+    NamedCommands.registerCommand("Shoot Note", new ShootNote());
+    NamedCommands.registerCommand("Intake Note", new IntakeNote());
     
     /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
@@ -109,6 +112,8 @@ public class RobotContainer {
     SmartDashboard.putData("Elev 2", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(32)));
     SmartDashboard.putData("Elev 3", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(34.5)));
     */
+
+    
 
     //debug tab and visual for gyro
     ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");
@@ -130,7 +135,6 @@ public class RobotContainer {
             m_robotDrive));
     
             
-
     autoChooser = AutoBuilder.buildAutoChooser();
 
     SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -192,11 +196,7 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    
-
     return autoChooser.getSelected();
-    
-
   }
 
 }
