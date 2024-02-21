@@ -14,15 +14,13 @@ public class IntakeNote extends Command {
   public IntakeNote() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake);
-    addRequirements(RobotContainer.shooter);
     //this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setIntakeSpeed(RobotConstants.intakeSpeed, RobotConstants.transitionSpeed);
-    RobotContainer.shooter.setShooterSpeed(0.1);
+    RobotContainer.intake.setIntakeSpeed(RobotConstants.intakeSpeed, -RobotConstants.transitionSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +31,6 @@ public class IntakeNote extends Command {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.intake.setIntakeSpeed(0, 0);
-    RobotContainer.shooter.setShooterSpeed(0);
   }
 
   // Returns true when the command should end.

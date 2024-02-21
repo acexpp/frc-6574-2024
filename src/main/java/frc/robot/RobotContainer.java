@@ -12,12 +12,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
-//import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.ShootNote;
+import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
+import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
@@ -38,10 +39,7 @@ import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -95,8 +93,8 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevatorSim);
 
-    NamedCommands.registerCommand("Shoot Note", new ShootNote());
-    NamedCommands.registerCommand("Intake Note", new IntakeNote());
+    NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
+    NamedCommands.registerCommand("Intake Note", new IntakeInAuto());
     
     /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
@@ -158,6 +156,9 @@ public class RobotContainer {
     //Driver Buttons - WIP
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
+    m_driverController.rightBumper().whileTrue(new ShootNote());
+    m_driverController.a().onTrue(new LimelightDriveToTarget());
+    /*
     m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(
@@ -169,21 +170,13 @@ public class RobotContainer {
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
-    m_driverController.rightBumper().whileTrue(new ShootNote());
-    m_driverController.a().onTrue(new LimelightDriveToTarget());
-    //m_driverController.leftBumper().whileTrue(new IntakeNote());
+    */
 
     //Operator buttons - WIP
-    //m_operatorController.rightBumper().whileTrue(new ShootNote());
     m_operatorController.leftBumper().whileTrue(new IntakeNote());
     m_operatorController.b().whileTrue(new SetClimberDown());
     m_operatorController.a().whileTrue(new SetClimberUp());
-    m_operatorController.povDown().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestDown, RobotConstants.intakeRightTestDown));
-    m_operatorController.povUp().onTrue(new SetIntakeMovePosition(RobotConstants.intakeLeftTestUp, RobotConstants.intakeRightTestUp));
-    //m_operatorController.povUp().whileTrue(new RunCommand(() -> intakeMove.setSpeed(0.1), intakeMove));
-    //m_operatorController.povUp().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
-    //m_operatorController.povDown().whileTrue(new RunCommand(() -> intakeMove.setSpeed(-0.1), intakeMove));
-    //m_operatorController.povDown().whileFalse(new RunCommand(() -> intakeMove.setSpeed(0), intakeMove));
+    m_operatorController.y().onTrue(new IntakeNoteFromFloor());
     m_operatorController.povLeft().whileTrue(new RunCommand(() -> shooterW.setSpeed(0.1), shooterW));
     m_operatorController.povLeft().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
     m_operatorController.povRight().whileTrue(new RunCommand(() -> shooterW.setSpeed(-0.1), shooterW));

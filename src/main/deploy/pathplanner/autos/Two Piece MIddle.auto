@@ -16,6 +16,12 @@
           "data": {
             "pathName": "Drive to Note Middle"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Drive to Speaker Middle"
+          }
         }
       ]
     }

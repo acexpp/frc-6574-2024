@@ -28,6 +28,9 @@ public class Elevator extends SubsystemBase {
   //RIP Gatorvator ⚰️🐊
   //Your code will be of great use to us
   //You will not be forgotten 😘😘😘
+  /** Creates a new Elevator
+   * (RIP Gatorvator ⚰️🐊)
+   */
   public Elevator() {
     leftMotor = new CANSparkMax(Constants.RobotConstants.elevatorLeftMotorCANID, MotorType.kBrushless);
     rightMotor = new CANSparkMax(Constants.RobotConstants.elevatorRightMotorCANID, MotorType.kBrushless);
@@ -56,6 +59,7 @@ public class Elevator extends SubsystemBase {
     elevatorPIDController = leftMotor.getPIDController();
     leftMotor.getEncoder();
 
+    // NEEDS TUNING
     kP = 0.15;
     kI = 0;
     kD = 0;
@@ -72,11 +76,13 @@ public class Elevator extends SubsystemBase {
     elevatorPIDController.setOutputRange(kMinOutput, kMaxOutput);
   }
 
-
+  /** Drives the Elevator at a set speed */
   public void driveElevator(double speed) {
     rightMotor.set(speed * maxSpeed);
   }
 
+  // NEEDS TUNING
+  /** Sets the Elevator to a position */
   public void setPosition(double position) {
     elevatorPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
   }
@@ -91,26 +97,9 @@ public class Elevator extends SubsystemBase {
 
     elevatorReverseLimit.enableLimitSwitch(true);
     SmartDashboard.putNumber("Elevator encoder", leftMotor.getEncoder().getPosition());
-
-    /*     if (RobotContainer.operator.getRawButtonPressed(3)) {
-      leftMotor.set(.15);
-    }
-      else if (RobotContainer.operator.getRawButtonReleased(3)) {
-        leftMotor.set(0);
-      }
-
-      if (RobotContainer.operator.getRawButtonPressed(4)) {
-        leftMotor.set(-.15);
-      }
-      else if (RobotContainer.operator.getRawButtonReleased(4)) {
-        leftMotor.set(0);
-      } */
-
-    }
-
-
-    // This method will be called once per scheduler run
   }
+    // This method will be called once per scheduler run
+}
 
 
 

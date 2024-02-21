@@ -17,7 +17,7 @@ public class ShootNote extends SequentialCommandGroup {
         new InstantCommand(() -> RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed), RobotContainer.shooter),
         new SequentialCommandGroup(
           new WaitCommand(0.5),
-          new InstantCommand(() -> RobotContainer.intake.setIntakeSpeed(0, 0.8), RobotContainer.intake)
+          new InstantCommand(() -> RobotContainer.intake.setIntakeSpeed(0.8, 0.8), RobotContainer.intake)
       )
     ));
   }
