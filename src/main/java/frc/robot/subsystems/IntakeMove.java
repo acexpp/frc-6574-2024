@@ -33,8 +33,8 @@ public class IntakeMove extends SubsystemBase {
 
   /** Creates a new IntakeMove. */
   public IntakeMove() {
-    intakeMoveLeft = new CANSparkMax(Constants.RobotConstants.intakeMoveLeftCANID, MotorType.kBrushless);
-    intakeMoveRight = new CANSparkMax(Constants.RobotConstants.intakeMoveRightCANID, MotorType.kBrushless);
+    intakeMoveLeft = new CANSparkMax(Constants.RobotConstants.intakeLeftCANID, MotorType.kBrushless);
+    intakeMoveRight = new CANSparkMax(Constants.RobotConstants.intakeRightCANID, MotorType.kBrushless);
 
     //intakeReverseLimit = intakeMoveLeft.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyClosed);
 

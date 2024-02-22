@@ -140,16 +140,14 @@ public final class Constants {
         kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
   }
 
-  //ALL TEMPORARY VALUES
+  //ALL TEMPORARY VALUES - Jacob why do you hate me.
   public static final class RobotConstants{
 
     //Intake Constants
     public static final int kIntakeTransitionCANID = 11;
-    public static final int kIntakeRollerBottomCANID = 12;
-    public static final int kIntakeRollerTopCANID = 13;
 
-    public static final int intakeMoveLeftCANID = 14;
-    public static final int intakeMoveRightCANID = 15;
+    public static final int intakeLeftCANID = 14;
+    public static final int intakeRightCANID = 15;
 
     //Shooter Constants
     public static final int shooterLeftCANID = 16;
@@ -169,15 +167,11 @@ public final class Constants {
     public static final double transitionSpeed = .4;
     public static final double shooterSpeed = 1;
 
-    //Position Constants - PLACEHOLDERS :)
+    //Position Constants - PLACEHOLDERS :) 
     public static final int shooterWristHome = 0;
     public static final int testElevatorPosition = 0;
     public static final int shooterWristTestPos = 0;
     public static final int elevatorHomePosition = 0;
-    public static final double intakeLeftTestDown = 0.451;
-    public static final double intakeRightTestDown = 0.592;
-    public static final double intakeLeftTestUp = 0.106;
-    public static final double intakeRightTestUp = 0.262;
 
   }  
 

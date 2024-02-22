@@ -24,12 +24,12 @@ public class Intake extends SubsystemBase {
     kIntakeTransition.setIdleMode(IdleMode.kBrake);
     kIntakeTransition.setSmartCurrentLimit(25);
 
-    kIntakeRollerBottom = new CANSparkMax(Constants.RobotConstants.kIntakeRollerBottomCANID, MotorType.kBrushless);
+    kIntakeRollerBottom = new CANSparkMax(Constants.RobotConstants.intakeLeftCANID, MotorType.kBrushless);
     kIntakeRollerBottom.restoreFactoryDefaults();
     kIntakeRollerBottom.setIdleMode(IdleMode.kBrake);
     kIntakeRollerBottom.setSmartCurrentLimit(35);
 
-    kIntakeRollerTop = new CANSparkMax(Constants.RobotConstants.kIntakeRollerTopCANID, MotorType.kBrushless);
+    kIntakeRollerTop = new CANSparkMax(Constants.RobotConstants.intakeRightCANID, MotorType.kBrushless);
     kIntakeRollerTop.restoreFactoryDefaults();
     kIntakeRollerTop.setIdleMode(IdleMode.kBrake);
     kIntakeRollerTop.setSmartCurrentLimit(35);
@@ -45,7 +45,7 @@ public class Intake extends SubsystemBase {
     kIntakeRollerTop.set(speedI);
 
   }
-// In hindset the below command likely won't work mechanically - Jacob - L (Ace)
+// In hindset the below command likely won't work mechanically - Jacob - L (Ace) - wait you might be wrong now actually so bigger L (Ace)
   public void setOutakeSpeed() {
     kIntakeTransition.set(-1);
     kIntakeRollerBottom.set(-1);
