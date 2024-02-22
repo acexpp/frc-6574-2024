@@ -45,6 +45,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.revrobotics.Rev2mDistanceSensor;
+import com.revrobotics.Rev2mDistanceSensor.Port;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -67,6 +69,7 @@ public class RobotContainer {
   public static Intake intake = new Intake();
   public static IntakeMove intakeMove = new IntakeMove();
   public static Climber climber = new Climber();
+  public static Rev2mDistanceSensor sensor = new Rev2mDistanceSensor(Port.kOnboard); //change later?
   
 
   // The driver's controller
@@ -94,6 +97,7 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevatorSim);
 
+    
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
     NamedCommands.registerCommand("Intake Note", new IntakeInAuto());
     

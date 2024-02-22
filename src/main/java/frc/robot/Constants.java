@@ -173,6 +173,8 @@ public final class Constants {
     public static final int shooterWristTestPos = 0;
     public static final int elevatorHomePosition = 0;
 
+    //Sensor Constants - placeholders :)
+    public static final double inRange = 0;
   }  
 
   public static final class NeoMotorConstants {
