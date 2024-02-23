@@ -68,7 +68,7 @@ public class VisionSubsystem extends SubsystemBase{
 
     public void periodic(){
         odometryWvision();
-        setDynamicVisionStdDevs();
+        //setDynamicVisionStdDevs();
 
         SmartDashboard.putString("Alliance", alliance.toString());
 
@@ -118,6 +118,7 @@ public class VisionSubsystem extends SubsystemBase{
     m_field.setRobotPose(m_poseEstimator.getEstimatedPosition());
   }
 
+  /* 
   public void setDynamicVisionStdDevs(){
     int numDetectedTargets = getNumofDetectedTargets();
     double stdsDevXY = 0.0;
@@ -135,6 +136,7 @@ public class VisionSubsystem extends SubsystemBase{
 
     m_poseEstimator.setVisionMeasurementStdDevs(visionMat);
   }
+  */
 
   public int getNumofDetectedTargets(){
     return LimelightHelpers

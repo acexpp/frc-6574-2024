@@ -163,14 +163,14 @@ public final class Constants {
     public static final int climberRightCANID = 22;
 
     //Intake Speed Constants
-    public static final double intakeSpeed = .8;
+    public static final double intakeSpeed = .4;
     public static final double transitionSpeed = .4;
     public static final double shooterSpeed = 1;
 
     //Position Constants - PLACEHOLDERS :) 
     public static final int shooterWristHome = 0;
     public static final int testElevatorPosition = 0;
-    public static final int shooterWristTestPos = 0;
+    public static final double shooterWristTestPos = 0.63;
     public static final int elevatorHomePosition = 0;
 
     //Sensor Constants - placeholders :)

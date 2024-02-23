@@ -24,7 +24,7 @@ import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
-import frc.robot.commands.IntakeMoveCommands.SetIntakeMovePosition;
+//import frc.robot.commands.IntakeMoveCommands.SetIntakeMovePosition;
 import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
@@ -40,13 +40,17 @@ import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
+import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -62,14 +66,14 @@ public class RobotContainer {
 
   // The robot's subsystems
   public static final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  public static VisionSubsystem limelight = new VisionSubsystem(m_robotDrive);
+  //public static VisionSubsystem limelight = new VisionSubsystem(m_robotDrive);
   public static Elevator elevator = new Elevator();
   public static Shooter shooter = new Shooter();
   public static ShooterWrist shooterW = new ShooterWrist();
   public static Intake intake = new Intake();
-  public static IntakeMove intakeMove = new IntakeMove();
+  //public static IntakeMove intakeMove = new IntakeMove();
   public static Climber climber = new Climber();
-  public static Rev2mDistanceSensor sensor = new Rev2mDistanceSensor(Port.kOnboard); //change later?
+  //public static Rev2mDistanceSensor sensor = new Rev2mDistanceSensor(Port.kOnboard); //change later?
   
 
   // The driver's controller
@@ -97,7 +101,9 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevatorSim);
 
-    
+    //sensor.setRangeProfile(RangeProfile.kHighSpeed);
+
+    //SmartDashboard.putNumber("Sensor data", sensor.getRange());
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
     NamedCommands.registerCommand("Intake Note", new IntakeInAuto());
     
@@ -161,24 +167,25 @@ public class RobotContainer {
     //Driver Buttons - WIP
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
-    m_driverController.rightBumper().whileTrue(new ShootNote());
-    m_driverController.a().onTrue(new LimelightDriveToTarget());
-    /*
+    //m_driverController.rightBumper().whileTrue(new ShootNote());
+    //m_driverController.a().onTrue(new LimelightDriveToTarget());
+    
     m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(
         new WaitCommand(0.5),
-        new RunCommand(() -> intake.setIntakeSpeed(0, 0.8), intake)
+        new RunCommand(() -> intake.setIntakeSpeed(-1, -1), intake)
       )
     ));
     m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
-    */
 
     //Operator buttons - WIP
     m_operatorController.leftBumper().whileTrue(new IntakeNote());
+    m_operatorController.rightBumper().whileTrue(new RunCommand(() -> intake.setOutakeSpeed(), intake));
+    m_operatorController.rightBumper().whileTrue(new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake));
     m_operatorController.b().whileTrue(new SetClimberDown());
     m_operatorController.a().whileTrue(new SetClimberUp());
     m_operatorController.y().onTrue(new IntakeNoteFromFloor());

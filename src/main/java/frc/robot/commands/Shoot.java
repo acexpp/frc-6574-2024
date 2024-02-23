@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.RobotContainer;
 
-public class IntakeNote extends Command {
+public class Shoot extends Command {
   //private double speed;
   /** Creates a new setWristIntakeSpeed. */
-  public IntakeNote() {
+  public Shoot() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.intake);
     //this.speed = speed;
@@ -20,7 +20,7 @@ public class IntakeNote extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, 0);
+    RobotContainer.intake.setIntakeSpeed(RobotConstants.intakeSpeed, RobotConstants.transitionSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

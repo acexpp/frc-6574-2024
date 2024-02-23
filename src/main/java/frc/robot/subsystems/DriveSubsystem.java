@@ -120,8 +120,8 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
 
-    SmartDashboard.putNumber("Vision Odometry X", RobotContainer.limelight.estimatedPose2d().getX());
-    SmartDashboard.putNumber("Vision Odometry Y", RobotContainer.limelight.estimatedPose2d().getY());
+    //SmartDashboard.putNumber("Vision Odometry X", RobotContainer.limelight.estimatedPose2d().getX());
+    //SmartDashboard.putNumber("Vision Odometry Y", RobotContainer.limelight.estimatedPose2d().getY());
 
     SmartDashboard.putNumber("Gyro Odometry X", m_odometry.getPoseMeters().getX());
     SmartDashboard.putNumber("Gyro Odometry Y", m_odometry.getPoseMeters().getY());
@@ -312,6 +312,7 @@ public class DriveSubsystem extends SubsystemBase {
     return positions;
   }
 
+  /* 
   public Pose2d getVisionPose(){
     return RobotContainer.limelight.estimatedPose2d();
   }
@@ -323,7 +324,7 @@ public class DriveSubsystem extends SubsystemBase {
   public void setAllianceForVision(Alliance alliance){
     RobotContainer.limelight.setAlliance(alliance);
   }
-
+*/
   public double getAverageDriveSpeed(){
     double sumVelocities = 0.0;
 

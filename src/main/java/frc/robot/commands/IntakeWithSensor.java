@@ -37,9 +37,11 @@ public class IntakeWithSensor extends Command{
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    /* 
     if (RobotContainer.sensor.getRange() < RobotConstants.inRange) {
         return true;
     }
+    */
     return false;
   }
 }
