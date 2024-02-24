@@ -1,0 +1,10 @@
+{
+  "download": {
+    "deleteAfter": false,
+    "localDir": "C:\\Users\\Ferradermis\\Documents\\SysIdLogs",
+    "serverTeam": "6574"
+  },
+  "output": {
+    "outputFolder": "C:\\Users\\Ferradermis\\Documents\\SysIdLogs"
+  }
+}

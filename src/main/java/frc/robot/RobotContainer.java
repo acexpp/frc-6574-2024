@@ -99,7 +99,7 @@ public class RobotContainer {
     // Create the SysId routine
     routine = new SysIdRoutine(
       new SysIdRoutine.Config(),
-      new SysIdRoutine.Mechanism((voltage) -> m_robotDrive.runVolts(voltage.in(Units.Volts)),
+      new SysIdRoutine.Mechanism((voltage) -> m_robotDrive.driveVolts(voltage.in(Units.Volts)),
         null, // No log consumer, since data is recorded by URCL
         m_robotDrive
       )

@@ -350,4 +350,10 @@ public class DriveSubsystem extends SubsystemBase {
   public double getAngularAcceleration(){ 
     return m_gyro.getAngularVelocityZWorld().getValueAsDouble(); 
   }
+
+  public void driveVolts(double volts) {
+    for (int i = 0; i < swerveModules.length; i++) {
+      swerveModules[i].setDesiredState(new SwerveModuleState(volts/12, Rotation2d.fromDegrees(0)));
+    }
+  }
 }
