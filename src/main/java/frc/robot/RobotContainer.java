@@ -21,6 +21,9 @@ import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
+import frc.robot.commands.ElevatorCommands.SetElevatorDown;
+import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
+import frc.robot.commands.ElevatorCommands.SetElevatorUp;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
@@ -66,7 +69,7 @@ public class RobotContainer {
 
   // The robot's subsystems
   public static final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  //public static VisionSubsystem limelight = new VisionSubsystem(m_robotDrive);
+  public static VisionSubsystem limelight = new VisionSubsystem(m_robotDrive);
   public static Elevator elevator = new Elevator();
   public static Shooter shooter = new Shooter();
   public static ShooterWrist shooterW = new ShooterWrist();
@@ -168,7 +171,7 @@ public class RobotContainer {
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     //m_driverController.rightBumper().whileTrue(new ShootNote());
-    //m_driverController.a().onTrue(new LimelightDriveToTarget());
+    m_driverController.a().onTrue(new LimelightDriveToTarget());
     
     m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
@@ -188,8 +191,11 @@ public class RobotContainer {
     m_operatorController.rightBumper().whileTrue(new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake));
     m_operatorController.b().whileTrue(new SetClimberDown());
     m_operatorController.a().whileTrue(new SetClimberUp());
-    m_operatorController.y().onTrue(new IntakeNoteFromFloor());
-    m_operatorController.x().onTrue(new SetShooterWristPosition(RobotConstants.shooterWristTestPos));
+    m_operatorController.x().onTrue(new SetElevatorPosition(8.16));
+    m_operatorController.y().onTrue(new SetElevatorPosition(0));
+    m_operatorController.povUp().onTrue(new SetElevatorPosition(15));
+    //m_operatorController.y().onTrue(new IntakeNoteFromFloor());
+    //m_operatorController.x().onTrue(new SetShooterWristPosition(RobotConstants.shooterWristTestPos));
     m_operatorController.povLeft().whileTrue(new RunCommand(() -> shooterW.setSpeed(0.1), shooterW));
     m_operatorController.povLeft().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
     m_operatorController.povRight().whileTrue(new RunCommand(() -> shooterW.setSpeed(-0.1), shooterW));

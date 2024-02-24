@@ -65,8 +65,8 @@ public class Elevator extends SubsystemBase {
     kD = 0;
     kIz = 0;
     kFF = 0;
-    kMaxOutput = .6;
-    kMinOutput = -.6;
+    kMaxOutput = .2;
+    kMinOutput = -.2;
 
     elevatorPIDController.setP(kP);
     elevatorPIDController.setI(kI);
@@ -78,7 +78,7 @@ public class Elevator extends SubsystemBase {
 
   /** Drives the Elevator at a set speed */
   public void driveElevator(double speed) {
-    rightMotor.set(speed * maxSpeed);
+    leftMotor.set(speed * maxSpeed);
   }
 
   // NEEDS TUNING

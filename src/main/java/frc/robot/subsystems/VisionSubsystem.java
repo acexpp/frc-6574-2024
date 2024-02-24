@@ -24,9 +24,9 @@ import frc.robot.LimelightHelpers;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.VisionConstants;
 
-/** Limelight subsystem taken fro team 4400 Cerbotics - looks to be updated from last time I checked their code base */
+// Limelight subsystem taken from team 4400 Cerbotics - looks to be updated from last time I checked their code base
 public class VisionSubsystem extends SubsystemBase{
-  private final DriveSubsystem m_drive;
+    private final DriveSubsystem m_drive;
 
     private final SwerveDrivePoseEstimator m_poseEstimator;
 
@@ -67,14 +67,20 @@ public class VisionSubsystem extends SubsystemBase{
     }
 
     public void periodic(){
+
+      SmartDashboard.putNumber("Limelight TX", LimelightHelpers.getTX("limelight"));
+      SmartDashboard.putNumber("Limelight TY", LimelightHelpers.getTY("limelight"));
+      /*
         odometryWvision();
         //setDynamicVisionStdDevs();
 
         SmartDashboard.putString("Alliance", alliance.toString());
 
         SmartDashboard.putNumber("Num of tags", getNumofDetectedTargets());
+        */
     }
 
+    /*
     public void setAlliance(Alliance alliance){
         this.alliance = alliance;
     }
@@ -118,7 +124,6 @@ public class VisionSubsystem extends SubsystemBase{
     m_field.setRobotPose(m_poseEstimator.getEstimatedPosition());
   }
 
-  /* 
   public void setDynamicVisionStdDevs(){
     int numDetectedTargets = getNumofDetectedTargets();
     double stdsDevXY = 0.0;
@@ -136,12 +141,13 @@ public class VisionSubsystem extends SubsystemBase{
 
     m_poseEstimator.setVisionMeasurementStdDevs(visionMat);
   }
-  */
 
   public int getNumofDetectedTargets(){
     return LimelightHelpers
     .getLatestResults(VisionConstants.tagLimelightName).targetingResults.targets_Fiducials.length;
   }
+
+  */
 
   // simple proportional turning control with Limelight.
   // "proportional control" is a control algorithm in which the output is proportional to the error.
