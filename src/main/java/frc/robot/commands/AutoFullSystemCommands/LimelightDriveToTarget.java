@@ -48,12 +48,15 @@ public class LimelightDriveToTarget extends Command{
             
     }
 
+    /*
     @Override
     public boolean isFinished() {
-        if ((Math.abs(LimelightHelpers.getTX("limelight")) <= 4) && (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)) {
+        if ((Math.abs(LimelightHelpers.getTX("limelight")) <= 0.5) //&& (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)
+        ) {
         return true;
         } else {
         return false;
         }
     }
+    */
 }

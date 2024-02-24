@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
-import frc.robot.commands.ShootNote;
+import frc.robot.commands.ShootNoteTest;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
@@ -154,12 +154,6 @@ public class RobotContainer {
     SmartDashboard.putData("Elev 3", (Sendable) this.elevatorSim.setElevatorPosition(Units.inchesToMeters(34.5)));
     */
 
-    
-
-    //debug tab and visual for gyro
-    ShuffleboardTab teleOpTab = Shuffleboard.getTab("TeleOp");
-    teleOpTab.addDouble("Gyro", m_robotDrive::getHeading);
-
     // Configure the button bindings
     configureButtonBindings();
 
@@ -201,13 +195,13 @@ public class RobotContainer {
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     //m_driverController.rightBumper().whileTrue(new ShootNote());
-    m_driverController.a().onTrue(new LimelightDriveToTarget());
+    m_driverController.a().whileTrue(new LimelightDriveToTarget());
     
     m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(
         new WaitCommand(0.5),
-        new RunCommand(() -> intake.setIntakeSpeed(-1, -1), intake)
+        new RunCommand(() -> intake.setIntakeSpeed(-0.5, -0.5), intake)
       )
     ));
     m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(

@@ -1,27 +1,28 @@
-//VERY MUCH NOT TUNED PROBABLY DOESN'T WORK AT ALL USE AT YOUR OWN RISK ok thanks :)
-package frc.robot.commands.FullSystemCommandsTeleop;
+package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
+import frc.robot.RobotContainer;
 import frc.robot.Constants.RobotConstants;
-import frc.robot.commands.ShootNoteTest;
-import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
-import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
 
-public class ScoreNoteTest extends SequentialCommandGroup {
-  /** Creates a new ScoreConeMid. */
-  public ScoreNoteTest() {
+public class ShootNoteTest extends SequentialCommandGroup {
+  /** Creates a new ShootNote. */
+  public ShootNoteTest() {
     // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand());
+    // addCommands(new FooCommand(), new BarCommand();
     addCommands(
-      new SetElevatorPosition(RobotConstants.testElevatorPosition),
       new ParallelCommandGroup(
-                               new SetShooterWristPosition(RobotConstants.shooterWristTestPos),
-                               new ShootNoteTest())
-
-    );
+        new InstantCommand(() -> RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed), RobotContainer.shooter),
+        new SequentialCommandGroup(
+          new WaitCommand(0.5),
+          new Shoot().withTimeout(3)
+      )
+    ));
   }
-  /*
+  /* 
+  Referencing:
   m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(

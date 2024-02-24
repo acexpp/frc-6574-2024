@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.3829526758152613,
-      "y": 5.500598388584165
+      "x": 1.3363329583802028,
+      "y": 5.52661562465982
     },
-    "rotation": 180.0
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -14,13 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive to Note Middle"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Drive to Speaker Middle"
+            "pathName": "Test Path"
           }
         }
       ]

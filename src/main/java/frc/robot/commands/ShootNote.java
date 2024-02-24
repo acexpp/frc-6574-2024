@@ -1,38 +1,44 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.RobotContainer;
+import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RobotConstants;
+import frc.robot.RobotContainer;
 
-public class ShootNote extends SequentialCommandGroup {
-  /** Creates a new ShootNote. */
+public class ShootNote extends Command {
+  //private double speed;
+  /** Creates a new setWristIntakeSpeed. */
   public ShootNote() {
-    // Add your commands in the addCommands() call, e.g.
-    // addCommands(new FooCommand(), new BarCommand();
-    addCommands(
-      new ParallelCommandGroup(
-        new InstantCommand(() -> RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed), RobotContainer.shooter),
-        new SequentialCommandGroup(
-          new WaitCommand(0.5),
-          new Shoot().withTimeout(3)
-      )
-    ));
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.shooter);
+    //this.speed = speed;
   }
-  /* 
-  Referencing:
-  m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
-      new SequentialCommandGroup(
-        new WaitCommand(0.5),
-        new RunCommand(() -> intake.setIntakeSpeed(0, 0.8), intake)
-      )
-    ));
-    m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
-      new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
-    ));
-    */
+
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, 0);
+    RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed);
+  }
+
+  // Called every time the scheduler runs while the command is scheduled.
+  @Override
+  public void execute() {}
+
+  // Called once the command ends or is interrupted.
+  @Override
+  public void end(boolean interrupted) {
+    RobotContainer.intake.setIntakeSpeed(0, 0);
+    RobotContainer.shooter.setShooterSpeed(0);
+  }
+
+  // Returns true when the command should end.
+  @Override
+  public boolean isFinished() {
+    return false;
+  }
 }
