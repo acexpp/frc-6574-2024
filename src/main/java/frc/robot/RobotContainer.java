@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
@@ -49,6 +50,10 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+
+import org.littletonrobotics.junction.Logger;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.revrobotics.Rev2mDistanceSensor;
@@ -76,6 +81,7 @@ public class RobotContainer {
   public static Intake intake = new Intake();
   //public static IntakeMove intakeMove = new IntakeMove();
   public static Climber climber = new Climber();
+  public static SysIdRoutine routine;
   //public static Rev2mDistanceSensor sensor = new Rev2mDistanceSensor(Port.kOnboard); //change later?
   
 
@@ -89,6 +95,29 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer(boolean isSim) {
+
+    // Create the SysId routine
+    routine = new SysIdRoutine(
+      new SysIdRoutine.Config(),
+      new SysIdRoutine.Mechanism((voltage) -> m_robotDrive.runVolts(voltage.in(Units.Volts)),
+        null, // No log consumer, since data is recorded by URCL
+        m_robotDrive
+      )
+    );
+
+    // The methods below return Command objects
+    /*
+    routine.quasistatic(SysIdRoutine.Direction.kForward);
+    routine.quasistatic(SysIdRoutine.Direction.kReverse);
+    routine.dynamic(SysIdRoutine.Direction.kForward);
+    routine.dynamic(SysIdRoutine.Direction.kReverse);
+    */
+
+    // AdvantageKit users should log the test state using the following configuration
+    new SysIdRoutine.Config(
+      null, null, null,
+      (state) -> Logger.recordOutput("SysIdTestState", state.toString())
+    );
 
     if (isSim) {
       arm = new ArmSubsystem(
@@ -168,6 +197,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     //Driver Buttons - WIP
+    /* 
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     //m_driverController.rightBumper().whileTrue(new ShootNote());
@@ -184,8 +214,14 @@ public class RobotContainer {
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
+    */
+    m_driverController.a().onTrue(routine.quasistatic(SysIdRoutine.Direction.kForward));
+    m_driverController.b().onTrue(routine.quasistatic(SysIdRoutine.Direction.kReverse));
+    m_driverController.x().onTrue(routine.dynamic(SysIdRoutine.Direction.kForward));
+    m_driverController.y().onTrue(routine.dynamic(SysIdRoutine.Direction.kReverse));
 
     //Operator buttons - WIP
+    /* 
     m_operatorController.leftBumper().whileTrue(new IntakeNote());
     m_operatorController.rightBumper().whileTrue(new RunCommand(() -> intake.setOutakeSpeed(), intake));
     m_operatorController.rightBumper().whileTrue(new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake));
@@ -200,6 +236,7 @@ public class RobotContainer {
     m_operatorController.povLeft().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
     m_operatorController.povRight().whileTrue(new RunCommand(() -> shooterW.setSpeed(-0.1), shooterW));
     m_operatorController.povRight().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
+    */
   }
 
   /**

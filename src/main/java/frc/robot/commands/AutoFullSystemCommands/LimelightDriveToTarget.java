@@ -26,7 +26,8 @@ public class LimelightDriveToTarget extends Command{
     }
 
     public void execute() {
-        RobotContainer.m_robotDrive.drive(forward, 
+        RobotContainer.m_robotDrive.drive(
+        -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband), 
         -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftX(), OIConstants.kDriveDeadband), 
         rotation, 
         fieldRelative, 
@@ -49,7 +50,7 @@ public class LimelightDriveToTarget extends Command{
 
     @Override
     public boolean isFinished() {
-        if ((Math.abs(LimelightHelpers.getTX("limelight")) <= 0.5) && (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)) {
+        if ((Math.abs(LimelightHelpers.getTX("limelight")) <= 4) && (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)) {
         return true;
         } else {
         return false;
