@@ -13,15 +13,15 @@ public class ShootNote extends Command {
   /** Creates a new setWristIntakeSpeed. */
   public ShootNote() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake);
-    addRequirements(RobotContainer.shooter);
+    addRequirements(RobotContainer.intake, RobotContainer.shooter);
+    //addRequirements(RobotContainer.shooter);
     //this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, 0);
+    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.transitionSpeedshooter);
     RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed);
   }
 

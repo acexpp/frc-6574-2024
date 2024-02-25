@@ -9,7 +9,7 @@ public class SetClimberUp extends Command{
 
     }
     public void initialize() {
-        RobotContainer.climber.driveClimber(-0.5);
+        RobotContainer.climber.driveClimber(-1);
     }
 
     @Override

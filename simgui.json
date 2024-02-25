@@ -20,7 +20,8 @@
       "/SmartDashboard/Elevator 0": "Command",
       "/SmartDashboard/Elevator 1": "Command",
       "/SmartDashboard/Elevator 2": "Command",
-      "/SmartDashboard/Elevator 3": "Command"
+      "/SmartDashboard/Elevator 3": "Command",
+      "/SmartDashboard/Field": "Field2d"
     },
     "windows": {
       "/AdvantageKit/RealOutputs/Robot Simulation": {
@@ -59,6 +60,11 @@
         }
       },
       "/SmartDashboard/Arm 6": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Auto Chooser": {
         "window": {
           "visible": true
         }

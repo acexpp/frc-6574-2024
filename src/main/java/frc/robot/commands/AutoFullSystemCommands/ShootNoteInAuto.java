@@ -6,6 +6,6 @@ import frc.robot.commands.ShootNote;
 public class ShootNoteInAuto extends SequentialCommandGroup{
     /** Creates a new ShootInAuto */
     public ShootNoteInAuto() {
-        addCommands(new ShootNote().withTimeout(2));
+        addCommands(new ShootNote().withTimeout(1));
     }
 }

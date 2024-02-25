@@ -50,8 +50,8 @@ public class Intake extends SubsystemBase {
 // In hindset the below command likely won't work mechanically - Jacob - L (Ace) - wait you might be wrong now actually so bigger L (Ace)
   public void setOutakeSpeed() {
     kIntakeTransition.set(-1);
-    kIntakeRollerBottom.set(1);
-    kIntakeRollerTop.set(1);
+    kIntakeRollerBottom.set(0.8);
+    kIntakeRollerTop.set(0.8);
 
   }
 }
