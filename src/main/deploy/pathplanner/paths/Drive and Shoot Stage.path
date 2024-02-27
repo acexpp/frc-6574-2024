@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.63,
-        "y": 5.53
+        "x": 2.67,
+        "y": 3.84
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.63,
-        "y": 4.448543037451186
+        "x": 2.582386879059473,
+        "y": 4.353858993432273
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.6117057948401614,
-        "y": 3.9873725461736647
+        "x": 1.4389491636126137,
+        "y": 5.306723756304655
       },
       "prevControl": {
-        "x": 1.6117057948401614,
-        "y": 3.9873725461736647
+        "x": 3.124786821002214,
+        "y": 5.511956166769476
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,15 +33,15 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.55,
+      "waypointRelativePos": 0.4,
       "command": {
-        "type": "sequential",
+        "type": "parallel",
         "data": {
           "commands": [
             {
               "type": "named",
               "data": {
-                "name": "Intake Note"
+                "name": "Shoot Note"
               }
             }
           ]

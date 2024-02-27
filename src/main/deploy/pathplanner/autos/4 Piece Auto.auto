@@ -28,6 +28,12 @@
           "data": {
             "pathName": "Drive and Intake Stage"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Drive and Shoot Stage"
+          }
         }
       ]
     }
