@@ -23,8 +23,8 @@ public class IntakeWithSensor extends Command{
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.intake.setIntakeSpeed(RobotConstants.intakeSpeed, RobotConstants.transitionSpeed);
-    RobotContainer.shooter.setShooterSpeed(0.1);
+    RobotContainer.intake.setIntakeSpeed(-0.5, -0.5);
+    RobotContainer.shooter.setShooterSpeed(-0.08);
   }
 
   // Called once the command ends or is interrupted.
@@ -37,11 +37,9 @@ public class IntakeWithSensor extends Command{
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    /* 
-    if (RobotContainer.sensor.getRange() < RobotConstants.inRange) {
+    if (RobotContainer.sensor.getRange() <= RobotConstants.inRange) {
         return true;
     }
-    */
     return false;
   }
 }

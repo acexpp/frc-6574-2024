@@ -16,7 +16,7 @@ public class IntakeNoteFromFloor extends SequentialCommandGroup {
     addCommands(
       new SetElevatorPosition(RobotConstants.elevatorHomePosition),
       new ParallelCommandGroup(
-                               new SetShooterWristPosition(RobotConstants.shooterWristTestPos),
+                               new SetShooterWristPosition(RobotConstants.shooterWristAmpPos),
                                new IntakeNote())
 
     );

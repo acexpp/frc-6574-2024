@@ -18,8 +18,7 @@ public class IntakeNoteForAmp extends SequentialCommandGroup{
     addCommands(
       new SetElevatorPosition(RobotConstants.elevatorHomePosition),
       new ParallelCommandGroup(
-                               new SetShooterWristPosition(RobotConstants.shooterWristTestPos)
-                               //new IntakeWithSensor()
+                               new IntakeWithSensor()
     ));
     }
 }

@@ -93,6 +93,7 @@ public class DriveSubsystem extends SubsystemBase {
     //Creates a holonomic autobuilder for PathPlanner 
     AutoBuilder.configureHolonomic(
                 this::getPose, // Robot pose supplier
+                //() -> RobotContainer.limelight.estimatedPose2d(),
                 this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
                 this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
                 this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
@@ -131,8 +132,8 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
 
-    //SmartDashboard.putNumber("Vision Odometry X", RobotContainer.limelight.estimatedPose2d().getX());
-    //SmartDashboard.putNumber("Vision Odometry Y", RobotContainer.limelight.estimatedPose2d().getY());
+    SmartDashboard.putNumber("Vision Odometry X", RobotContainer.limelight.estimatedPose2d().getX());
+    SmartDashboard.putNumber("Vision Odometry Y", RobotContainer.limelight.estimatedPose2d().getY());
 
     SmartDashboard.putNumber("Gyro Odometry X", m_odometry.getPoseMeters().getX());
     SmartDashboard.putNumber("Gyro Odometry Y", m_odometry.getPoseMeters().getY());

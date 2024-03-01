@@ -29,7 +29,7 @@ public final class Constants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8; //CHANGE WHEN TESTING LIMELIGHT FOR EVERYONES SAKE MonkaS
-    public static final double kMaxAngularSpeed = 1 * Math.PI; // radians per second
+    public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
 
     public static final double kDirectionSlewRate = 1.2; // radians per second
     public static final double kMagnitudeSlewRate = 1.8; // percent per second (1 = 100%)
@@ -98,9 +98,9 @@ public final class Constants {
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = kTurningEncoderPositionFactor; // radians
 
-    public static final double kDrivingP = 0.55759;
+    public static final double kDrivingP = 0.35;
     public static final double kDrivingI = 0;
-    public static final double kDrivingD = 0;
+    public static final double kDrivingD = .01;
     public static final double kDrivingFF = 1 / kDriveWheelFreeSpeedRps;
     public static final double kDrivingMinOutput = -1;
     public static final double kDrivingMaxOutput = 1;
@@ -170,13 +170,13 @@ public final class Constants {
     public static final double shooterSpeed = 1;
 
     //Position Constants - PLACEHOLDERS :) 
-    public static final int shooterWristHome = 0;
-    public static final int testElevatorPosition = 0;
-    public static final double shooterWristTestPos = 0.63;
+    public static final double shooterWristHome = 0.809;
+    public static final double ampElevatorPosition = 8.16;
+    public static final double shooterWristAmpPos = 0.985;
     public static final int elevatorHomePosition = 0;
 
     //Sensor Constants - placeholders :)
-    public static final double inRange = 0;
+    public static final double inRange = 1.7;
   }  
 
   public static final class NeoMotorConstants {

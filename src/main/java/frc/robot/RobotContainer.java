@@ -9,13 +9,14 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
+import frc.robot.commands.IntakeWithSensor;
 import frc.robot.commands.ShootNote;
 import frc.robot.commands.ShootNoteTest;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
@@ -26,9 +27,10 @@ import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.ElevatorCommands.SetElevatorDown;
 import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
 import frc.robot.commands.ElevatorCommands.SetElevatorUp;
+import frc.robot.commands.FullSystemCommandsTeleop.Climb;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
-import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteTest;
+import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
 //import frc.robot.commands.IntakeMoveCommands.SetIntakeMovePosition;
 import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
 import frc.robot.simulation.MechanismSimulator;
@@ -61,6 +63,8 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
+import com.revrobotics.Rev2mDistanceSensor.Unit;
+
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 /*
@@ -85,7 +89,7 @@ public class RobotContainer {
   //public static IntakeMove intakeMove = new IntakeMove();
   public static Climber climber = new Climber();
   public static SysIdRoutine routine;
-  //public static Rev2mDistanceSensor sensor = new Rev2mDistanceSensor(Port.kOnboard); //change later?
+  public static Rev2mDistanceSensor sensor = new Rev2mDistanceSensor(Port.kOnboard); //change later?
   
 
   // The driver's controller
@@ -98,6 +102,8 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer(boolean isSim) {
+
+    CameraServer.startAutomaticCapture();
 
     // Create the SysId routine
     routine = new SysIdRoutine(
@@ -136,9 +142,8 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevatorSim);
 
-    //sensor.setRangeProfile(RangeProfile.kHighSpeed);
+    sensor.setRangeProfile(RangeProfile.kHighSpeed);
 
-    //SmartDashboard.putNumber("Sensor data", sensor.getRange());
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
     NamedCommands.registerCommand("Intake Note", new IntakeInAuto());
     
@@ -223,15 +228,10 @@ public class RobotContainer {
     
     m_operatorController.b().whileTrue(new SetClimberDown());
     m_operatorController.a().whileTrue(new SetClimberUp());
-    m_operatorController.x().onTrue(new SetElevatorPosition(8.16));
-    m_operatorController.y().onTrue(new SetElevatorPosition(0));
-    m_operatorController.povUp().onTrue(new SetElevatorPosition(15));
-    //m_operatorController.y().onTrue(new IntakeNoteFromFloor());
-    //m_operatorController.x().onTrue(new SetShooterWristPosition(RobotConstants.shooterWristTestPos));
-    m_operatorController.povLeft().whileTrue(new RunCommand(() -> shooterW.setSpeed(0.1), shooterW));
-    m_operatorController.povLeft().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
-    m_operatorController.povRight().whileTrue(new RunCommand(() -> shooterW.setSpeed(-0.1), shooterW));
-    m_operatorController.povRight().whileFalse(new RunCommand(() -> shooterW.setSpeed(0), shooterW));
+    m_operatorController.y().onTrue(new ScoreNoteAmp());
+    m_operatorController.x().onTrue(new ReturnToHome());
+    m_operatorController.povUp().onTrue(new Climb()); 
+    m_operatorController.leftBumper().onTrue(new IntakeWithSensor());
   }
 
   /**

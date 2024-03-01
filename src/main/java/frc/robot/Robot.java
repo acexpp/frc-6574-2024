@@ -9,8 +9,11 @@ import org.littletonrobotics.junction.Logger;
 import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.urcl.URCL;
 
+import com.revrobotics.Rev2mDistanceSensor.Unit;
+
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.DataLogManager;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -67,6 +70,7 @@ public class Robot extends LoggedRobot {
     for (int port = 5800; port <= 5807; port++) {
         PortForwarder.add(port, "limelight.local", port);
     }
+    RobotContainer.sensor.setAutomaticMode(true);
   }
 
   /**
@@ -83,6 +87,7 @@ public class Robot extends LoggedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    SmartDashboard.putNumber("Sensor data", RobotContainer.sensor.getRange(Unit.kInches));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
