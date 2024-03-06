@@ -16,7 +16,6 @@ public class LimelightDriveToTarget extends Command{
 
     /** Creates a new LimelightDriveToTarget */
     public LimelightDriveToTarget() {
-        addRequirements(RobotContainer.limelight);
         addRequirements(RobotContainer.m_robotDrive);
     }
     public void initialize() {

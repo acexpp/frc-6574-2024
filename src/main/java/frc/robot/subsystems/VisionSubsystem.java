@@ -25,7 +25,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.VisionConstants;
 
 // Limelight subsystem taken from team 4400 Cerbotics - looks to be updated from last time I checked their code base
-public class VisionSubsystem extends SubsystemBase{
+public class VisionSubsystem {
     private final DriveSubsystem m_drive;
 
     private final SwerveDrivePoseEstimator m_poseEstimator;

@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.1852004303152672,
-      "y": 6.45267093672561
+      "x": 0.5645260933888472,
+      "y": 2.4241431649767726
     },
-    "rotation": 30.0
+    "rotation": 0
   },
   "command": {
     "type": "sequential",
@@ -14,7 +14,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Shoot and Drive Amp"
+            "pathName": "Drive Back"
           }
         }
       ]
