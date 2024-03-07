@@ -6,6 +6,6 @@ import frc.robot.commands.IntakeNote;
 public class IntakeInAuto extends SequentialCommandGroup{
     /** Creates a new IntakeInAuto */
     public IntakeInAuto() {
-        addCommands(new IntakeNote().withTimeout(0.8));
+        addCommands(new IntakeNote().withTimeout(2));
     }
 }

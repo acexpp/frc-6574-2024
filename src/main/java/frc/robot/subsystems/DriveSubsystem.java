@@ -98,7 +98,7 @@ public class DriveSubsystem extends SubsystemBase {
                 this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
                 this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
                 new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-                        new PIDConstants(2.2, 0, 0), // Translation PID constants - TURN UP P
+                        new PIDConstants(2.9, 0, 0), // Translation PID constants
                         new PIDConstants(2.5, 0, 0), // Rotation PID constants
                         4.5, // Max module speed, in m/s
                         0.324, // Drive base radius in meters. Distance from robot center to furthest module.
@@ -246,7 +246,11 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void driveRobotRelative(ChassisSpeeds speeds){
-    this.drive(speeds.vxMetersPerSecond,speeds.vyMetersPerSecond,speeds.omegaRadiansPerSecond,false,false);
+    this.drive(
+      speeds.vxMetersPerSecond/DriveConstants.kMaxSpeedMetersPerSecond,
+      speeds.vyMetersPerSecond/DriveConstants.kMaxSpeedMetersPerSecond,
+      speeds.omegaRadiansPerSecond/DriveConstants.kMaxAngularSpeed,
+      false,false);
   }
   
   public ChassisSpeeds getRobotRelativeSpeeds(){
