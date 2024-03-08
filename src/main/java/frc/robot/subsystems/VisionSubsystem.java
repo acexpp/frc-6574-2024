@@ -186,4 +186,24 @@ public class VisionSubsystem {
     targetingForwardSpeed *= -1.0;
     return targetingForwardSpeed;
   }
+
+  public double getDistanceToTarget() {
+    double targetOffsetAngle_Vertical = LimelightHelpers.getTY("Limelight");
+
+    // how many degrees back is your limelight rotated from perfectly vertical?
+    double limelightMountAngleDegrees = 24.5; 
+
+    // distance from the center of the Limelight lens to the floor
+    double limelightLensHeightInches = 24.875; 
+
+    // distance from the target to the floor
+    double goalHeightInches = 51.875; 
+
+    double angleToGoalDegrees = limelightMountAngleDegrees + targetOffsetAngle_Vertical;
+    double angleToGoalRadians = angleToGoalDegrees * (3.14159 / 180.0);
+
+    //calculate distance
+    double distanceFromLimelightToGoalInches = (goalHeightInches - limelightLensHeightInches) / Math.tan(angleToGoalRadians);
+    return distanceFromLimelightToGoalInches;
+  }
 }

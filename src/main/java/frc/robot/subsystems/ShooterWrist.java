@@ -14,6 +14,8 @@ import com.revrobotics.SparkPIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
+import frc.robot.RobotContainer;
 
 public class ShooterWrist extends SubsystemBase {
 
@@ -109,12 +111,19 @@ public class ShooterWrist extends SubsystemBase {
     shooterWristMotor.stopMotor();
   }
 
-
   public double getAbsoluteEncoderPosition() {
     return m_AbsoluteEncoder.getPosition();
   }
+
   public void setPosition(double position) {
     shooterWristPIDController.setReference(position, CANSparkMax.ControlType.kPosition);
   }
 
+  //WIP - Mathod to adjust our shooter wrist angle based on distance from speaker
+  public double limelightGetShooterAngle() {
+    double distance = RobotContainer.limelight.getDistanceToTarget();
+    double heightShooterToSpeaker = 54.0;
+    double shooterAngleRadians = Math.atan(heightShooterToSpeaker/distance);
+    return 0.0;
+  }
 }
