@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.34,
-        "y": 5.53
+        "x": 1.3509924162705473,
+        "y": 5.570593998330854
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.3568904632115149,
-        "y": 5.53
+        "x": 2.3509924162705502,
+        "y": 5.570593998330854
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.91,
-        "y": 5.53
+        "x": 2.904894952647049,
+        "y": 5.570593998330854
       },
       "prevControl": {
-        "x": 2.7708407864214366,
-        "y": 5.53
+        "x": 1.904894952647049,
+        "y": 5.570593998330854
       },
       "nextControl": null,
       "isLocked": false,
@@ -32,33 +32,10 @@
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "New Event Marker",
-      "waypointRelativePos": 0.0,
+      "name": "Intake",
+      "waypointRelativePos": 0.65,
       "command": {
-        "type": "sequential",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "Shoot Note"
-              }
-            },
-            {
-              "type": "wait",
-              "data": {
-                "waitTime": 2.0
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "New Event Marker",
-      "waypointRelativePos": 0.4,
-      "command": {
-        "type": "sequential",
+        "type": "parallel",
         "data": {
           "commands": [
             {

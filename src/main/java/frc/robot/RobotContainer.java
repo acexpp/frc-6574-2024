@@ -4,9 +4,6 @@
 
 package frc.robot;
 
-
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -14,32 +11,22 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
-import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
-import frc.robot.commands.IntakeWithSensor;
 import frc.robot.commands.IntakeAmpNoSensor;
-import frc.robot.commands.ShootNote;
-import frc.robot.commands.ShootNoteTest;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
-import frc.robot.commands.ElevatorCommands.DriveElevatorDown;
-import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
-import frc.robot.commands.ElevatorCommands.DriveElevatorUp;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustShooterWrist;
 import frc.robot.commands.FullSystemCommandsTeleop.Climb;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteForAmp;
-import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
-import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.IntakeMove;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.ShooterWrist;
 import frc.robot.subsystems.VisionSubsystem;
@@ -50,7 +37,6 @@ import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -65,9 +51,6 @@ import com.pathplanner.lib.auto.NamedCommands;
 import com.revrobotics.Rev2mDistanceSensor;
 import com.revrobotics.Rev2mDistanceSensor.Port;
 import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
-import com.revrobotics.Rev2mDistanceSensor.Unit;
-
-import edu.wpi.first.wpilibj2.command.PrintCommand;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -208,14 +191,10 @@ public class RobotContainer {
     m_driverController.a().whileTrue(new LimelightDriveToTarget());
     m_driverController.rightTrigger().whileTrue(new IntakeNote());
     m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
-      new SequentialCommandGroup(
-        new WaitCommand(0.5),
-        new RunCommand(() -> intake.setIntakeSpeed(-1, -1), intake)
-      )
+      new RunCommand(() -> shooter.setShooterSpeed(-0.7, -0.7), shooter)
     ));
     m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
+      new RunCommand(() -> shooter.setShooterSpeed(0, 0 ), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
     m_driverController.leftBumper().whileTrue(new IntakeAmpNoSensor());

@@ -153,6 +153,7 @@ public final class Constants {
     public static final int shooterLeftCANID = 16;
     public static final int shooterRightCANID = 17;
     public static final int shooterWristCANID = 18;
+    public static final int shooterIntakeCANID = 13;
 
     //Elevator Constants
     public static final int elevatorLeftMotorCANID = 19;

@@ -12,7 +12,6 @@ import org.littletonrobotics.urcl.URCL;
 import com.revrobotics.Rev2mDistanceSensor.Unit;
 
 import edu.wpi.first.net.PortForwarder;
-import edu.wpi.first.wpilibj.DataLogManager;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;

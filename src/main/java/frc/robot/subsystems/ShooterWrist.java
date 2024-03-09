@@ -15,7 +15,6 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
-import frc.robot.LimelightHelpers;
 import frc.robot.RobotContainer;
 
 public class ShooterWrist extends SubsystemBase {
@@ -71,36 +70,7 @@ public class ShooterWrist extends SubsystemBase {
 
   public void periodic() {
     SmartDashboard.putNumber("Shooter Wrist Position", getAbsoluteEncoderPosition());
-    //SmartDashboard.putNumber("Wrist Joystick", RobotContainer.operator.getRawAxis(5));
-    //SmartDashboard.putNumber("Wrist encoder", wristMotor.getEncoder().getPosition());
-
-    /* if (RobotContainer.operator.getRawAxis(5) > deadBand) {
-      wristMotor.set(-RobotContainer.operator.getRawAxis(5) * maxSpeed);
-    } else if (RobotContainer.operator.getRawAxis(5) < -deadBand) {
-      wristMotor.set(-RobotContainer.operator.getRawAxis(5) * maxSpeed);
-    } */
-
-
-
-    /* if (RobotContainer.operator.getRawButtonPressed(1)) {
-      intakeMotor.set(1);
-    }
-      else if (RobotContainer.operator.getRawButtonReleased(1)) {
-        intakeMotor.set(0);
-      }
-
-      if (RobotContainer.operator.getRawButtonPressed(2)) {
-        intakeMotor.set(-1);
-      }
-      else if (RobotContainer.operator.getRawButtonReleased(2)) {
-        intakeMotor.set(0);
-      } */
-
-
-    }
-
-
-
+  }
 
   public void setSpeed(double speed)
   {

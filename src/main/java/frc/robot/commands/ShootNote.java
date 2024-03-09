@@ -22,7 +22,7 @@ public class ShootNote extends Command {
   @Override
   public void initialize() {
     RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.transitionSpeedshooter);
-    RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed);
+    RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed, -RobotConstants.shooterSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +33,7 @@ public class ShootNote extends Command {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.intake.setIntakeSpeed(0, 0);
-    RobotContainer.shooter.setShooterSpeed(0);
+    RobotContainer.shooter.setShooterSpeed(0, 0);
   }
 
   // Returns true when the command should end.

@@ -24,14 +24,14 @@ public class IntakeWithSensor extends Command{
   @Override
   public void execute() {
     RobotContainer.intake.setIntakeSpeed(-0.5, -0.5);
-    RobotContainer.shooter.setShooterSpeed(-0.08);
+    RobotContainer.shooter.setShooterSpeed(-0.08, -0.08);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     RobotContainer.intake.setIntakeSpeed(0, 0);
-    RobotContainer.shooter.setShooterSpeed(0);
+    RobotContainer.shooter.setShooterSpeed(0, 0);
   }
 
   // Returns true when the command should end.

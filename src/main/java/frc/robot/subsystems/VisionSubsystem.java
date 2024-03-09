@@ -70,6 +70,12 @@ public class VisionSubsystem {
 
       SmartDashboard.putNumber("Limelight TX", LimelightHelpers.getTX("limelight"));
       SmartDashboard.putNumber("Limelight TY", LimelightHelpers.getTY("limelight"));
+      if (LimelightHelpers.getTV("limelight")) {
+        SmartDashboard.putString("Has Valid Target", "True");
+      }
+      else {
+        SmartDashboard.putString("Has Valid Target", "False");
+      }
       /*
         odometryWvision();
         //setDynamicVisionStdDevs();
