@@ -9,10 +9,10 @@ import frc.robot.Constants.RobotConstants;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
-public class Shoot extends Command {
+public class IntakeAmpNoSensor extends Command {
   //private double speed;
   /** Creates a new setWristIntakeSpeed. */
-  public Shoot() {
+  public IntakeAmpNoSensor() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooter);
     addRequirements(RobotContainer.intake);

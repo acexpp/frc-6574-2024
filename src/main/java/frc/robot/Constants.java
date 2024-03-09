@@ -169,23 +169,13 @@ public final class Constants {
     public static final double transitionSpeed = .8;
     public static final double shooterSpeed = 1;
 
-    //Position Constants - PLACEHOLDERS :) 
+    //Position Constants 
     public static final double shooterWristHome = 0.787;
     public static final double ampElevatorPosition = 10.881;
-    public static final double shooterWristAmpPos = 0.953
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    ;
+    public static final double shooterWristAmpPos = 0.953;
     public static final int elevatorHomePosition = 0;
 
-    //Sensor Constants - placeholders :)
+    //Sensor Constants
     public static final double inRange = 1.7;
   }  
 

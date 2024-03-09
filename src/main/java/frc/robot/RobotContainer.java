@@ -17,7 +17,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.IntakeWithSensor;
-import frc.robot.commands.Shoot;
+import frc.robot.commands.IntakeAmpNoSensor;
 import frc.robot.commands.ShootNote;
 import frc.robot.commands.ShootNoteTest;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
@@ -25,15 +25,15 @@ import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
-import frc.robot.commands.ElevatorCommands.SetElevatorDown;
+import frc.robot.commands.ElevatorCommands.DriveElevatorDown;
 import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
-import frc.robot.commands.ElevatorCommands.SetElevatorUp;
+import frc.robot.commands.ElevatorCommands.DriveElevatorUp;
+import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustShooterWrist;
 import frc.robot.commands.FullSystemCommandsTeleop.Climb;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteForAmp;
 import frc.robot.commands.FullSystemCommandsTeleop.IntakeNoteFromFloor;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
-//import frc.robot.commands.IntakeMoveCommands.SetIntakeMovePosition;
 import frc.robot.commands.ShooterWristCommands.SetShooterWristPosition;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
@@ -200,7 +200,8 @@ public class RobotContainer {
    * {@link JoystickButton}.
    */
   private void configureButtonBindings() {
-    //Driver Buttons - WIP
+
+    //Driver Buttons
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     //m_driverController.rightBumper().whileTrue(new ShootNote());
@@ -217,24 +218,25 @@ public class RobotContainer {
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake)
     ));
-    m_driverController.leftBumper().whileTrue(new Shoot());
+    m_driverController.leftBumper().whileTrue(new IntakeAmpNoSensor());
     m_driverController.leftTrigger().whileTrue(new RunCommand(() -> intake.setOutakeSpeed(), intake));
     m_driverController.leftTrigger().whileFalse(new RunCommand(() -> intake.setIntakeSpeed(0, 0), intake));
-    /*
+    
+    /* Characterization Controls
     m_driverController.a().onTrue(routine.quasistatic(SysIdRoutine.Direction.kForward));
     m_driverController.b().onTrue(routine.quasistatic(SysIdRoutine.Direction.kReverse));
     m_driverController.x().onTrue(routine.dynamic(SysIdRoutine.Direction.kForward));
     m_driverController.y().onTrue(routine.dynamic(SysIdRoutine.Direction.kReverse));
     */
 
-    //Operator buttons - WIP
-    
+    //Operator buttons
     m_operatorController.b().whileTrue(new SetClimberDown());
     m_operatorController.a().whileTrue(new SetClimberUp());
     m_operatorController.y().onTrue(new ScoreNoteAmp());
     m_operatorController.x().onTrue(new ReturnToHome());
     m_operatorController.povUp().onTrue(new Climb()); 
     m_operatorController.leftBumper().onTrue(new IntakeNoteForAmp());
+    m_operatorController.povDown().onTrue(new AutoAdjustShooterWrist());
   }
 
   /**
