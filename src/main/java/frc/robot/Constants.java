@@ -140,7 +140,7 @@ public final class Constants {
         kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
   }
 
-  //ALL TEMPORARY VALUES - Jacob why do you hate me.
+  //SOME TEMPORARY VALUES - Jacob why do you hate me.
   public static final class RobotConstants{
 
     //Intake Constants

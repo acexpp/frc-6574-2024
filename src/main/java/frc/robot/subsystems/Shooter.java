@@ -49,6 +49,6 @@ public class Shooter extends SubsystemBase {
   public void setShooterSpeed(double speed, double sIntake) {
     kShooterLeft.set(-speed);
     kShooterRight.set(-speed);
-    kShooterIntake.set(sIntake);
+    kShooterIntake.set(-sIntake);
   }
 }
