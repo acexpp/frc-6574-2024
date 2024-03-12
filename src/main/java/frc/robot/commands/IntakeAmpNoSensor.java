@@ -20,8 +20,8 @@ public class IntakeAmpNoSensor extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.setShooterSpeed(-0.08, -0.08);
-    RobotContainer.intake.setIntakeSpeed(-0.5, -0.5);
+    RobotContainer.shooter.setShooterSpeed(-0.08);
+    RobotContainer.intake.setIntakeSpeed(-0.5, -0.5, 0.08);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -31,8 +31,8 @@ public class IntakeAmpNoSensor extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter.setShooterSpeed(0, 0);
-    RobotContainer.intake.setIntakeSpeed(0, 0);
+    RobotContainer.shooter.setShooterSpeed(0);
+    RobotContainer.intake.setIntakeSpeed(0, 0, 0);
   }
 
   // Returns true when the command should end.

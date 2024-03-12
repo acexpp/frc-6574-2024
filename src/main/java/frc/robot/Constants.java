@@ -98,7 +98,7 @@ public final class Constants {
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = kTurningEncoderPositionFactor; // radians
 
-    public static final double kDrivingP = 0.55759;
+    public static final double kDrivingP = 0.0028314; //0.55759
     public static final double kDrivingI = 0;
     public static final double kDrivingD = 0;
     public static final double kDrivingFF = 1 / kDriveWheelFreeSpeedRps;
@@ -165,7 +165,7 @@ public final class Constants {
 
     //Intake Speed Constants
     public static final double intakeSpeedshooter = .4;
-    public static final double intakeSpeed = .8;
+    public static final double intakeSpeed = .5;
     public static final double transitionSpeedshooter = .4;
     public static final double transitionSpeed = .8;
     public static final double shooterSpeed = 1;
@@ -178,6 +178,7 @@ public final class Constants {
 
     //Sensor Constants
     public static final double inRange = 1.7;
+    public static final double intakeRange = 7.0;
   }  
 
   public static final class NeoMotorConstants {

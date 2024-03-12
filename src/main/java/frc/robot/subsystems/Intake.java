@@ -15,6 +15,7 @@ public class Intake extends SubsystemBase {
   public CANSparkMax kIntakeTransition;
   public CANSparkMax kIntakeRollerBottom;
   public CANSparkMax kIntakeRollerTop;
+  public CANSparkMax kShooterIntake;
   
   /** Creates a new Intake. */
   public Intake() {
@@ -32,16 +33,22 @@ public class Intake extends SubsystemBase {
     kIntakeRollerTop.restoreFactoryDefaults();
     kIntakeRollerTop.setIdleMode(IdleMode.kBrake);
     kIntakeRollerTop.setSmartCurrentLimit(35);
+    
+    kShooterIntake = new CANSparkMax(Constants.RobotConstants.shooterIntakeCANID, MotorType.kBrushless);
+    kShooterIntake.restoreFactoryDefaults();
+    kShooterIntake.setIdleMode(IdleMode.kBrake);
+    kShooterIntake.setSmartCurrentLimit(35);
   }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
   }
 
-  public void setIntakeSpeed(double speedI, double speedT) {
+  public void setIntakeSpeed(double speedI, double speedT, double speedS) {
     kIntakeRollerBottom.set(speedI);
     kIntakeTransition.set(speedT);
     kIntakeRollerTop.set(speedI);
+    kShooterIntake.set(-speedS);
 
   }
 // In hindset the below command likely won't work mechanically - Jacob - L (Ace) - wait you might be wrong now actually so bigger L (Ace)
@@ -49,6 +56,5 @@ public class Intake extends SubsystemBase {
     kIntakeTransition.set(-1);
     kIntakeRollerBottom.set(0.8);
     kIntakeRollerTop.set(0.8);
-
   }
 }

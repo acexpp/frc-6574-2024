@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import com.revrobotics.Rev2mDistanceSensor.Unit;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.RobotContainer;
@@ -13,7 +15,6 @@ public class IntakeNote extends Command {
   /** Creates a new setWristIntakeSpeed. */
   public IntakeNote() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.shooter);
     addRequirements(RobotContainer.intake);
     //this.speed = speed;
   }
@@ -21,8 +22,7 @@ public class IntakeNote extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.setShooterSpeed(0, 0.3);
-    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.intakeSpeed);
+    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.intakeSpeed, 0.5);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,13 +32,17 @@ public class IntakeNote extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.shooter.setShooterSpeed(0, 0);
-    RobotContainer.intake.setIntakeSpeed(0, 0);
+    RobotContainer.intake.setIntakeSpeed(0, 0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if (RobotContainer.sensor.getRange(Unit.kInches) <= RobotConstants.intakeRange) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

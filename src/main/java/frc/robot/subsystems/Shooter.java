@@ -7,9 +7,6 @@ import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.revrobotics.CANSparkBase.IdleMode;
-import com.revrobotics.CANSparkLowLevel.MotorType;
-import com.revrobotics.CANSparkMax;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -18,7 +15,6 @@ public class Shooter extends SubsystemBase {
 
   public TalonFX kShooterLeft;
   public TalonFX kShooterRight;
-  public CANSparkMax kShooterIntake;
   public TalonFXConfiguration shooterAngleFXConfig = new TalonFXConfiguration();
   public CurrentLimitsConfigs currentLimitConfig = new CurrentLimitsConfigs();
 
@@ -34,11 +30,6 @@ public class Shooter extends SubsystemBase {
     kShooterRight.getConfigurator().apply(shooterAngleFXConfig);
     kShooterRight.setNeutralMode(NeutralModeValue.Brake);
     kShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
-
-    kShooterIntake = new CANSparkMax(Constants.RobotConstants.shooterIntakeCANID, MotorType.kBrushless);
-    kShooterIntake.restoreFactoryDefaults();
-    kShooterIntake.setIdleMode(IdleMode.kBrake);
-    kShooterIntake.setSmartCurrentLimit(35);
   }
 
   @Override
@@ -46,9 +37,8 @@ public class Shooter extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public void setShooterSpeed(double speed, double sIntake) {
+  public void setShooterSpeed(double speed) {
     kShooterLeft.set(-speed);
     kShooterRight.set(-speed);
-    kShooterIntake.set(-sIntake);
   }
 }

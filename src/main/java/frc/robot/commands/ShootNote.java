@@ -21,8 +21,8 @@ public class ShootNote extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.transitionSpeedshooter);
-    RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed, -RobotConstants.shooterSpeed);
+    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.transitionSpeedshooter, -0.1);
+    RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -32,8 +32,8 @@ public class ShootNote extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setIntakeSpeed(0, 0);
-    RobotContainer.shooter.setShooterSpeed(0, 0);
+    RobotContainer.intake.setIntakeSpeed(0, 0, 0);
+    RobotContainer.shooter.setShooterSpeed(0);
   }
 
   // Returns true when the command should end.

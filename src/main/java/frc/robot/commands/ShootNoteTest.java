@@ -14,11 +14,11 @@ public class ShootNoteTest extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand();
     addCommands(
       new ParallelCommandGroup(
-        new RunCommand(() -> RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed, -RobotConstants.shooterSpeed), RobotContainer.shooter),
-      new SequentialCommandGroup(
-        new WaitCommand(0.5),
-        new RunCommand(() -> RobotContainer.intake.setIntakeSpeed(0, 0.8), RobotContainer.intake)
-      )
+        new RunCommand(() -> RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed), RobotContainer.shooter),
+        new SequentialCommandGroup(
+          new WaitCommand(0.5),
+          new RunCommand(() -> RobotContainer.intake.setIntakeSpeed(0, 0, 0.7), RobotContainer.intake)
+        )
     ));
   }
   /* 
