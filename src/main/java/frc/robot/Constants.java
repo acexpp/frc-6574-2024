@@ -171,14 +171,14 @@ public final class Constants {
     public static final double shooterSpeed = 1;
 
     //Position Constants 
-    public static final double shooterWristHome = 0.787;
+    public static final double shooterWristHome = 0.269;
     public static final double ampElevatorPosition = 10.881;
     public static final double shooterWristAmpPos = 0.953;
     public static final int elevatorHomePosition = 0;
 
     //Sensor Constants
     public static final double inRange = 1.7;
-    public static final double intakeRange = 7.0;
+    public static final double intakeRange = 1.0;
   }  
 
   public static final class NeoMotorConstants {
