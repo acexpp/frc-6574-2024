@@ -46,7 +46,7 @@ public class ShooterWrist extends SubsystemBase {
 
     shooterWristMotor.setSmartCurrentLimit(45);
 
-    kP = 3.5; //2.5 last working value
+    kP = 3.5; //3.5 last working value
     kI = 0;
     kD = 0;
     kIz = 0;

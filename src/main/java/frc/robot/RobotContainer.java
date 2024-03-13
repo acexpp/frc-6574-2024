@@ -192,8 +192,7 @@ public class RobotContainer {
     //m_driverController.rightBumper().whileTrue(new ShootNote());
     m_driverController.a().whileTrue(new LimelightDriveToTarget());
     m_driverController.rightTrigger().onTrue(new IntakeNote());
-    m_driverController.rightBumper().whileTrue(new ShootNoteTest());
-    /*
+    //m_driverController.rightBumper().whileTrue(new ShootNoteTest());
     m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
       new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
       new SequentialCommandGroup(
@@ -205,7 +204,6 @@ public class RobotContainer {
       new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
       new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)
     ));
-    */
     m_driverController.leftBumper().whileTrue(new IntakeAmpNoSensor());
     m_driverController.leftTrigger().whileTrue(new RunCommand(() -> intake.setOutakeSpeed(), intake));
     m_driverController.leftTrigger().whileFalse(new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake));
