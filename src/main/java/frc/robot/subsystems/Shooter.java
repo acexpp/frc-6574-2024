@@ -56,7 +56,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public double getVelocity(){
-    return kShooterLeft.getVelocity().getValue() * -1; // the desired rotations per second is a negative number, so we need it to match
+    return kShooterLeft.getVelocity().getValue(); // the desired rotations per second is a negative number, so we need it to match
   }
   
   /* thinking we only really need to use this if we don't want full speed for the shooter... who knows
