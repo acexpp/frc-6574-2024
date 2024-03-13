@@ -42,6 +42,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
@@ -206,6 +207,20 @@ public class RobotContainer {
       new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)
     ));
     */
+
+    // Velocity control shooting 
+    m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
+      new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
+      new SequentialCommandGroup(
+        new WaitUntilCommand(() -> shooter.getVelocity() >= Constants.RobotConstants.shooterVelocityRPS),
+        new RunCommand(() -> intake.setIntakeSpeed(0, -1, 1), intake)
+      )
+    ));
+    m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(
+      new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
+      new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)
+    ));
+
     m_driverController.leftBumper().whileTrue(new IntakeAmpNoSensor());
     m_driverController.leftTrigger().whileTrue(new RunCommand(() -> intake.setOutakeSpeed(), intake));
     m_driverController.leftTrigger().whileFalse(new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake));
