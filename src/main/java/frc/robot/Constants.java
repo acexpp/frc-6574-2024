@@ -175,12 +175,12 @@ public final class Constants {
     //Position Constants 
     public static final double shooterWristHome = 0.262;
     public static final double ampElevatorPosition = 10.881;
-    public static final double shooterWristAmpPos = 0.953;
+    public static final double shooterWristAmpPos = 0.065;
     public static final int elevatorHomePosition = 0;
 
     //Sensor Constants
     public static final double inRange = 1.7;
-    public static final double intakeRange = 7;
+    public static final double intakeRange = 3.0;
   }  
 
   public static final class NeoMotorConstants {
@@ -188,8 +188,7 @@ public final class Constants {
   }
 
   // UPDATE SOON PLEASE AND THANK YOU ^-^
-  public static final class VisionConstants {
-    
+  public static final class VisionConstants{
     public static final String tagLimelightName = "limelight-tags";
 
     public static double LIMELIGHT_FLOOR_CLEREANCE = 0.445; //Elevation of the Limelight
