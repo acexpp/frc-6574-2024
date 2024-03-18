@@ -37,7 +37,6 @@ public class AutoAdjustShooterWrist extends Command{
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    /* 
     if (Math.abs(RobotContainer.shooterW.getAbsoluteEncoderPosition() - position) <= tolerance) {
       System.out.println("Auto Adjust Complete");
       return true;
@@ -45,7 +44,5 @@ public class AutoAdjustShooterWrist extends Command{
     else {
       return false;
     }
-    */
-    return false;
   }
 }

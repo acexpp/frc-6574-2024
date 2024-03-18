@@ -165,22 +165,25 @@ public final class Constants {
 
     //Intake Speed Constants
     public static final double intakeSpeedshooter = .4;
-    public static final double intakeSpeed = .5;
+    public static final double intakeSpeed = .7;
     public static final double transitionSpeedshooter = .4;
     public static final double transitionSpeed = .8;
     public static final double shooterSpeed = 1;
 
-    public static final double shooterVelocityRPS = 82; // very much so not the correct value thumbs up
+    public static final double shooterVelocityRPS = 80; // very much so not the correct value thumbs up
 
     //Position Constants 
-    public static final double shooterWristHome = 0.262;
-    public static final double ampElevatorPosition = 10.881;
-    public static final double shooterWristAmpPos = 0.065;
+    public static final double shooterWristHome = 0.262; //244
+    public static final double shooterWristSpeakerAuto = 0.244;
+    public static final double ampElevatorPosition = 11.881;
+    public static final double shooterWristAmpPos = 0.027; //0.064
     public static final int elevatorHomePosition = 0;
+    public static final double wristClimbPos = 0.1;
+    public static final int elevatorClimbPos = 1;
 
     //Sensor Constants
     public static final double inRange = 1.7;
-    public static final double intakeRange = 3.0;
+    public static final double intakeRange = 5.0;
   }  
 
   public static final class NeoMotorConstants {

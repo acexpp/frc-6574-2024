@@ -5,6 +5,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.RunCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
 
 public class IntakeAmpNoSensor extends Command {
@@ -20,8 +22,8 @@ public class IntakeAmpNoSensor extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.setShooterSpeed(-0.08);
-    RobotContainer.intake.setIntakeSpeed(-0.5, -0.5, 0.08);
+    RobotContainer.shooter.setShooterSpeed(0.08);
+    RobotContainer.intake.setIntakeSpeed(-0.5, -0.5, 0.2);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

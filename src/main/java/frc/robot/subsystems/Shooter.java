@@ -9,6 +9,7 @@ import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -47,6 +48,7 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() {
+    SmartDashboard.putNumber("Velocity", getVelocity());
     // This method will be called once per scheduler run
   }
 
@@ -56,7 +58,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public double getVelocity(){
-    return kShooterLeft.getVelocity().getValue(); // the desired rotations per second is a negative number, so we need it to match
+    return kShooterLeft.getVelocity().getValue();
   }
   
   /* thinking we only really need to use this if we don't want full speed for the shooter... who knows

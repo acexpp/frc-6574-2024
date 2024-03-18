@@ -9,7 +9,7 @@ public class ShootNoteInAuto extends SequentialCommandGroup{
     /** Creates a new ShootInAuto */
     public ShootNoteInAuto() {
         addCommands(
-            new SetShooterWristPosition(RobotConstants.shooterWristHome),
+            new SetShooterWristPosition(RobotConstants.shooterWristSpeakerAuto),
             new ShootNoteTest().withTimeout(5)
             );
     }
