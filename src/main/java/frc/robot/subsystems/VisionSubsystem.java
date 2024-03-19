@@ -26,6 +26,7 @@ import frc.robot.Constants.VisionConstants;
 
 // Limelight subsystem taken from team 4400 Cerbotics - looks to be updated from last time I checked their code base
 public class VisionSubsystem {
+  private double ty;
     private final DriveSubsystem m_drive;
 
     private final SwerveDrivePoseEstimator m_poseEstimator;
@@ -70,6 +71,8 @@ public class VisionSubsystem {
 
       SmartDashboard.putNumber("Limelight TX", LimelightHelpers.getTX("limelight"));
       SmartDashboard.putNumber("Limelight TY", LimelightHelpers.getTY("limelight"));
+      SmartDashboard.putNumber("limelight distance", getDistanceToTarget());
+      ty = LimelightHelpers.getTY("limelight");
       if (LimelightHelpers.getTV("limelight")) {
         SmartDashboard.putString("Has Valid Target", "True");
       }
@@ -194,7 +197,7 @@ public class VisionSubsystem {
   }
 
   public double getDistanceToTarget() {
-    double targetOffsetAngle_Vertical = LimelightHelpers.getTY("Limelight");
+    double targetOffsetAngle_Vertical = ty;
 
     // how many degrees back is your limelight rotated from perfectly vertical?
     double limelightMountAngleDegrees = 24.5; 

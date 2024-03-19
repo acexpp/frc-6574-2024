@@ -33,13 +33,15 @@ public class Shooter extends SubsystemBase {
   public Shooter() {
     kShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
     kShooterLeft.getConfigurator().apply(shooterVelocityFxConfiguration);
-    kShooterLeft.setNeutralMode(NeutralModeValue.Brake);
-    kShooterLeft.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
+    kShooterLeft.setNeutralMode(NeutralModeValue.Coast);
+    kShooterLeft.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(80));
+    kShooterLeft.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(40));
 
     kShooterRight = new TalonFX(Constants.RobotConstants.shooterRightCANID);
     kShooterRight.getConfigurator().apply(shooterVelocityFxConfiguration);
-    kShooterRight.setNeutralMode(NeutralModeValue.Brake);
-    kShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(25));
+    kShooterRight.setNeutralMode(NeutralModeValue.Coast);
+    kShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(80));
+    kShooterRight.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(40));
     
     shooterVelocityFxConfiguration.Slot1.kP = 5; // An error of 1 rotation per second results in 5 amps output
     shooterVelocityFxConfiguration.Slot1.kI = 0.1; // An error of 1 rotation per second increases output by 0.1 amps every second
