@@ -1,5 +1,4 @@
 package frc.robot.commands.FullSystemCommandsTeleop;
-
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
@@ -19,12 +18,13 @@ public class AutoAdjustShooterWrist extends Command{
   @Override
   public void initialize() {
     System.out.println("Beginning Auto Adjust");
-    RobotContainer.shooterW.setPosition(position);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    position = RobotContainer.shooterW.limelightGetShooterAngle();
+    RobotContainer.shooterW.setPosition(position);
   }
 
   // Called once the command ends or is interrupted.

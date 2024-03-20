@@ -96,7 +96,8 @@ public class ShooterWrist extends SubsystemBase {
   // Returns the encoder value to set the position of the wrist
   public double limelightGetShooterAngle() {
     double distance = RobotContainer.limelight.getDistanceToTarget();
-    double heightShooterToSpeaker = 54.0 + (0.45 * (RobotContainer.limelight.getDistanceToTarget() - 45.5));
+    //double heightShooterToSpeaker = 54.0 + (0.2 * (RobotContainer.limelight.getDistanceToTarget() - 45.5));
+    double heightShooterToSpeaker = 54.0 + (0.005 * Math.pow((RobotContainer.limelight.getDistanceToTarget() - 45.5),2));
     double shooterAngleDegrees = Units.radiansToDegrees(Math.atan(heightShooterToSpeaker/distance));
     double shooterOffset = 45.36;
     return (shooterAngleDegrees + shooterOffset)/360;
