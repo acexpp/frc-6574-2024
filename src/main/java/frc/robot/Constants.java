@@ -170,7 +170,7 @@ public final class Constants {
     public static final double transitionSpeed = .8;
     public static final double shooterSpeed = 1;
 
-    public static final double shooterVelocityRPS = 80; // very much so not the correct value thumbs up
+    public static final double shooterVelocityRPS = 80;
 
     //Position Constants 
     public static final double shooterWristHome = 0.262; //244

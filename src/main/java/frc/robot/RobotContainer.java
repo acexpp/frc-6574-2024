@@ -210,9 +210,9 @@ public class RobotContainer {
 
     // Velocity control shooting 
     m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
+      new RunCommand(() -> shooter.setShooterVelocityUsingMotionMagic(80), shooter),
       new SequentialCommandGroup(
-        new WaitUntilCommand(() -> shooter.getVelocity() >= Constants.RobotConstants.shooterVelocityRPS),
+        new WaitUntilCommand(() -> shooter.getVelocity() >= shooter.desiredVelocityMotionMagic),
         new RunCommand(() -> intake.setIntakeSpeed(0, -1, 1), intake)
       )
     ));
