@@ -11,6 +11,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.SetIntakeSpeeds;
 import frc.robot.commands.IntakeAmpNoSensor;
@@ -23,6 +24,7 @@ import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
 import frc.robot.commands.FullSystemCommandsTeleop.Climb;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
+import frc.robot.commands.FullSystemCommandsTeleop.Shoot;
 import frc.robot.commands.FullSystemCommandsTeleop.ShooterWristStage;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
@@ -133,7 +135,7 @@ public class RobotContainer {
     sensor.setRangeProfile(RangeProfile.kHighSpeed);
 
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
-    NamedCommands.registerCommand("Intake Note", new IntakeInAuto());
+    NamedCommands.registerCommand("IntakeNote", new IntakeInAuto());
     
     /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
@@ -209,18 +211,7 @@ public class RobotContainer {
     */
 
     // Velocity control shooting 
-    m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterVelocityUsingMotionMagic(80), shooter),
-      new SequentialCommandGroup(
-        new WaitUntilCommand(() -> shooter.getVelocity() >= shooter.desiredVelocityMotionMagic),
-        new RunCommand(() -> intake.setIntakeSpeed(0, -1, 1), intake)
-      )
-    ));
-    m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
-      new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)
-    ));
-
+    m_driverController.rightBumper().whileTrue(new Shoot());
     m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
     m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
     m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(-1), shooter),

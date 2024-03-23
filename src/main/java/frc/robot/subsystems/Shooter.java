@@ -19,7 +19,8 @@ public class Shooter extends SubsystemBase {
   public TalonFX kShooterLeft;
   public TalonFX kShooterRight;
   // public TalonFXConfiguration shooterAngleFxConfiguration = new TalonFXConfiguration();
-  public TalonFXConfiguration shooterVelocityFxConfiguration = new TalonFXConfiguration();
+  public TalonFXConfiguration shooterVelocityFxConfigurationL = new TalonFXConfiguration();
+  public TalonFXConfiguration shooterVelocityFxConfigurationR = new TalonFXConfiguration();
   public CurrentLimitsConfigs currentLimitConfig = new CurrentLimitsConfigs();
 
     /* Start at velocity 0, no feed forward, use slot 1 */ //maybe disregard the previous comment, i don't remember what it means
@@ -42,38 +43,51 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   public Shooter() {
     //configuration settings, slot 1 might get booted?
+    /* 
     shooterVelocityFxConfiguration.Slot1.kP = 5; // An error of 1 rotation per second results in 5 amps output
     shooterVelocityFxConfiguration.Slot1.kI = 0.1; // An error of 1 rotation per second increases output by 0.1 amps every second
     shooterVelocityFxConfiguration.Slot1.kD = 0.001; // A change of 1000 rotation per second squared results in 1 amp output
+    */
 
-    shooterVelocityFxConfiguration.Slot0.kS = 0.25; // Add 0.25 V output to overcome static friction
-    shooterVelocityFxConfiguration.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
-    shooterVelocityFxConfiguration.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    shooterVelocityFxConfiguration.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
-    shooterVelocityFxConfiguration.Slot0.kI = 0; // no output for integrated error
-    shooterVelocityFxConfiguration.Slot0.kD = 0; // no output for error derivative
+    shooterVelocityFxConfigurationL.Slot0.kS = 0.1; // Add 0.25 V output to overcome static friction
+    shooterVelocityFxConfigurationL.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+    shooterVelocityFxConfigurationL.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+    shooterVelocityFxConfigurationL.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+    shooterVelocityFxConfigurationL.Slot0.kI = 0; // no output for integrated error
+    shooterVelocityFxConfigurationL.Slot0.kD = 0; // no output for error derivative
 
-    var motionMagicConfigs = shooterVelocityFxConfiguration.MotionMagic;
-    motionMagicConfigs.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
-    motionMagicConfigs.MotionMagicJerk = 4000; // Target jerk of 4000 rps/s/s (0.1 seconds)
+    shooterVelocityFxConfigurationR.Slot0.kS = 0.1; // Add 0.25 V output to overcome static friction
+    shooterVelocityFxConfigurationR.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+    shooterVelocityFxConfigurationR.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
+    shooterVelocityFxConfigurationR.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+    shooterVelocityFxConfigurationR.Slot0.kI = 0; // no output for integrated error
+    shooterVelocityFxConfigurationR.Slot0.kD = 0; // no output for error derivative
+
+    var motionMagicConfigsL = shooterVelocityFxConfigurationL.MotionMagic;
+    var motionMagicConfigsR = shooterVelocityFxConfigurationR.MotionMagic;
+    motionMagicConfigsL.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
+    motionMagicConfigsL.MotionMagicJerk = 0; // Target jerk of 4000 rps/s/s (0.1 seconds)
+    motionMagicConfigsR.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
+    motionMagicConfigsR.MotionMagicJerk = 0; // Target jerk of 4000 rps/s/s (0.1 seconds)
     
     //actually the motors
     kShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
-    kShooterLeft.getConfigurator().apply(shooterVelocityFxConfiguration);
-    kShooterLeft.setNeutralMode(NeutralModeValue.Coast);
+    kShooterLeft.getConfigurator().apply(shooterVelocityFxConfigurationL);
+    kShooterLeft.setNeutralMode(NeutralModeValue.Brake);
     kShooterLeft.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(90));
     kShooterLeft.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(50));
 
     kShooterRight = new TalonFX(Constants.RobotConstants.shooterRightCANID);
-    kShooterRight.getConfigurator().apply(shooterVelocityFxConfiguration);
-    kShooterRight.setNeutralMode(NeutralModeValue.Coast);
+    kShooterRight.getConfigurator().apply(shooterVelocityFxConfigurationR);
+    kShooterRight.setNeutralMode(NeutralModeValue.Brake);
     kShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(90));
     kShooterRight.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(50));
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Velocity", getVelocity());
+    SmartDashboard.putNumber("Velocity L", getVelocity());
+    SmartDashboard.putNumber("Velocity R", kShooterRight.getVelocity().getValue());
     // This method will be called once per scheduler run
   }
 
@@ -88,9 +102,9 @@ public class Shooter extends SubsystemBase {
   
   public void setShooterVelocity(double desiredRotationsPerSecond) {
     kShooterLeft.setControl(m_torqueVelocity.withVelocity(desiredRotationsPerSecond).withFeedForward(1));
+    kShooterRight.setControl(m_torqueVelocity.withVelocity(desiredRotationsPerSecond).withFeedForward(1));
   }
 
-  public double desiredVelocityMotionMagic = 0;
   public void setShooterVelocityUsingMotionMagic(double desiredVelocityMotionMagic) {
     kShooterLeft.setControl(m_motionMagicVelocity.withVelocity(desiredVelocityMotionMagic));
     kShooterRight.setControl(m_motionMagicVelocity.withVelocity(desiredVelocityMotionMagic));

@@ -97,10 +97,13 @@ public class ShooterWrist extends SubsystemBase {
   public double limelightGetShooterAngle() {
     double distance = RobotContainer.limelight.getDistanceToTarget();
     //double heightShooterToSpeaker = 54.0 + (0.2 * (RobotContainer.limelight.getDistanceToTarget() - 45.5));
+    /*
     double heightShooterToSpeaker = 54.0 + (0.005 * Math.pow((RobotContainer.limelight.getDistanceToTarget() - 45.5),2));
     double shooterAngleDegrees = Units.radiansToDegrees(Math.atan(heightShooterToSpeaker/distance));
     double shooterOffset = 45.36;
     return (shooterAngleDegrees + shooterOffset)/360;
+    */
+    return (1.79863/(distance - 12.1876)) + 0.204771;
   }
 }
 
