@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -16,6 +17,9 @@ public class Intake extends SubsystemBase {
   public CANSparkMax kIntakeRollerBottom;
   public CANSparkMax kIntakeRollerTop;
   public CANSparkMax kShooterIntake;
+  public SparkLimitSwitch m_ShooterIntakeLimitSwitch;
+
+ 
   
   /** Creates a new Intake. */
   public Intake() {
@@ -38,10 +42,22 @@ public class Intake extends SubsystemBase {
     kShooterIntake.restoreFactoryDefaults();
     kShooterIntake.setIdleMode(IdleMode.kBrake);
     kShooterIntake.setSmartCurrentLimit(35);
+
+    m_ShooterIntakeLimitSwitch = m_motor.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen);
+    m_ShooterIntakeLimitSwitch.enableLimitSwitch(false);
+    SmartDashboard.putBoolean("Intake Limit Enabled", m_ShooterIntakeLimitSwitch.isLimitSwitchEnabled());
+    
   }
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+  }
+
+  public void enableIntakeLimitSwitch(){
+    m_ShooterIntakeLimitSwitch.enableLimitSwitch(true);
+  }
+  public void disableIntakeLimitSwitch(){
+    m_ShooterIntakeLimitSwitch.enableLimitSwitch(false);
   }
 
   public void setIntakeSpeed(double speedI, double speedT, double speedS) {
