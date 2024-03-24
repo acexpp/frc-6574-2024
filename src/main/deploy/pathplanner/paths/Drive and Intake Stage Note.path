@@ -8,20 +8,36 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.039986937116732,
-        "y": 4.881599477484669
+        "x": 2.286019065618729,
+        "y": 4.965394695411359
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.5237490474980953,
-        "y": 4.339199535541929
+        "x": 2.883271729453586,
+        "y": 4.1690578102982165
       },
       "prevControl": {
-        "x": 1.8787329003229436,
-        "y": 5.101491345839835
+        "x": 2.3445732483476363,
+        "y": 4.6960454548583845
+      },
+      "nextControl": {
+        "x": 2.9134548968220355,
+        "y": 4.139530798742125
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.2977299021645106,
+        "y": 5.890550782528099
+      },
+      "prevControl": {
+        "x": 2.3328624118018544,
+        "y": 5.82028576325341
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,15 +49,15 @@
   "eventMarkers": [
     {
       "name": "Intake",
-      "waypointRelativePos": 0.8,
+      "waypointRelativePos": 0.85,
       "command": {
-        "type": "parallel",
+        "type": "race",
         "data": {
           "commands": [
             {
               "type": "named",
               "data": {
-                "name": "Intake Note"
+                "name": "IntakeNote"
               }
             }
           ]
@@ -50,14 +66,14 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 4.0,
+    "maxAcceleration": 1.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -41.98721249581649,
+    "rotation": -1.2957550166890683,
     "rotateFast": false
   },
   "reversed": false,

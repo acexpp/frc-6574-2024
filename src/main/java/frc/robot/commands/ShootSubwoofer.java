@@ -8,32 +8,37 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.RobotContainer;
 
-public class ShootNote extends Command {
+public class ShootSubwoofer extends Command {
   //private double speed;
   /** Creates a new setWristIntakeSpeed. */
-  public ShootNote() {
+  public ShootSubwoofer() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(RobotContainer.intake, RobotContainer.shooter);
-    //addRequirements(RobotContainer.shooter);
+    addRequirements(RobotContainer.intake);
+    addRequirements(RobotContainer.shooter);
     //this.speed = speed;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.transitionSpeedshooter, -0.1);
-    RobotContainer.shooter.setShooterSpeed(-RobotConstants.shooterSpeed);
+    RobotContainer.intake.disableIntakeLimitSwitch();
+    RobotContainer.shooter.setShooterVelocityUsingMotionMagic(80);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    if (RobotContainer.shooter.getVelocity() >= 35)
+    {
+        RobotContainer.intake.setIntakeSpeed(0, -1, 1);
+    }
+  }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.intake.setIntakeSpeed(0, 0, 0);
     RobotContainer.shooter.setShooterSpeed(0);
+    RobotContainer.intake.setIntakeSpeed(0, 0, 0);
   }
 
   // Returns true when the command should end.

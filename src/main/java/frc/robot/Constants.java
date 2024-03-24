@@ -165,7 +165,7 @@ public final class Constants {
 
     //Intake Speed Constants
     public static final double intakeSpeedshooter = .4;
-    public static final double intakeSpeed = .7;
+    public static final double intakeSpeed = .9;
     public static final double transitionSpeedshooter = .4;
     public static final double transitionSpeed = .8;
     public static final double shooterSpeed = 1;

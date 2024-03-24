@@ -50,16 +50,16 @@ public class Shooter extends SubsystemBase {
     */
 
     shooterVelocityFxConfigurationL.Slot0.kS = 0.1; // Add 0.25 V output to overcome static friction
-    shooterVelocityFxConfigurationL.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+    shooterVelocityFxConfigurationL.Slot0.kV = 0.14; // A velocity target of 1 rps results in 0.12 V output
     shooterVelocityFxConfigurationL.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    shooterVelocityFxConfigurationL.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+    shooterVelocityFxConfigurationL.Slot0.kP = 0.44; // An error of 1 rps results in 0.11 V output
     shooterVelocityFxConfigurationL.Slot0.kI = 0; // no output for integrated error
     shooterVelocityFxConfigurationL.Slot0.kD = 0; // no output for error derivative
 
     shooterVelocityFxConfigurationR.Slot0.kS = 0.1; // Add 0.25 V output to overcome static friction
-    shooterVelocityFxConfigurationR.Slot0.kV = 0.12; // A velocity target of 1 rps results in 0.12 V output
+    shooterVelocityFxConfigurationR.Slot0.kV = 0.14; // A velocity target of 1 rps results in 0.12 V output
     shooterVelocityFxConfigurationR.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    shooterVelocityFxConfigurationR.Slot0.kP = 0.11; // An error of 1 rps results in 0.11 V output
+    shooterVelocityFxConfigurationR.Slot0.kP = 0.44; // An error of 1 rps results in 0.11 V output
     shooterVelocityFxConfigurationR.Slot0.kI = 0; // no output for integrated error
     shooterVelocityFxConfigurationR.Slot0.kD = 0; // no output for error derivative
 
@@ -73,13 +73,13 @@ public class Shooter extends SubsystemBase {
     //actually the motors
     kShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
     kShooterLeft.getConfigurator().apply(shooterVelocityFxConfigurationL);
-    kShooterLeft.setNeutralMode(NeutralModeValue.Brake);
+    kShooterLeft.setNeutralMode(NeutralModeValue.Coast);
     kShooterLeft.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(90));
     kShooterLeft.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(50));
 
     kShooterRight = new TalonFX(Constants.RobotConstants.shooterRightCANID);
     kShooterRight.getConfigurator().apply(shooterVelocityFxConfigurationR);
-    kShooterRight.setNeutralMode(NeutralModeValue.Brake);
+    kShooterRight.setNeutralMode(NeutralModeValue.Coast);
     kShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(90));
     kShooterRight.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(50));
   }

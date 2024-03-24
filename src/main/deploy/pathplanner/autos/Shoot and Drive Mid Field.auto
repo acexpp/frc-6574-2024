@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.3803113320512361,
-      "y": 5.570593998330854
+      "x": 1.0095378821285446,
+      "y": 4.532093743217444
     },
-    "rotation": 0
+    "rotation": -49.89909245378774
   },
   "command": {
     "type": "sequential",
@@ -33,7 +33,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive and Intake Stage Note"
+            "pathName": "Shoot and Drive Mid Field"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Drive to Speaker Mid Field"
           }
         },
         {
@@ -49,7 +55,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 5.0
                 }
               }
             ]

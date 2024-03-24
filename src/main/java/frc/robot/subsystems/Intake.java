@@ -8,6 +8,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -43,21 +45,26 @@ public class Intake extends SubsystemBase {
     kShooterIntake.setIdleMode(IdleMode.kBrake);
     kShooterIntake.setSmartCurrentLimit(35);
 
-    m_ShooterIntakeLimitSwitch = m_motor.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen);
+    m_ShooterIntakeLimitSwitch = kShooterIntake.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen);
     m_ShooterIntakeLimitSwitch.enableLimitSwitch(false);
-    SmartDashboard.putBoolean("Intake Limit Enabled", m_ShooterIntakeLimitSwitch.isLimitSwitchEnabled());
     
   }
   @Override
   public void periodic() {
+    SmartDashboard.putBoolean("Intake Limit Enabled", m_ShooterIntakeLimitSwitch.isLimitSwitchEnabled());
     // This method will be called once per scheduler run
   }
 
   public void enableIntakeLimitSwitch(){
     m_ShooterIntakeLimitSwitch.enableLimitSwitch(true);
   }
+
   public void disableIntakeLimitSwitch(){
     m_ShooterIntakeLimitSwitch.enableLimitSwitch(false);
+  }
+
+  public boolean isTriggered() {
+    return m_ShooterIntakeLimitSwitch.isPressed();
   }
 
   public void setIntakeSpeed(double speedI, double speedT, double speedS) {

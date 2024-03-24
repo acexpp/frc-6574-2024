@@ -14,10 +14,12 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.SetIntakeSpeeds;
+import frc.robot.commands.ShootSubwoofer;
 import frc.robot.commands.IntakeAmpNoSensor;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
+import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
@@ -136,6 +138,7 @@ public class RobotContainer {
 
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
     NamedCommands.registerCommand("IntakeNote", new IntakeInAuto());
+    NamedCommands.registerCommand("Shoot Subwoofer", new ShootSubwooferInAuto());
     
     /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
@@ -192,32 +195,20 @@ public class RobotContainer {
     //Driver Buttons
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
-    //m_driverController.rightBumper().whileTrue(new ShootNote());
     m_driverController.a().whileTrue(new LimelightDriveToTarget());
     m_driverController.rightTrigger().onTrue(new IntakeNote());
-    //m_driverController.rightBumper().whileTrue(new ShootNoteTest());
-    /* 
-    m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(-Constants.RobotConstants.shooterSpeed), shooter),
-      new SequentialCommandGroup(
-        new WaitCommand(3),
-        new RunCommand(() -> intake.setIntakeSpeed(0, -1, 1), intake)
-      )
-    ));
-    m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(
-      new RunCommand(() -> shooter.setShooterSpeed(0), shooter), 
-      new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)
-    ));
-    */
 
     // Velocity control shooting 
     m_driverController.rightBumper().whileTrue(new Shoot());
     m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
     m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
+    m_driverController.leftBumper().whileTrue(new ShootSubwoofer());
+    /* 
     m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(-1), shooter),
     new RunCommand(() -> intake.setIntakeSpeed(0, 0, 1), intake)));
     m_driverController.leftBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter),
     new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
+    */
     
     // Characterization Controls
     /*

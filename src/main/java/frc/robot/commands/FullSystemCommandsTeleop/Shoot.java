@@ -11,6 +11,7 @@ public class Shoot extends Command{
   /** Creates a new setWristIntakeSpeed. */
   public Shoot() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(RobotContainer.intake);
     addRequirements(RobotContainer.shooter);
     //this.speed = speed;
   }
@@ -18,7 +19,8 @@ public class Shoot extends Command{
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.shooter.setShooterVelocityUsingMotionMagic(75);
+    RobotContainer.intake.disableIntakeLimitSwitch();
+    RobotContainer.shooter.setShooterVelocityUsingMotionMagic(80);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

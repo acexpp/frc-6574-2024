@@ -22,6 +22,7 @@ public class IntakeNote extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.intake.enableIntakeLimitSwitch();
     RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.intakeSpeed, 0.2);
   }
 
@@ -38,11 +39,10 @@ public class IntakeNote extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (RobotContainer.sensor.getRange(Unit.kInches) <= RobotConstants.intakeRange) {
+    if (RobotContainer.intake.isTriggered())
+    {
       return true;
     }
-    else {
-      return false;
-    }
+    return false;
   }
 }
