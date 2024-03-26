@@ -8,36 +8,52 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.286019065618729,
-        "y": 4.965394695411359
+        "x": 1.9221662229851302,
+        "y": 4.632073796903657
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.963532784208426,
-        "y": 4.0020320040640085
+        "x": 2.33,
+        "y": 4.14
       },
       "prevControl": {
-        "x": 2.424834303102476,
-        "y": 4.529019648624178
+        "x": 2.3036276003651253,
+        "y": 4.14
       },
       "nextControl": {
-        "x": 2.9937159515768754,
-        "y": 3.9725049925079166
+        "x": 2.3563723996348758,
+        "y": 4.14
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.333176094923619,
-        "y": 5.731848035124642
+        "x": 3.0,
+        "y": 4.14
       },
       "prevControl": {
-        "x": 2.368308604560963,
-        "y": 5.661583015849953
+        "x": 2.503014539244595,
+        "y": 4.14
+      },
+      "nextControl": {
+        "x": 3.042224021644386,
+        "y": 4.14
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.3,
+        "y": 5.68
+      },
+      "prevControl": {
+        "x": 2.244450624814087,
+        "y": 5.624450624814087
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,7 +65,7 @@
   "eventMarkers": [
     {
       "name": "Intake",
-      "waypointRelativePos": 0.65,
+      "waypointRelativePos": 0.95,
       "command": {
         "type": "race",
         "data": {

@@ -9,7 +9,7 @@ public class ShootSubwooferInAuto extends SequentialCommandGroup{
     /** Creates a new ShootSubwooferInAuto */
     public ShootSubwooferInAuto() {
         addCommands(new ParallelCommandGroup(
-            new SetShooterWristPosition(0.262),
+            new SetShooterWristPosition(0.258),
             new ShootSubwoofer().withTimeout(1.25)));
     }
 }
