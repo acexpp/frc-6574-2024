@@ -28,7 +28,7 @@ public class ShootSubwoofer extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.shooter.getVelocity() >= 35)
+    if (RobotContainer.shooter.getVelocity() >= 25)
     {
         RobotContainer.intake.setIntakeSpeed(0, -1, 1);
     }

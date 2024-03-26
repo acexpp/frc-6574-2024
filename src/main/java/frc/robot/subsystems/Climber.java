@@ -11,7 +11,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.revrobotics.CANSparkLowLevel.PeriodicFrame;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.RobotConstants;
 
@@ -31,6 +31,16 @@ public class Climber extends SubsystemBase {
   public Climber() {
     leftMotor = new CANSparkMax(RobotConstants.climberLeftCANID, MotorType.kBrushless);
     rightMotor = new CANSparkMax(RobotConstants.climberRightCANID, MotorType.kBrushless);
+
+    leftMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus3, 1000);
+    leftMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus4, 1000);
+    leftMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 1000);
+    leftMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 1000);
+
+    rightMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus3, 1000);
+    rightMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus4, 1000);
+    rightMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 1000);
+    rightMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 1000);
 
     climberReverseLimit = leftMotor.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyClosed);
 
@@ -57,10 +67,7 @@ public class Climber extends SubsystemBase {
 
   @Override
   public void periodic() {
-
     climberReverseLimit.enableLimitSwitch(true);
-    SmartDashboard.putNumber("Climber encoder", leftMotor.getEncoder().getPosition());
-
     }
   }
   

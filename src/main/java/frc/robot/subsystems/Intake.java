@@ -8,6 +8,7 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.SparkLimitSwitch;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkLowLevel.PeriodicFrame;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -44,6 +45,26 @@ public class Intake extends SubsystemBase {
     kShooterIntake.restoreFactoryDefaults();
     kShooterIntake.setIdleMode(IdleMode.kBrake);
     kShooterIntake.setSmartCurrentLimit(35);
+
+    kIntakeTransition.setPeriodicFramePeriod(PeriodicFrame.kStatus3, 1000);
+    kIntakeTransition.setPeriodicFramePeriod(PeriodicFrame.kStatus4, 1000);
+    kIntakeTransition.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 1000);
+    kIntakeTransition.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 1000);
+
+    kIntakeRollerBottom.setPeriodicFramePeriod(PeriodicFrame.kStatus3, 1000);
+    kIntakeRollerBottom.setPeriodicFramePeriod(PeriodicFrame.kStatus4, 1000);
+    kIntakeRollerBottom.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 1000);
+    kIntakeRollerBottom.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 1000);
+
+    kIntakeRollerTop.setPeriodicFramePeriod(PeriodicFrame.kStatus3, 1000);
+    kIntakeRollerTop.setPeriodicFramePeriod(PeriodicFrame.kStatus4, 1000);
+    kIntakeRollerTop.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 1000);
+    kIntakeRollerTop.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 1000);
+
+    kShooterIntake.setPeriodicFramePeriod(PeriodicFrame.kStatus3, 1000);
+    kShooterIntake.setPeriodicFramePeriod(PeriodicFrame.kStatus4, 1000);
+    kShooterIntake.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 1000);
+    kShooterIntake.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 1000);
 
     m_ShooterIntakeLimitSwitch = kShooterIntake.getReverseLimitSwitch(SparkLimitSwitch.Type.kNormallyOpen);
     m_ShooterIntakeLimitSwitch.enableLimitSwitch(false);

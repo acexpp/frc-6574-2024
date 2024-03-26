@@ -82,12 +82,11 @@ public class Shooter extends SubsystemBase {
     kShooterRight.setNeutralMode(NeutralModeValue.Coast);
     kShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(90));
     kShooterRight.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(50));
+    
   }
 
   @Override
   public void periodic() {
-    SmartDashboard.putNumber("Velocity L", getVelocity());
-    SmartDashboard.putNumber("Velocity R", kShooterRight.getVelocity().getValue());
     // This method will be called once per scheduler run
   }
 

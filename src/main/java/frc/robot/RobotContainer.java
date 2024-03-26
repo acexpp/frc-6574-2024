@@ -14,6 +14,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.SetIntakeSpeeds;
+import frc.robot.commands.SetShooterWristPosition;
 import frc.robot.commands.ShootSubwoofer;
 import frc.robot.commands.IntakeAmpNoSensor;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
@@ -22,6 +23,7 @@ import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
+import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustShooterWrist;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
 import frc.robot.commands.FullSystemCommandsTeleop.Climb;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
@@ -81,8 +83,6 @@ public class RobotContainer {
   //public static IntakeMove intakeMove = new IntakeMove();
   public static Climber climber = new Climber();
   public static SysIdRoutine routine;
-  public static Rev2mDistanceSensor sensor = new Rev2mDistanceSensor(Port.kOnboard); //change later?
-  
 
   // The driver's controller
   public static CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
@@ -134,11 +134,10 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevatorSim);
 
-    sensor.setRangeProfile(RangeProfile.kHighSpeed);
-
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
     NamedCommands.registerCommand("IntakeNote", new IntakeInAuto());
     NamedCommands.registerCommand("Shoot Subwoofer", new ShootSubwooferInAuto());
+    NamedCommands.registerCommand("Adjust Wrist", new ParallelCommandGroup(new SetShooterWristPosition(0.230), new SetIntakeSpeeds(0, -0.3, 0)).withTimeout(0.5));
     
     /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
@@ -199,7 +198,7 @@ public class RobotContainer {
     m_driverController.rightTrigger().onTrue(new IntakeNote());
 
     // Velocity control shooting 
-    m_driverController.rightBumper().whileTrue(new Shoot());
+    m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(new AutoAdjustShooterWrist(RobotContainer.shooterW.limelightGetShooterAngle()), new Shoot()));
     m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
     m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
     m_driverController.leftBumper().whileTrue(new ShootSubwoofer());

@@ -8,6 +8,7 @@ import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
+import com.revrobotics.CANSparkLowLevel.PeriodicFrame;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
 import com.revrobotics.SparkPIDController;
 
@@ -33,6 +34,11 @@ public class ShooterWrist extends SubsystemBase {
   public ShooterWrist() {
     shooterWristMotor = new CANSparkMax(Constants.RobotConstants.shooterWristCANID, MotorType.kBrushless);
     shooterWristMotor.restoreFactoryDefaults();
+
+    shooterWristMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus3, 1000);
+    shooterWristMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus4, 1000);
+    shooterWristMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus5, 1000);
+    shooterWristMotor.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 1000);
 
     shooterWristPIDController = shooterWristMotor.getPIDController();
     m_AbsoluteEncoder = shooterWristMotor.getAbsoluteEncoder(Type.kDutyCycle);
@@ -69,7 +75,6 @@ public class ShooterWrist extends SubsystemBase {
   @Override
 
   public void periodic() {
-    SmartDashboard.putNumber("Shooter Wrist Position", getAbsoluteEncoderPosition());
     double position = limelightGetShooterAngle();
     SmartDashboard.putNumber("limelight shooter", position);
   }

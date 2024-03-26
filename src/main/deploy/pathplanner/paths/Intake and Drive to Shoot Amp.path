@@ -3,41 +3,41 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3803113320512361,
-        "y": 5.570593998330854
+        "x": 2.3,
+        "y": 6.14
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.286019065618729,
-        "y": 4.965394695411359
+        "x": 2.626365252730506,
+        "y": 6.714031713777714
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.963532784208426,
-        "y": 4.0020320040640085
+        "x": 2.8169382053049823,
+        "y": 7.256431655720455
       },
       "prevControl": {
-        "x": 2.424834303102476,
-        "y": 4.529019648624178
+        "x": 2.6117057948401614,
+        "y": 6.758010087448747
       },
       "nextControl": {
-        "x": 2.9937159515768754,
-        "y": 3.9725049925079166
+        "x": 2.919402498973372,
+        "y": 7.505273511772258
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.333176094923619,
-        "y": 5.731848035124642
+        "x": 2.2745382633622415,
+        "y": 6.156972313944628
       },
       "prevControl": {
-        "x": 2.368308604560963,
-        "y": 5.661583015849953
+        "x": 2.7143220000725723,
+        "y": 7.080518161036322
       },
       "nextControl": null,
       "isLocked": false,
@@ -49,9 +49,9 @@
   "eventMarkers": [
     {
       "name": "Intake",
-      "waypointRelativePos": 0.65,
+      "waypointRelativePos": 0.55,
       "command": {
-        "type": "race",
+        "type": "sequential",
         "data": {
           "commands": [
             {
@@ -73,7 +73,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,

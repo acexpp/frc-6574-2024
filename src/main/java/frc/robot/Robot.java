@@ -68,8 +68,7 @@ public class Robot extends LoggedRobot {
     // Do not place these function calls in any periodic functions
     for (int port = 5800; port <= 5807; port++) {
         PortForwarder.add(port, "limelight.local", port);
-    }
-    RobotContainer.sensor.setAutomaticMode(true);
+    };
   }
 
   /**
@@ -86,7 +85,6 @@ public class Robot extends LoggedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
-    SmartDashboard.putNumber("Sensor data", RobotContainer.sensor.getRange(Unit.kInches));
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
