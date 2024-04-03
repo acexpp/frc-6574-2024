@@ -4,7 +4,6 @@
 
 package frc.robot.commands;
 
-import com.revrobotics.Rev2mDistanceSensor.Unit;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RobotConstants;

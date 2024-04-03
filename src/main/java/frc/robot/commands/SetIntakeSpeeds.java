@@ -23,6 +23,7 @@ public class SetIntakeSpeeds extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.intake.disableIntakeLimitSwitch();
     RobotContainer.intake.setIntakeSpeed(speedI, speedT, speedS);
   }
 

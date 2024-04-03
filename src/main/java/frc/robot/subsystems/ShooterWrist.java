@@ -12,7 +12,6 @@ import com.revrobotics.CANSparkLowLevel.PeriodicFrame;
 import com.revrobotics.SparkAbsoluteEncoder.Type;
 import com.revrobotics.SparkPIDController;
 
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
@@ -22,7 +21,6 @@ public class ShooterWrist extends SubsystemBase {
 
   public CANSparkMax shooterWristMotor;
   public AbsoluteEncoder m_AbsoluteEncoder;
-  //private RelativeEncoder wristEncoder;
 
   private SparkPIDController shooterWristPIDController;
   public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
@@ -101,13 +99,6 @@ public class ShooterWrist extends SubsystemBase {
   // Returns the encoder value to set the position of the wrist
   public double limelightGetShooterAngle() {
     double distance = RobotContainer.limelight.getDistanceToTarget();
-    //double heightShooterToSpeaker = 54.0 + (0.2 * (RobotContainer.limelight.getDistanceToTarget() - 45.5));
-    /*
-    double heightShooterToSpeaker = 54.0 + (0.005 * Math.pow((RobotContainer.limelight.getDistanceToTarget() - 45.5),2));
-    double shooterAngleDegrees = Units.radiansToDegrees(Math.atan(heightShooterToSpeaker/distance));
-    double shooterOffset = 45.36;
-    return (shooterAngleDegrees + shooterOffset)/360;
-    */
     return (1.79863/(distance - 12.1876)) + 0.204771;
   }
 }

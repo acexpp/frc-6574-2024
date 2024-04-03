@@ -11,11 +11,9 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
-import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.SetIntakeSpeeds;
 import frc.robot.commands.SetShooterWristPosition;
-import frc.robot.commands.ShootSubwoofer;
 import frc.robot.commands.IntakeAmpNoSensor;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
@@ -23,12 +21,10 @@ import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
-import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustShooterWrist;
+import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustAndShoot;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
-import frc.robot.commands.FullSystemCommandsTeleop.Climb;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
-import frc.robot.commands.FullSystemCommandsTeleop.Shoot;
 import frc.robot.commands.FullSystemCommandsTeleop.ShooterWristStage;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
@@ -46,9 +42,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
@@ -57,9 +51,6 @@ import org.littletonrobotics.junction.Logger;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-import com.revrobotics.Rev2mDistanceSensor;
-import com.revrobotics.Rev2mDistanceSensor.Port;
-import com.revrobotics.Rev2mDistanceSensor.RangeProfile;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -80,7 +71,6 @@ public class RobotContainer {
   public static Shooter shooter = new Shooter();
   public static ShooterWrist shooterW = new ShooterWrist();
   public static Intake intake = new Intake();
-  //public static IntakeMove intakeMove = new IntakeMove();
   public static Climber climber = new Climber();
   public static SysIdRoutine routine;
 
@@ -95,6 +85,7 @@ public class RobotContainer {
    */
   public RobotContainer(boolean isSim) {
 
+    //Start the USB camera feed
     CameraServer.startAutomaticCapture();
 
     // Create the SysId routine
@@ -114,12 +105,13 @@ public class RobotContainer {
     routine.dynamic(SysIdRoutine.Direction.kReverse);
     */
 
-    // AdvantageKit users should log the test state using the following configuration
+    // SysId config for AdvantageKit
     new SysIdRoutine.Config(
       null, null, null,
       (state) -> Logger.recordOutput("SysIdTestState", state.toString())
     );
 
+    // If statement for Mechanism2D testing - mostly unused
     if (isSim) {
       arm = new ArmSubsystem(
         new ArmSimIO()
@@ -169,11 +161,9 @@ public class RobotContainer {
                 true, true),
             m_robotDrive));
     
-            
+    // Build and display the auto chooser using PathPlanner        
     autoChooser = AutoBuilder.buildAutoChooser();
-
     SmartDashboard.putData("Auto Chooser", autoChooser);
-    
   }
 
   public DriveSubsystem getDrivetrain(){
@@ -196,18 +186,14 @@ public class RobotContainer {
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     m_driverController.a().whileTrue(new LimelightDriveToTarget());
     m_driverController.rightTrigger().onTrue(new IntakeNote());
-
-    // Velocity control shooting 
-    m_driverController.rightBumper().whileTrue(new ParallelCommandGroup(new AutoAdjustShooterWrist(RobotContainer.shooterW.limelightGetShooterAngle()), new Shoot()));
+    m_driverController.rightBumper().whileTrue(new AutoAdjustAndShoot());
     m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
+    // Turn these into actual commands eventually
     m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
-    m_driverController.leftBumper().whileTrue(new ShootSubwoofer());
-    /* 
     m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(-1), shooter),
-    new RunCommand(() -> intake.setIntakeSpeed(0, 0, 1), intake)));
+    new SetIntakeSpeeds(0, 0, 1)));
     m_driverController.leftBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter),
     new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
-    */
     
     // Characterization Controls
     /*
@@ -224,8 +210,6 @@ public class RobotContainer {
     m_operatorController.x().onTrue(new ReturnToHome());
     m_operatorController.y().onTrue(new ShooterWristStage());
     m_operatorController.povUp().onTrue(new ScoreNoteAmp());
-    m_operatorController.povDown().onTrue(new Climb());
-    //m_operatorController.povUp().onTrue(new Climb()); 
     m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
   }
 

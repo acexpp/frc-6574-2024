@@ -18,13 +18,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Shoot Note"
+                  "name": "Shoot Subwoofer"
                 }
               },
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 5.0
+                  "waitTime": 1.25
                 }
               }
             ]

@@ -179,7 +179,7 @@ public final class Constants {
     public static final double shooterWristAmpPos = 0.027; //0.064
     public static final int elevatorHomePosition = 0;
     public static final double wristClimbPos = 0.1;
-    public static final int elevatorClimbPos = 1;
+    public static final int elevatorClimbPos = 4;
 
     //Sensor Constants
     public static final double inRange = 1.7;

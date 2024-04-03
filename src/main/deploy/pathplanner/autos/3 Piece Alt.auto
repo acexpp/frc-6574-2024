@@ -2,7 +2,7 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 1.3803113320512361,
+      "x": 1.3509924162705473,
       "y": 5.570593998330854
     },
     "rotation": 0
@@ -70,7 +70,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Intake and Drive Mid Stage"
+            "pathName": "Intake and Drive Mid Alt"
           }
         },
         {

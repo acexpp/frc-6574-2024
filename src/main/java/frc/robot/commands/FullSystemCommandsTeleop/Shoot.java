@@ -1,10 +1,7 @@
 package frc.robot.commands.FullSystemCommandsTeleop;
 
-import com.revrobotics.Rev2mDistanceSensor.Unit;
-
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.RobotConstants;
-import frc.robot.subsystems.ShooterWrist;
 import frc.robot.RobotContainer;
 
 public class Shoot extends Command{
