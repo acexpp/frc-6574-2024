@@ -97,7 +97,7 @@ public class RobotContainer {
       )
     );
 
-    // The methods below return Command objects
+    // The methods below return Command objects - map these to buttons when characterizing :)
     /*
     routine.quasistatic(SysIdRoutine.Direction.kForward);
     routine.quasistatic(SysIdRoutine.Direction.kReverse);

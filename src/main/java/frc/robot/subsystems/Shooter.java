@@ -33,7 +33,7 @@ public class Shooter extends SubsystemBase {
 
   private final MotionMagicVelocityVoltage m_motionMagicVelocity = new MotionMagicVelocityVoltage(
     0, 
-    0, 
+    400, 
     false, 0, 
     0, false, 
     false, false
@@ -65,9 +65,9 @@ public class Shooter extends SubsystemBase {
     var motionMagicConfigsL = shooterVelocityFxConfigurationL.MotionMagic;
     var motionMagicConfigsR = shooterVelocityFxConfigurationR.MotionMagic;
     motionMagicConfigsL.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
-    motionMagicConfigsL.MotionMagicJerk = 0; // Target jerk of 4000 rps/s/s (0.1 seconds)
+    motionMagicConfigsL.MotionMagicJerk = 0; 
     motionMagicConfigsR.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
-    motionMagicConfigsR.MotionMagicJerk = 0; // Target jerk of 4000 rps/s/s (0.1 seconds)
+    motionMagicConfigsR.MotionMagicJerk = 0; 
     
     //actually the motors
     kShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);

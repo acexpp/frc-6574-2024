@@ -4,6 +4,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.Constants.OIConstants;
+import frc.robot.LimelightHelpers;
 import frc.robot.RobotContainer;
 
 //I am very scared to run this. - Ace
@@ -32,28 +33,23 @@ public class LimelightDriveToTarget extends Command{
     }
 
     public void end(boolean interrupted) {
-        RobotContainer.m_robotDrive.setDefaultCommand(
         // The left stick controls translation of the robot.
         // Turning is controlled by the X axis of the right stick.
-        new RunCommand(
-            () -> RobotContainer.m_robotDrive.drive(
+        RobotContainer.m_robotDrive.drive(
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getRightX(), OIConstants.kDriveDeadband),
-                true, true),
-            RobotContainer.m_robotDrive));
+                true, true);
             
     }
 
-    /*
     @Override
     public boolean isFinished() {
-        if ((Math.abs(LimelightHelpers.getTX("limelight")) <= 0.5) //&& (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)
+        if ((LimelightHelpers.getTX("limelight") >= -10 && LimelightHelpers.getTX("limelight") <= -4) //&& (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)
         ) {
         return true;
         } else {
         return false;
         }
     }
-    */
 }

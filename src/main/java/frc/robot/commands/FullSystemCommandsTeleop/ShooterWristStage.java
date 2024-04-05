@@ -10,9 +10,7 @@ public class ShooterWristStage extends SequentialCommandGroup{
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(
-            new ParallelCommandGroup(
-            new SetShooterWristPosition(0.245), //205
-            new SetIntakeSpeeds(0, -0.2, 0).withTimeout(.5)
-        ));
+            new SetShooterWristPosition(0.188) //205
+        );
     }
 }

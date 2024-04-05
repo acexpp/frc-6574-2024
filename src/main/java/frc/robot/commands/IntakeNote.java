@@ -22,7 +22,7 @@ public class IntakeNote extends Command {
   @Override
   public void initialize() {
     RobotContainer.intake.enableIntakeLimitSwitch();
-    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.intakeSpeed, 0.2);
+    RobotContainer.intake.setIntakeSpeed(-RobotConstants.intakeSpeed, -RobotConstants.intakeSpeed, 0.15);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
