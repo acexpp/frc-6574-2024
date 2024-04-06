@@ -14,6 +14,7 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.commands.IntakeNote;
 import frc.robot.commands.SetIntakeSpeeds;
 import frc.robot.commands.SetShooterWristPosition;
+import frc.robot.commands.ShootSubwoofer;
 import frc.robot.commands.IntakeAmpNoSensor;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
@@ -21,8 +22,10 @@ import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
+import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootSubwoofer;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustAndShoot;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
+import frc.robot.commands.FullSystemCommandsTeleop.ReturnHomeAndIntake;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
 import frc.robot.simulation.MechanismSimulator;
@@ -183,8 +186,9 @@ public class RobotContainer {
     //Driver Buttons
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
-    m_driverController.a().whileTrue(new LimelightDriveToTarget());
-    m_driverController.rightTrigger().onTrue(new IntakeNote());
+    m_driverController.a().onTrue(new LimelightDriveToTarget());
+    m_driverController.b().whileTrue(new AdjustAndShootSubwoofer());
+    m_driverController.rightTrigger().onTrue(new ReturnHomeAndIntake());
     m_driverController.rightBumper().whileTrue(new AutoAdjustAndShoot());
     m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
     // Turn these into actual commands eventually

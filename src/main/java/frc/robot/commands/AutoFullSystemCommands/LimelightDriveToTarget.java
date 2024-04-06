@@ -47,9 +47,25 @@ public class LimelightDriveToTarget extends Command{
     public boolean isFinished() {
         if ((LimelightHelpers.getTX("limelight") >= -10 && LimelightHelpers.getTX("limelight") <= -4) //&& (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)
         ) {
-        return true;
-        } else {
-        return false;
+            RobotContainer.m_robotDrive.drive(
+                -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(RobotContainer.m_driverController.getRightX(), OIConstants.kDriveDeadband),
+                true, true);
+            return true;
+        }
+        else if (LimelightHelpers.getTV("limelight") == false)
+        {
+            RobotContainer.m_robotDrive.drive(
+                -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftX(), OIConstants.kDriveDeadband),
+                -MathUtil.applyDeadband(RobotContainer.m_driverController.getRightX(), OIConstants.kDriveDeadband),
+                true, true);
+            return true;
+        } 
+        else 
+        {
+            return false;
         }
     }
 }

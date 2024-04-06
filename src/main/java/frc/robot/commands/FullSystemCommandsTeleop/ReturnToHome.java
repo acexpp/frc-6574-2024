@@ -21,7 +21,6 @@ public class ReturnToHome extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new SetIntakeSpeedsInstant(0),
       new ParallelCommandGroup(
         new SetElevatorPosition(0),
         new SetShooterWristPosition(0.257)
