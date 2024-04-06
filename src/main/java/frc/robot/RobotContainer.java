@@ -25,7 +25,6 @@ import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustAndShoot;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
-import frc.robot.commands.FullSystemCommandsTeleop.ShooterWristStage;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveSubsystem;
@@ -208,7 +207,6 @@ public class RobotContainer {
     m_operatorController.b().whileTrue(new SetClimberDown());
     m_operatorController.a().whileTrue(new SetClimberUp());
     m_operatorController.x().onTrue(new ReturnToHome());
-    m_operatorController.y().onTrue(new ShooterWristStage());
     m_operatorController.povUp().onTrue(new ScoreNoteAmp());
     m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
   }
