@@ -21,6 +21,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.LimelightHelpers;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
@@ -87,15 +88,15 @@ public class DriveSubsystem extends SubsystemBase {
     //Creates a holonomic autobuilder for PathPlanner 
     AutoBuilder.configureHolonomic(
                 this::getPose, // Robot pose supplier
-                //() -> RobotContainer.limelight.estimatedPose2d(),
+                //() -> LimelightHelpers.getBotPose2d_wpiBlue("limelight"),
                 this::resetOdometry, // Method to reset odometry (will be called if your auto has a starting pose)
                 this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
                 this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
                 new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
                         new PIDConstants(2.5, 0, 0), // Translation PID constants
-                        new PIDConstants(1.8, 0, 0), // Rotation PID constants
+                        new PIDConstants(7.2, 0, 0), // Rotation PID constants
                         4.5, // Max module speed, in m/s
-                        0.324, // Drive base radius in meters. Distance from robot center to furthest module.
+                        0.372, // Drive base radius in meters. Distance from robot center to furthest module.
                         new ReplanningConfig() // Default path replanning config. See the API for the options here
                 ),
                 () -> {
@@ -126,11 +127,12 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
 
-    SmartDashboard.putNumber("Vision Odometry X", RobotContainer.limelight.estimatedPose2d().getX());
-    SmartDashboard.putNumber("Vision Odometry Y", RobotContainer.limelight.estimatedPose2d().getY());
+    SmartDashboard.putNumber("Vision Odometry X", LimelightHelpers.getBotPose2d("limelight").getX());
+    SmartDashboard.putNumber("Vision Odometry Y", LimelightHelpers.getBotPose2d("limelight").getY());
 
     SmartDashboard.putNumber("Gyro Odometry X", m_odometry.getPoseMeters().getX());
     SmartDashboard.putNumber("Gyro Odometry Y", m_odometry.getPoseMeters().getY());
+    SmartDashboard.putNumber("Gyro Angle", m_odometry.getPoseMeters().getRotation().getDegrees());
   }
 
   /**

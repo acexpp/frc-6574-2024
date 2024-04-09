@@ -80,7 +80,7 @@ public final class Constants {
 
     // Calculations required for driving motor conversion factors and feed forward
     public static final double kDrivingMotorFreeSpeedRps = NeoMotorConstants.kFreeSpeedRpm / 60; //Please make sure this constant is correct, we are using neo votex 
-    public static final double kWheelDiameterMeters = 0.0762;
+    public static final double kWheelDiameterMeters = Units.inchesToMeters(2.96);
     public static final double kWheelCircumferenceMeters = kWheelDiameterMeters * Math.PI;
     // 45 teeth on the wheel's bevel gear, 22 teeth on the first-stage spur gear, 15 teeth on the bevel pinion
     public static final double kDrivingMotorReduction = (45.0 * 22) / (kDrivingMotorPinionTeeth * 15);
@@ -98,22 +98,20 @@ public final class Constants {
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = kTurningEncoderPositionFactor; // radians
 
-    public static final double kDrivingP = 0.0028314; //0.55759
+    public static final double kDrivingP = 0.0012;
     public static final double kDrivingI = 0;
     public static final double kDrivingD = 0;
-    public static final double kDrivingFF = 1 / kDriveWheelFreeSpeedRps;
     public static final double kDrivingMinOutput = -1;
     public static final double kDrivingMaxOutput = 1;
 
-    public static final double kTurningP = 1;
+    public static final double kTurningP = 2;
     public static final double kTurningI = 0;
     public static final double kTurningD = 0;
-    public static final double kTurningFF = 0;
     public static final double kTurningMinOutput = -1;
     public static final double kTurningMaxOutput = 1;
 
     public static final IdleMode kDrivingMotorIdleMode = IdleMode.kBrake;
-    public static final IdleMode kTurningMotorIdleMode = IdleMode.kBrake;
+    public static final IdleMode kTurningMotorIdleMode = IdleMode.kCoast;
 
     public static final int kDrivingMotorCurrentLimit = 50; // amps
     public static final int kTurningMotorCurrentLimit = 20; // amps
@@ -122,7 +120,7 @@ public final class Constants {
   public static final class OIConstants {
     public static final int kDriverControllerPort = 0;
     public static final int kOperatorControllerPort = 1;
-    public static final double kDriveDeadband = 0.05;
+    public static final double kDriveDeadband = 0.075;
   }
 
   public static final class AutoConstants {
@@ -139,6 +137,68 @@ public final class Constants {
     public static final TrapezoidProfile.Constraints kThetaControllerConstraints = new TrapezoidProfile.Constraints(
         kMaxAngularSpeedRadiansPerSecond, kMaxAngularSpeedRadiansPerSecondSquared);
   }
+
+  public static class TrajectoryConstants {
+
+    public static final double CENTER_OF_ROBOT_LENGTH = Units.inchesToMeters(16);
+    public static final double CENTER_OF_ROBOT_WIDTH = Units.inchesToMeters(16);
+  
+    public static final Translation2d ORIGIN = new Translation2d(0, 0);
+  
+    public static final Translation2d TEST_START = new Translation2d(Units.inchesToMeters(0), Units.inchesToMeters(0)); 
+    public static final Translation2d TEST_END = new Translation2d(Units.inchesToMeters(72), Units.inchesToMeters(0));
+  
+    public static final Translation2d BLUE_SUSSEX_SCORE = new Translation2d(Units.inchesToMeters(128), Units.inchesToMeters(218.5));
+    public static final Translation2d RED_SUSSEX_SCORE = new Translation2d(Units.inchesToMeters(523), Units.inchesToMeters(218.5));
+  
+    public static final Translation2d NOTE1 = new Translation2d(Units.inchesToMeters(114)-CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(161.5));
+    public static final Translation2d NOTE2 = new Translation2d(Units.inchesToMeters(114)-CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(218.5));
+    public static final Translation2d NOTE3 = new Translation2d(Units.inchesToMeters(114)-CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(275.5));
+  
+    public static final Translation2d NOTE4_BLUE = new Translation2d(Units.inchesToMeters(324)-(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(30.5));
+    public static final Translation2d NOTE5_BLUE = new Translation2d(Units.inchesToMeters(324)-(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(95.5));
+    public static final Translation2d NOTE6_BLUE = new Translation2d(Units.inchesToMeters(324)-(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(161.5));
+    public static final Translation2d NOTE7_BLUE = new Translation2d(Units.inchesToMeters(324)-(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(227.5));
+    public static final Translation2d NOTE8_BLUE = new Translation2d(Units.inchesToMeters(324)-(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(293.5));
+  
+    public static final Translation2d NOTE4_RED = new Translation2d(Units.inchesToMeters(324)+(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(30.5));
+    public static final Translation2d NOTE5_RED = new Translation2d(Units.inchesToMeters(324)+(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(95.5));
+    public static final Translation2d NOTE6_RED = new Translation2d(Units.inchesToMeters(324)+(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(161.5));
+    public static final Translation2d NOTE7_RED = new Translation2d(Units.inchesToMeters(324)+(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(227.5));
+    public static final Translation2d NOTE8_RED = new Translation2d(Units.inchesToMeters(324)+(CENTER_OF_ROBOT_LENGTH/2), Units.inchesToMeters(293.5));
+  
+    public static final Translation2d NOTE9 = new Translation2d(Units.inchesToMeters(534)+CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(161.5));
+    public static final Translation2d NOTE10 = new Translation2d(Units.inchesToMeters(534)+CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(218.5));
+    public static final Translation2d NOTE11 = new Translation2d(Units.inchesToMeters(534)+CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(275.5));
+  
+    public static final Translation2d FRONT_CENTER_BLUE_SUBWOOFER = new Translation2d(Units.inchesToMeters(36)+CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(218.5));
+    public static final Translation2d FRONT_CENTER_RED_SUBWOOFER = new Translation2d(Units.inchesToMeters(612)-CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(218.5));
+  
+    public static final Translation2d BLUE_CENTER_LINE_SHOOTING_POSITION = new Translation2d(Units.inchesToMeters(153), Units.inchesToMeters(200));
+    public static final Translation2d BLUE_CENTER_LINE_STARTING_POSITION = new Translation2d(Units.inchesToMeters(0)+CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(80));
+    public static final Translation2d BLUE_CENTER_OF_STAGE = new Translation2d(Units.inchesToMeters(190), Units.inchesToMeters(161.5));
+    public static final Translation2d BLUE_EDGE_OF_STAGE = new Translation2d(Units.inchesToMeters(220), Units.inchesToMeters(161.5));
+  
+    public static final Translation2d RED_CENTER_LINE_SHOOTING_POSITION = new Translation2d(Units.inchesToMeters(495), Units.inchesToMeters(200));
+    public static final Translation2d RED_CENTER_LINE_STARTING_POSITION = new Translation2d(Units.inchesToMeters(648)-CENTER_OF_ROBOT_LENGTH, Units.inchesToMeters(80));
+    public static final Translation2d RED_CENTER_OF_STAGE = new Translation2d(Units.inchesToMeters(460), Units.inchesToMeters(161.5));
+    public static final Translation2d RED_EDGE_OF_STAGE = new Translation2d(Units.inchesToMeters(430), Units.inchesToMeters(161.5));
+  
+    //public static final Translation2d RED_FIVE_PIECE_SCORE = new Translation2d(Units.inchesToMeters(470), Units.inchesToMeters(260));
+    public static final Translation2d NOTE9_SCORE_POINT = new Translation2d(Units.inchesToMeters(567), Units.inchesToMeters(200));
+    public static final Translation2d RED_DONT_HIT_WALL = new Translation2d(Units.inchesToMeters(495), Units.inchesToMeters(300));
+  
+    //public static final Translation2d BLUE_FIVE_PIECE_SCORE = new Translation2d(Units.inchesToMeters(178), Units.inchesToMeters(260));
+    public static final Translation2d NOTE1_SCORE_POINT = new Translation2d(Units.inchesToMeters(81), Units.inchesToMeters(200));
+    public static final Translation2d BLUE_DONT_HIT_WALL = new Translation2d(Units.inchesToMeters(153), Units.inchesToMeters(300));
+  
+    public static final Translation2d BLUE_FOUR_PIECE_START = new Translation2d(Units.inchesToMeters(30), Units.inchesToMeters(266));
+    public static final Translation2d RED_FOUR_PIECE_START = new Translation2d(Units.inchesToMeters(618), Units.inchesToMeters(266));
+  
+    public static final Translation2d RED_CENTER_SCORE = new Translation2d(Units.inchesToMeters(503), Units.inchesToMeters(260));
+    public static final Translation2d BLUE_CENTER_SCORE = new Translation2d(Units.inchesToMeters(145), Units.inchesToMeters(260));
+  
+    }
 
   //SOME TEMPORARY VALUES - Jacob why do you hate me.
   public static final class RobotConstants{
@@ -187,7 +247,7 @@ public final class Constants {
   }  
 
   public static final class NeoMotorConstants {
-    public static final double kFreeSpeedRpm = 5676;
+    public static final double kFreeSpeedRpm = 6784;
   }
 
   // UPDATE SOON PLEASE AND THANK YOU ^-^

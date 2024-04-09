@@ -7,6 +7,7 @@ public class ShootNoteInAuto extends SequentialCommandGroup{
     /** Creates a new ShootNoteInAuto */
     public ShootNoteInAuto() {
         addCommands(
-            new Shoot().withTimeout(1));
+            new IntakeInAuto().withTimeout(1.5),
+            new Shoot().withTimeout(1.25));
     }
 }

@@ -24,7 +24,7 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 1.25
+                  "waitTime": 0.75
                 }
               }
             ]
@@ -33,7 +33,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive and Intake Stage Note"
+            "pathName": "Intake Mid"
           }
         },
         {
@@ -64,7 +64,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Intake and Drive to Shoot Mid"
+            "pathName": "Drive and Intake Stage Note"
           }
         },
         {

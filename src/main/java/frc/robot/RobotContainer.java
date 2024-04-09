@@ -20,11 +20,14 @@ import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
+import frc.robot.commands.AutoPaths.AutoTest;
+import frc.robot.commands.AutoPaths.BlueFourPiece;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootSubwoofer;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustAndShoot;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
+import frc.robot.commands.FullSystemCommandsTeleop.PrintPose;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnHomeAndIntake;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
@@ -41,6 +44,7 @@ import frc.robot.subsystems.elevator.Elevator;
 import frc.robot.subsystems.elevator.ElevatorSimSubsystem;
 import frc.robot.subsystems.elevator.io.ElevatorSimIO;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -75,6 +79,8 @@ public class RobotContainer {
   public static Intake intake = new Intake();
   public static Climber climber = new Climber();
   public static SysIdRoutine routine;
+  public static AutoTest autoTest = new AutoTest(m_robotDrive);
+  public static BlueFourPiece blueFourPiece = new BlueFourPiece(m_robotDrive);
 
   // The driver's controller
   public static CommandXboxController m_driverController = new CommandXboxController(OIConstants.kDriverControllerPort);
@@ -131,7 +137,8 @@ public class RobotContainer {
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
     NamedCommands.registerCommand("IntakeNote", new IntakeInAuto());
     NamedCommands.registerCommand("Shoot Subwoofer", new ShootSubwooferInAuto());
-    NamedCommands.registerCommand("Adjust Wrist", new ParallelCommandGroup(new SetShooterWristPosition(0.230), new SetIntakeSpeeds(0, -0.3, 0)).withTimeout(0.5));
+    NamedCommands.registerCommand("Adjust Wrist", new AutoAdjustWristWithIntake());
+    NamedCommands.registerCommand("Print Position", new PrintPose());
     
     /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
@@ -165,6 +172,10 @@ public class RobotContainer {
     
     // Build and display the auto chooser using PathPlanner        
     autoChooser = AutoBuilder.buildAutoChooser();
+    /* 
+    autoChooser.addOption("Test Auto", autoTest);
+    autoChooser.addOption("Blue Four Piece", blueFourPiece);
+    */
     SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
@@ -222,6 +233,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
+    //return autoTest;
   }
 
 }

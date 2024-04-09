@@ -10,6 +10,8 @@ import com.ctre.phoenix6.controls.VelocityDutyCycle;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -21,6 +23,7 @@ public class Shooter extends SubsystemBase {
   public TalonFXConfiguration shooterVelocityFxConfigurationL = new TalonFXConfiguration();
   public TalonFXConfiguration shooterVelocityFxConfigurationR = new TalonFXConfiguration();
   public CurrentLimitsConfigs currentLimitConfig = new CurrentLimitsConfigs();
+  double mvarShooterSpinupStartTime=0;
 
     /* Start at velocity 0, no feed forward, use slot 1 */ //maybe disregard the previous comment, i don't remember what it means
   private final VelocityDutyCycle m_torqueVelocity = new VelocityDutyCycle(
@@ -82,6 +85,7 @@ public class Shooter extends SubsystemBase {
     kShooterRight.getConfigurator().apply(currentLimitConfig.withStatorCurrentLimit(90));
     kShooterRight.getConfigurator().apply(currentLimitConfig.withSupplyCurrentLimit(50));
     
+    
   }
 
   @Override
@@ -90,6 +94,7 @@ public class Shooter extends SubsystemBase {
   }
 
   public void setShooterSpeed(double speed) {
+    mvarShooterSpinupStartTime=Timer.getFPGATimestamp();
     kShooterLeft.set(-speed);
     kShooterRight.set(-speed);
   }

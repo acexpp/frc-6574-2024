@@ -13,7 +13,7 @@ public class AutoAdjustWristWithIntake extends SequentialCommandGroup{
             new ParallelCommandGroup(
             new AutoAdjustShooterWrist(RobotContainer.shooterW.limelightGetShooterAngle()),
             new SetIntakeSpeeds(0, -0.2, 0).withTimeout(.5)
-        ));
+        ).withTimeout(1));
     }
     
 }

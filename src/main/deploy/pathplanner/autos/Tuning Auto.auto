@@ -16,6 +16,12 @@
           "data": {
             "pathName": "Tuning Path"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Print Position"
+          }
         }
       ]
     }
