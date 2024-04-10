@@ -68,6 +68,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Adjust Wrist"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -90,6 +96,12 @@
           "type": "path",
           "data": {
             "pathName": "Intake and Drive to Shoot Amp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Adjust Wrist"
           }
         },
         {

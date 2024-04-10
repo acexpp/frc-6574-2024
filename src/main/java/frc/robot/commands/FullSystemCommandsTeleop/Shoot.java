@@ -20,7 +20,6 @@ public class Shoot extends Command{
   @Override
   public void initialize() {
     SmartDashboard.putNumber("Shooter start", Timer.getFPGATimestamp());
-    RobotContainer.intake.disableIntakeLimitSwitch();
     RobotContainer.shooter.setShooterVelocityUsingMotionMagic(80);
   }
 
@@ -29,7 +28,8 @@ public class Shoot extends Command{
   public void execute() {
     if (RobotContainer.shooter.getVelocity() >= RobotConstants.shooterVelocityRPS)
     {
-        RobotContainer.intake.setIntakeSpeed(0, -1, 1);
+      RobotContainer.intake.disableIntakeLimitSwitch();
+      RobotContainer.intake.setIntakeSpeed(0, -1, 1);
     }
   }
 

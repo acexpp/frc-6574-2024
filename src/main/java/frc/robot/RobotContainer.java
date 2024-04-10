@@ -18,6 +18,7 @@ import frc.robot.commands.ShootSubwoofer;
 import frc.robot.commands.IntakeAmpNoSensor;
 import frc.robot.commands.AutoFullSystemCommands.IntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
+import frc.robot.commands.AutoFullSystemCommands.ReturnHomeAndIntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
 import frc.robot.commands.AutoPaths.AutoTest;
@@ -135,7 +136,7 @@ public class RobotContainer {
     sim = new MechanismSimulator(arm, elevatorSim);
 
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
-    NamedCommands.registerCommand("IntakeNote", new IntakeInAuto());
+    NamedCommands.registerCommand("IntakeNote", new ReturnHomeAndIntakeInAuto());
     NamedCommands.registerCommand("Shoot Subwoofer", new ShootSubwooferInAuto());
     NamedCommands.registerCommand("Adjust Wrist", new AutoAdjustWristWithIntake());
     NamedCommands.registerCommand("Print Position", new PrintPose());
