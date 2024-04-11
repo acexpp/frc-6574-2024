@@ -8,6 +8,6 @@ public class ShootNoteInAuto extends SequentialCommandGroup{
     /** Creates a new ShootNoteInAuto */
     public ShootNoteInAuto() {
         addCommands(
-            new AutoAdjustAndShoot().withTimeout(1.25));
+            new AutoAdjustAndShoot().withTimeout(2));
     }
 }

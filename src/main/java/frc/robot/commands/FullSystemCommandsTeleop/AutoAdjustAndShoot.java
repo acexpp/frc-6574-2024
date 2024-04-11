@@ -9,10 +9,10 @@ import frc.robot.commands.ShootSubwoofer;
 public class AutoAdjustAndShoot extends SequentialCommandGroup{
     /** Creates a new AutoAdjustAndShoot */
     public AutoAdjustAndShoot() {
-        addCommands(new ParallelCommandGroup(
+        addCommands(
             new AutoAdjustShooterWrist(RobotContainer.shooterW.limelightGetShooterAngle()),
             //new SetShooterWristPosition(0.188),
             new Shoot()
-        ));
+        );
     }
 }

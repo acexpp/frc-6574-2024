@@ -11,6 +11,7 @@ public class AdjustAndShootSubwoofer extends SequentialCommandGroup{
     {
         addCommands(new ParallelCommandGroup(
             new SetShooterWristPosition(0.238),
+            //new AutoAdjustShooterWrist(RobotContainer.limelight.getDistanceToTarget()),
             new ShootSubwoofer()));
     }
 }

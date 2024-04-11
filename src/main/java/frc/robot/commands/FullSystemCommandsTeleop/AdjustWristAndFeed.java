@@ -9,9 +9,9 @@ public class AdjustWristAndFeed extends SequentialCommandGroup{
     public AdjustWristAndFeed() {
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
-        addCommands(
-            new SetShooterWristPosition(0.238),
-            new Shoot() //205
-        );
+        addCommands(new ParallelCommandGroup(
+            new SetShooterWristPosition(0.208),
+            new StartShooter() //205
+        ));
     }
 }

@@ -26,6 +26,7 @@ import frc.robot.commands.AutoPaths.BlueFourPiece;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootSubwoofer;
+import frc.robot.commands.FullSystemCommandsTeleop.AdjustWristAndFeed;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustAndShoot;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
 import frc.robot.commands.FullSystemCommandsTeleop.PrintPose;
@@ -197,16 +198,18 @@ public class RobotContainer {
 
     //Driver Buttons
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
+    //m_driverController.x().whileTrue(new AdjustWristAndFeed());
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     m_driverController.a().onTrue(new LimelightDriveToTarget());
     m_driverController.b().whileTrue(new AdjustAndShootSubwoofer());
     m_driverController.rightTrigger().onTrue(new ReturnHomeAndIntake());
     m_driverController.rightBumper().whileTrue(new AutoAdjustAndShoot());
-    m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
+    //m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
     // Turn these into actual commands eventually
-    m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
+    //m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
+    m_driverController.leftTrigger().whileTrue(new AdjustWristAndFeed());
     m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(-1), shooter),
-    new SetIntakeSpeeds(0, 0, 1)));
+    new SetIntakeSpeeds(0, -1, 1)));
     m_driverController.leftBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter),
     new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
     
