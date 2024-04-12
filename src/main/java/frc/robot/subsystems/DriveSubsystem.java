@@ -127,8 +127,8 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearRight.getPosition()
         });
 
-    SmartDashboard.putNumber("Vision Odometry X", LimelightHelpers.getBotPose2d("limelight").getX());
-    SmartDashboard.putNumber("Vision Odometry Y", LimelightHelpers.getBotPose2d("limelight").getY());
+    //SmartDashboard.putNumber("Vision Odometry X", LimelightHelpers.getBotPose2d("limelight").getX());
+    //SmartDashboard.putNumber("Vision Odometry Y", LimelightHelpers.getBotPose2d("limelight").getY());
 
     SmartDashboard.putNumber("Gyro Odometry X", m_odometry.getPoseMeters().getX());
     SmartDashboard.putNumber("Gyro Odometry Y", m_odometry.getPoseMeters().getY());
