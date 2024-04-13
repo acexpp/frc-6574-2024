@@ -26,6 +26,7 @@ import frc.robot.commands.FullSystemCommandsTeleop.PrintPose;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnHomeAndIntake;
 import frc.robot.commands.FullSystemCommandsTeleop.ReturnToHome;
 import frc.robot.commands.FullSystemCommandsTeleop.ScoreNoteAmp;
+import frc.robot.commands.FullSystemCommandsTeleop.Shoot;
 import frc.robot.simulation.MechanismSimulator;
 import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.DriveSubsystem;
@@ -109,7 +110,7 @@ public class RobotContainer {
       (state) -> Logger.recordOutput("SysIdTestState", state.toString())
     );
 
-    // If statement for Mechanism2D testing - mostly unused
+    // If statement for Mechanism2D testing - unused
     if (isSim) {
       arm = new ArmSubsystem(
         new ArmSimIO()
@@ -124,6 +125,7 @@ public class RobotContainer {
     }
     sim = new MechanismSimulator(arm, elevatorSim);
 
+    // Put auto commands to PathPlanner
     NamedCommands.registerCommand("Shoot Note", new ShootNoteInAuto());
     NamedCommands.registerCommand("IntakeNote", new ReturnHomeAndIntakeInAuto());
     NamedCommands.registerCommand("Shoot Subwoofer", new ShootSubwooferInAuto());
@@ -162,10 +164,6 @@ public class RobotContainer {
     
     // Build and display the auto chooser using PathPlanner        
     autoChooser = AutoBuilder.buildAutoChooser();
-    /* 
-    autoChooser.addOption("Test Auto", autoTest);
-    autoChooser.addOption("Blue Four Piece", blueFourPiece);
-    */
     SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
@@ -186,13 +184,11 @@ public class RobotContainer {
 
     //Driver Buttons
     m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
-    //m_driverController.x().whileTrue(new AdjustWristAndFeed());
     m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
     m_driverController.a().onTrue(new LimelightDriveToTarget());
     m_driverController.b().whileTrue(new AdjustAndShootSubwoofer());
     m_driverController.rightTrigger().onTrue(new ReturnHomeAndIntake());
     m_driverController.rightBumper().whileTrue(new AutoAdjustAndShoot());
-    //m_driverController.leftTrigger().whileTrue(new IntakeAmpNoSensor());
     // Turn these into actual commands eventually
     //m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
     m_driverController.leftTrigger().whileTrue(new AdjustWristAndFeed());
@@ -225,7 +221,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     return autoChooser.getSelected();
-    //return autoTest;
   }
 
 }

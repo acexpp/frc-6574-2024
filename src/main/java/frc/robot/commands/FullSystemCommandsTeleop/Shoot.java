@@ -26,17 +26,12 @@ public class Shoot extends Command{
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (RobotContainer.shooter.getVelocity() >= RobotConstants.shooterVelocityRPS)
-    {
-      RobotContainer.intake.disableIntakeLimitSwitch();
-      RobotContainer.intake.setIntakeSpeed(0, -1, 1);
-    }
+    
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    SmartDashboard.putNumber("Shooter end", Timer.getFPGATimestamp());
     RobotContainer.shooter.setShooterSpeed(0);
     RobotContainer.intake.setIntakeSpeed(0, 0, 0);
   }
@@ -44,6 +39,13 @@ public class Shoot extends Command{
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (RobotContainer.shooter.getVelocity() >= RobotConstants.shooterVelocityRPS)
+    {
+      SmartDashboard.putNumber("Shooter end", Timer.getFPGATimestamp());
+      RobotContainer.intake.disableIntakeLimitSwitch();
+      RobotContainer.intake.setIntakeSpeed(0, -1, 1);
+      return true;
+    }
     return false;
   }
 }

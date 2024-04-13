@@ -70,7 +70,7 @@ public class Intake extends SubsystemBase {
   }
   @Override
   public void periodic() {
-    SmartDashboard.putBoolean("Intake Limit Enabled", m_ShooterIntakeLimitSwitch.isLimitSwitchEnabled());
+    SmartDashboard.putBoolean("Got a note??", isTriggered());
     // This method will be called once per scheduler run
   }
 

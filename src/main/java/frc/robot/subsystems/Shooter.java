@@ -11,6 +11,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -35,7 +36,7 @@ public class Shooter extends SubsystemBase {
 
   private final MotionMagicVelocityVoltage m_motionMagicVelocity = new MotionMagicVelocityVoltage(
     0, 
-    400, 
+    800, 
     false, 0, 
     0, false, 
     false, false
@@ -52,25 +53,25 @@ public class Shooter extends SubsystemBase {
 
     // TODO: Needs tuning when I get the robot back
     shooterVelocityFxConfigurationL.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction
-    shooterVelocityFxConfigurationL.Slot0.kV = 0.14; // A velocity target of 1 rps results in 0.12 V output
+    shooterVelocityFxConfigurationL.Slot0.kV = 0.125; // A velocity target of 1 rps results in 0.12 V output
     shooterVelocityFxConfigurationL.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    shooterVelocityFxConfigurationL.Slot0.kP = 0.44; // An error of 1 rps results in 0.11 V output
+    shooterVelocityFxConfigurationL.Slot0.kP = 0.88; //0.44 // An error of 1 rps results in 0.11 V output
     shooterVelocityFxConfigurationL.Slot0.kI = 0; // no output for integrated error
-    shooterVelocityFxConfigurationL.Slot0.kD = 0; // no output for error derivative
+    shooterVelocityFxConfigurationL.Slot0.kD = 0.1; // no output for error derivative
 
     shooterVelocityFxConfigurationR.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction
-    shooterVelocityFxConfigurationR.Slot0.kV = 0.14; // A velocity target of 1 rps results in 0.12 V output
+    shooterVelocityFxConfigurationR.Slot0.kV = 0.125; //0.132 // A velocity target of 1 rps results in 0.12 V output
     shooterVelocityFxConfigurationR.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
-    shooterVelocityFxConfigurationR.Slot0.kP = 0.44; // An error of 1 rps results in 0.11 V output
+    shooterVelocityFxConfigurationR.Slot0.kP = 0.88; // An error of 1 rps results in 0.11 V output
     shooterVelocityFxConfigurationR.Slot0.kI = 0; // no output for integrated error
-    shooterVelocityFxConfigurationR.Slot0.kD = 0; // no output for error derivative
+    shooterVelocityFxConfigurationR.Slot0.kD = 0.1; // no output for error derivative
 
     var motionMagicConfigsL = shooterVelocityFxConfigurationL.MotionMagic;
     var motionMagicConfigsR = shooterVelocityFxConfigurationR.MotionMagic;
-    motionMagicConfigsL.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
-    motionMagicConfigsL.MotionMagicJerk = 0; 
-    motionMagicConfigsR.MotionMagicAcceleration = 400; // Target acceleration of 400 rps/s (0.25 seconds to max)
-    motionMagicConfigsR.MotionMagicJerk = 0; 
+    motionMagicConfigsL.MotionMagicAcceleration = 800; // Target acceleration of 400 rps/s (0.25 seconds to max)
+    motionMagicConfigsL.MotionMagicJerk = 16000; 
+    motionMagicConfigsR.MotionMagicAcceleration = 800; // Target acceleration of 400 rps/s (0.25 seconds to max)
+    motionMagicConfigsR.MotionMagicJerk = 16000; 
     
     //actually the motors
     kShooterLeft = new TalonFX(Constants.RobotConstants.shooterLeftCANID);
@@ -91,6 +92,8 @@ public class Shooter extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Shooter Velocity (L)", kShooterLeft.getVelocity().getValueAsDouble());
+    SmartDashboard.putNumber("Shooter Velocity (R)", kShooterRight.getVelocity().getValueAsDouble());
   }
 
   public void setShooterSpeed(double speed) {
