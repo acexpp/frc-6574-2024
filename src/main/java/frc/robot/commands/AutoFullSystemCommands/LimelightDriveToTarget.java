@@ -2,7 +2,6 @@ package frc.robot.commands.AutoFullSystemCommands;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.Constants.OIConstants;
 import frc.robot.LimelightHelpers;
 import frc.robot.RobotContainer;
@@ -12,6 +11,7 @@ public class LimelightDriveToTarget extends Command{
     private double rotation;
     private double forward;
     private boolean fieldRelative;
+    private double yaw = 0;
 
     /** Creates a new LimelightDriveToTarget */
     public LimelightDriveToTarget() {
@@ -47,20 +47,24 @@ public class LimelightDriveToTarget extends Command{
     public boolean isFinished() {
         if ((LimelightHelpers.getTX("limelight") >= -10 && LimelightHelpers.getTX("limelight") <= -4) //&& (Math.abs(LimelightHelpers.getTY("limelight")) <= 0.25)
         ) {
+            yaw = RobotContainer.m_robotDrive.getGyroYaw();
             RobotContainer.m_robotDrive.drive(
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 true, true);
+            RobotContainer.m_robotDrive.setGyroYaw(yaw);
             return true;
         }
         else if (LimelightHelpers.getTV("limelight") == false)
         {
+            yaw = RobotContainer.m_robotDrive.getGyroYaw();
             RobotContainer.m_robotDrive.drive(
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftY(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getLeftX(), OIConstants.kDriveDeadband),
                 -MathUtil.applyDeadband(RobotContainer.m_driverController.getRightX(), OIConstants.kDriveDeadband),
                 true, true);
+            RobotContainer.m_robotDrive.setGyroYaw(yaw);
             return true;
         } 
         else 

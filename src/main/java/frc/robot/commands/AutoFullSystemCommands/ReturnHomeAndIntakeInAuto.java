@@ -2,10 +2,7 @@ package frc.robot.commands.AutoFullSystemCommands;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.RobotContainer;
-import frc.robot.commands.SetIntakeSpeeds;
 import frc.robot.commands.SetShooterWristPosition;
-import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustShooterWrist;
 
 public class ReturnHomeAndIntakeInAuto extends SequentialCommandGroup {
     public ReturnHomeAndIntakeInAuto() {

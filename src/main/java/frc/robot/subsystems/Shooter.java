@@ -11,7 +11,6 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -51,14 +50,15 @@ public class Shooter extends SubsystemBase {
     shooterVelocityFxConfiguration.Slot1.kD = 0.001; // A change of 1000 rotation per second squared results in 1 amp output
     */
 
-    shooterVelocityFxConfigurationL.Slot0.kS = 0.1; // Add 0.25 V output to overcome static friction
+    // TODO: Needs tuning when I get the robot back
+    shooterVelocityFxConfigurationL.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction
     shooterVelocityFxConfigurationL.Slot0.kV = 0.14; // A velocity target of 1 rps results in 0.12 V output
     shooterVelocityFxConfigurationL.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
     shooterVelocityFxConfigurationL.Slot0.kP = 0.44; // An error of 1 rps results in 0.11 V output
     shooterVelocityFxConfigurationL.Slot0.kI = 0; // no output for integrated error
     shooterVelocityFxConfigurationL.Slot0.kD = 0; // no output for error derivative
 
-    shooterVelocityFxConfigurationR.Slot0.kS = 0.1; // Add 0.25 V output to overcome static friction
+    shooterVelocityFxConfigurationR.Slot0.kS = 0.1; // Add 0.1 V output to overcome static friction
     shooterVelocityFxConfigurationR.Slot0.kV = 0.14; // A velocity target of 1 rps results in 0.12 V output
     shooterVelocityFxConfigurationR.Slot0.kA = 0.01; // An acceleration of 1 rps/s requires 0.01 V output
     shooterVelocityFxConfigurationR.Slot0.kP = 0.44; // An error of 1 rps results in 0.11 V output

@@ -21,8 +21,6 @@ public class Intake extends SubsystemBase {
   public CANSparkMax kIntakeRollerTop;
   public CANSparkMax kShooterIntake;
   public SparkLimitSwitch m_ShooterIntakeLimitSwitch;
-  private double oldSpeedI = 2;
- 
   
   /** Creates a new Intake. */
   public Intake() {

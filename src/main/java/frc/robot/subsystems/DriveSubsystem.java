@@ -21,8 +21,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.LimelightHelpers;
-import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -356,5 +354,13 @@ public class DriveSubsystem extends SubsystemBase {
     for (int i = 0; i < swerveModules.length; i++) {
       swerveModules[i].setDesiredState(new SwerveModuleState(volts/12, Rotation2d.fromDegrees(0)));
     }
+  }
+
+  public double getGyroYaw() {
+    return m_gyro.getYaw().getValueAsDouble();
+  }
+
+  public void setGyroYaw(double y) {
+    m_gyro.setYaw(y);
   }
 }
