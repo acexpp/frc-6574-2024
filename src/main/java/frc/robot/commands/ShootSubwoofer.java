@@ -21,7 +21,7 @@ public class ShootSubwoofer extends Command {
   @Override
   public void initialize() {
     RobotContainer.intake.disableIntakeLimitSwitch();
-    RobotContainer.shooter.setShooterVelocityUsingMotionMagic(80);
+    RobotContainer.shooter.setShooterVelocityUsingMotionMagic(50);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
