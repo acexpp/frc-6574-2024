@@ -68,12 +68,6 @@
           }
         },
         {
-          "type": "path",
-          "data": {
-            "pathName": "Intake and Drive Mid Stage"
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [

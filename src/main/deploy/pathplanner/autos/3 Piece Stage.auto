@@ -37,6 +37,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "Drive To Shoot"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Adjust Wrist"
@@ -64,7 +70,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive and Intake Stage Note"
+            "pathName": "Stage Note 3 Piece"
           }
         },
         {

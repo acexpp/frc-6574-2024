@@ -37,6 +37,12 @@
           }
         },
         {
+          "type": "path",
+          "data": {
+            "pathName": "Drive To Shoot"
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "Adjust Wrist"
@@ -64,7 +70,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive and Intake Stage Note"
+            "pathName": "Amp Note 4 Piece"
           }
         },
         {
@@ -90,12 +96,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Intake and Drive to Shoot Amp"
           }
         },
         {

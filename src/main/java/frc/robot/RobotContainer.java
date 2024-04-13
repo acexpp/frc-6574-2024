@@ -18,6 +18,7 @@ import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
+import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootShortDistance;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootSubwoofer;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustWristAndFeed;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustAndShoot;
@@ -188,7 +189,8 @@ public class RobotContainer {
     m_driverController.a().onTrue(new LimelightDriveToTarget());
     m_driverController.b().whileTrue(new AdjustAndShootSubwoofer());
     m_driverController.rightTrigger().onTrue(new ReturnHomeAndIntake());
-    m_driverController.rightBumper().whileTrue(new AutoAdjustAndShoot());
+    m_driverController.rightBumper().whileTrue(new AdjustAndShootShortDistance());
+    m_driverController.rightBumper().whileFalse(new RunCommand(() -> shooter.setShooterSpeed(0), shooter));
     // Turn these into actual commands eventually
     //m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
     m_driverController.leftTrigger().whileTrue(new AdjustWristAndFeed());

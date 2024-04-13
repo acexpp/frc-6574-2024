@@ -50,11 +50,11 @@ public class ShooterWrist extends SubsystemBase {
 
     shooterWristMotor.setSmartCurrentLimit(45);
 
-    kP = 5.25; //3.8 last working value
+    kP = 7; //3.8 last working value
     kI = 0;
     kD = 0;
     kIz = 0;
-    kFF = -0.5;
+    kFF = -2.5;
     kMaxOutput = .5;
     kMinOutput = -.5;
 
@@ -75,6 +75,7 @@ public class ShooterWrist extends SubsystemBase {
   public void periodic() {
     double position = limelightGetShooterAngle();
     SmartDashboard.putNumber("limelight shooter", position);
+    SmartDashboard.putNumber("Wrist Encoder", getAbsoluteEncoderPosition());
   }
 
   public void setSpeed(double speed)
