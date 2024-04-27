@@ -93,7 +93,7 @@ public final class Constants {
         / kDrivingMotorReduction) / 60.0; // meters per second
 
     public static final double kTurningEncoderPositionFactor = (2 * Math.PI); // radians
-    public static final double kTurningEncoderVelocityFactor = (2 * Math.PI) / 60.0; // radians per second
+    public static final double kTurningEncoderVelocityFactor = (3 * Math.PI) / 60.0; // radians per second
 
     public static final double kTurningEncoderPositionPIDMinInput = 0; // radians
     public static final double kTurningEncoderPositionPIDMaxInput = kTurningEncoderPositionFactor; // radians
@@ -236,7 +236,7 @@ public final class Constants {
     public static final double shooterWristHome = 0.262; //244
     public static final double shooterWristSpeakerAuto = 0.244;
     public static final double ampElevatorPosition = 11.881;
-    public static final double shooterWristAmpPos = 0.027; //0.064
+    public static final double shooterWristAmpPos = 0.0275; //0.064
     public static final int elevatorHomePosition = 0;
     public static final double wristClimbPos = 0.1;
     public static final int elevatorClimbPos = 4;

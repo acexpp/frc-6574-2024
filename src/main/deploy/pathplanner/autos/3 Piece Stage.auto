@@ -18,6 +18,12 @@
               {
                 "type": "named",
                 "data": {
+                  "name": "Adjust Subwoofer"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
                   "name": "Shoot Subwoofer"
                 }
               },

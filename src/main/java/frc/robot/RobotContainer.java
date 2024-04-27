@@ -20,6 +20,7 @@ import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootShortDistance;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootSubwoofer;
+import frc.robot.commands.FullSystemCommandsTeleop.AdjustSubwoofer;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustWristAndFeed;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustAndShoot;
 import frc.robot.commands.FullSystemCommandsTeleop.AutoAdjustWristWithIntake;
@@ -131,6 +132,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("IntakeNote", new ReturnHomeAndIntakeInAuto());
     NamedCommands.registerCommand("Shoot Subwoofer", new ShootSubwooferInAuto());
     NamedCommands.registerCommand("Adjust Wrist", new AutoAdjustWristWithIntake());
+    NamedCommands.registerCommand("Adjust Subwoofer", new AdjustSubwoofer());
     NamedCommands.registerCommand("Print Position", new PrintPose());
     
     /*
