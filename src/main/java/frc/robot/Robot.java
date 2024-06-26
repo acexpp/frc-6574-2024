@@ -10,6 +10,7 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import org.littletonrobotics.urcl.URCL;
 
+import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -36,7 +37,8 @@ public class Robot extends LoggedRobot {
 
   private RobotContainer m_robotContainer;
 
-
+  Pose3d poseA = new Pose3d();
+  Pose3d poseB = new Pose3d();
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -67,6 +69,10 @@ public class Robot extends LoggedRobot {
     for (int port = 5800; port <= 5807; port++) {
         PortForwarder.add(port, "limelight.local", port);
     };
+
+    Logger.recordOutput("MyPose", poseA);
+    Logger.recordOutput("MyPoseArray", poseA, poseB);
+    Logger.recordOutput("MyPoseArray", new Pose3d[] {poseA, poseB});
   }
 
   /**
