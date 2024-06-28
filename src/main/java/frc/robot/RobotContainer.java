@@ -226,7 +226,7 @@ public class RobotContainer {
     m_operatorController.leftBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
     m_operatorController.rightBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(-0.1), shooterW));
     m_operatorController.rightBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
-    m_operatorController.povDown().onTrue(new SetElevatorPosition(15.5));
+    m_operatorController.povDown().onTrue(new SetElevatorPosition(17.9));
     m_operatorController.leftTrigger().whileTrue(new DriveElevatorUp());
     m_operatorController.rightTrigger().whileTrue(new DriveElevatorDown());
   }
