@@ -16,8 +16,12 @@ import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ReturnHomeAndIntakeInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootNoteInAuto;
 import frc.robot.commands.AutoFullSystemCommands.ShootSubwooferInAuto;
+import frc.robot.commands.AutoFullSystemCommands.StopShooter;
 import frc.robot.commands.ClimberCommands.SetClimberDown;
 import frc.robot.commands.ClimberCommands.SetClimberUp;
+import frc.robot.commands.ElevatorCommands.DriveElevatorDown;
+import frc.robot.commands.ElevatorCommands.DriveElevatorUp;
+import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootShortDistance;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustAndShootSubwoofer;
 import frc.robot.commands.FullSystemCommandsTeleop.AdjustSubwoofer;
@@ -52,6 +56,7 @@ import org.littletonrobotics.junction.Logger;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.path.PathPlannerPath;
 
 /*
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -134,6 +139,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("Adjust Wrist", new AutoAdjustWristWithIntake());
     NamedCommands.registerCommand("Adjust Subwoofer", new AdjustSubwoofer());
     NamedCommands.registerCommand("Print Position", new PrintPose());
+    NamedCommands.registerCommand("Stop Shooter", new StopShooter());
     
     /*
     // Mechanism2D Simulation buttons - mostly for testing ^-^
@@ -216,6 +222,13 @@ public class RobotContainer {
     m_operatorController.x().onTrue(new ReturnToHome());
     m_operatorController.povUp().onTrue(new ScoreNoteAmp());
     m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
+    m_operatorController.leftBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(0.1), shooterW));
+    m_operatorController.leftBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
+    m_operatorController.rightBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(-0.1), shooterW));
+    m_operatorController.rightBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
+    m_operatorController.povDown().onTrue(new SetElevatorPosition(15.5));
+    m_operatorController.leftTrigger().whileTrue(new DriveElevatorUp());
+    m_operatorController.rightTrigger().whileTrue(new DriveElevatorDown());
   }
 
   /**
