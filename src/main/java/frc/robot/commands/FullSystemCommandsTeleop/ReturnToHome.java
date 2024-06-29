@@ -21,7 +21,7 @@ public class ReturnToHome extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup(
         new SetElevatorPosition(0),
-        new SetShooterWristPosition(0.257)
+        new SetShooterWristPosition(0.718)
       ),
       new InstantCommand(() -> RobotContainer.elevator.stopMotors())
     );

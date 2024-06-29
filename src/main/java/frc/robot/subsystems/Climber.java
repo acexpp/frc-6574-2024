@@ -54,8 +54,7 @@ public class Climber extends SubsystemBase {
     rightMotor.setSmartCurrentLimit(35);
 
     leftMotor.setInverted(false);
-
-    rightMotor.follow(leftMotor, true);
+    rightMotor.setInverted(false);
   }
 
   /** Drives the Climber motors at a set speed. 
@@ -63,6 +62,7 @@ public class Climber extends SubsystemBase {
   */
   public void driveClimber(double speed) {
     leftMotor.set(speed * maxSpeed);
+    rightMotor.set(speed * maxSpeed);
   }
 
   @Override

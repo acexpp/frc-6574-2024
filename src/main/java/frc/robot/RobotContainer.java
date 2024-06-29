@@ -11,6 +11,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.units.Units;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.RobotConstants;
 import frc.robot.commands.SetIntakeSpeeds;
 import frc.robot.commands.AutoFullSystemCommands.LimelightDriveToTarget;
 import frc.robot.commands.AutoFullSystemCommands.ReturnHomeAndIntakeInAuto;
@@ -221,14 +222,15 @@ public class RobotContainer {
     m_operatorController.a().whileTrue(new SetClimberUp());
     m_operatorController.x().onTrue(new ReturnToHome());
     m_operatorController.povUp().onTrue(new ScoreNoteAmp());
-    m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
+    //m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
     m_operatorController.leftBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(0.1), shooterW));
     m_operatorController.leftBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
     m_operatorController.rightBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(-0.1), shooterW));
     m_operatorController.rightBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
-    m_operatorController.povDown().onTrue(new SetElevatorPosition(17.9));
-    m_operatorController.leftTrigger().whileTrue(new DriveElevatorUp());
-    m_operatorController.rightTrigger().whileTrue(new DriveElevatorDown());
+    m_operatorController.povLeft().onTrue(new SetElevatorPosition(17.9));
+    m_operatorController.povRight().onTrue(new SetElevatorPosition(RobotConstants.ampElevatorPosition));
+    // m_operatorController.leftTrigger().whileTrue(new DriveElevatorUp());
+    // m_operatorController.rightTrigger().whileTrue(new DriveElevatorDown());
   }
 
   /**

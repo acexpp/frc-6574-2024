@@ -9,7 +9,7 @@ public class AdjustSubwoofer extends SequentialCommandGroup{
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(
-            new SetShooterWristPosition(0.238).withTimeout(1.5)
+            new SetShooterWristPosition(0.656).withTimeout(1.5)
         );
     }
 }
