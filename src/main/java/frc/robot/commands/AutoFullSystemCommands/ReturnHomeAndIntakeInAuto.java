@@ -10,7 +10,7 @@ public class ReturnHomeAndIntakeInAuto extends SequentialCommandGroup {
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(
             new ParallelCommandGroup(
-                new SetShooterWristPosition(0.257),
+                new SetShooterWristPosition(0.31),
                 new IntakeInAuto()
         ).withTimeout(3));
     }

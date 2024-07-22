@@ -11,7 +11,7 @@ public class AdjustAndShootShortDistance extends SequentialCommandGroup{
         // Add your commands in the addCommands() call, e.g.
         // addCommands(new FooCommand(), new BarCommand());
         addCommands(
-            new SetShooterWristPosition(0.265),
+            new SetShooterWristPosition(0.28),
             new Shoot(),
             // new AutoAdjustAndStartShooter(RobotContainer.shooterW.limelightGetShooterAngle()),
             new SetIntakeSpeeds(0, -1, 1)

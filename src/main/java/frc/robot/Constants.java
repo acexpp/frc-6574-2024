@@ -171,10 +171,10 @@ public final class Constants {
     public static final double shooterVelocityRPS = 75;
 
     //Position Constants 
-    public static final double shooterWristHome = 0.262; //244
+    public static final double shooterWristHome = 0.31; //262
     public static final double shooterWristSpeakerAuto = 0.244;
     public static final double ampElevatorPosition = 11.881;
-    public static final double shooterWristAmpPos = 0.044;
+    public static final double shooterWristAmpPos = 0.054;
     public static final int elevatorHomePosition = 0;
     public static final double wristClimbPos = 0.1;
     public static final int elevatorClimbPos = 4;
