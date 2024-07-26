@@ -193,41 +193,42 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     //Driver Buttons
-    // m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
-    // m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
-    // m_driverController.a().onTrue(new LimelightDriveToTarget());
-    // m_driverController.b().whileTrue(new AdjustAndShootSubwoofer());
-    // m_driverController.rightTrigger().onTrue(new ReturnHomeAndIntake());
-    // m_driverController.rightBumper().whileTrue(new AdjustAndShootShortDistance());
-    // m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter), new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
-    // // Turn these into actual commands eventually
-    // //m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
-    // m_driverController.leftTrigger().whileTrue(new AdjustWristAndFeed());
-    // m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(-1), shooter),
-    // new SetIntakeSpeeds(0, -1, 1)));
-    // m_driverController.leftBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter),
-    // new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
+    m_driverController.x().whileTrue(new RunCommand(() -> m_robotDrive.setX()));
+    m_driverController.y().whileTrue(new RunCommand(() -> m_robotDrive.zeroHeading()));
+    m_driverController.a().onTrue(new LimelightDriveToTarget());
+    m_driverController.b().whileTrue(new AdjustAndShootSubwoofer());
+    m_driverController.rightTrigger().onTrue(new ReturnHomeAndIntake());
+    m_driverController.rightBumper().whileTrue(new AdjustAndShootShortDistance());
+    m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter), new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
+    // Turn these into actual commands eventually
+    //m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));
+    m_driverController.leftTrigger().whileTrue(new AdjustWristAndFeed());
+    m_driverController.leftBumper().whileTrue(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(-1), shooter),
+    new SetIntakeSpeeds(0, -1, 1)));
+    m_driverController.leftBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter),
+    new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
     
     // Characterization Controls
+    /*
     m_driverController.a().onTrue(routine.quasistatic(SysIdRoutine.Direction.kForward));
     m_driverController.b().onTrue(routine.quasistatic(SysIdRoutine.Direction.kReverse));
     m_driverController.x().onTrue(routine.dynamic(SysIdRoutine.Direction.kForward));
     m_driverController.y().onTrue(routine.dynamic(SysIdRoutine.Direction.kReverse));
-    
+    */
     
 
-    // //Operator buttons
-    // m_operatorController.b().whileTrue(new SetClimberDown());
-    // m_operatorController.a().whileTrue(new SetClimberUp());
-    // m_operatorController.x().onTrue(new ReturnToHome());
-    // m_operatorController.povUp().onTrue(new ScoreNoteAmp());
-    // //m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
-    // m_operatorController.leftBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(0.1), shooterW));
-    // m_operatorController.leftBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
-    // m_operatorController.rightBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(-0.1), shooterW));
-    // m_operatorController.rightBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
-    // m_operatorController.povLeft().onTrue(new SetElevatorPosition(17.9));
-    // m_operatorController.povRight().onTrue(new SetElevatorPosition(RobotConstants.ampElevatorPosition));
+    //Operator buttons
+    m_operatorController.b().whileTrue(new SetClimberDown());
+    m_operatorController.a().whileTrue(new SetClimberUp());
+    m_operatorController.x().onTrue(new ReturnToHome());
+    m_operatorController.povUp().onTrue(new ScoreNoteAmp());
+    //m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
+    m_operatorController.leftBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(0.1), shooterW));
+    m_operatorController.leftBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
+    m_operatorController.rightBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(-0.1), shooterW));
+    m_operatorController.rightBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
+    m_operatorController.povLeft().onTrue(new SetElevatorPosition(17.9));
+    m_operatorController.povRight().onTrue(new SetElevatorPosition(RobotConstants.ampElevatorPosition));
     // m_operatorController.leftTrigger().whileTrue(new DriveElevatorUp());
     // m_operatorController.rightTrigger().whileTrue(new DriveElevatorDown());
   }
