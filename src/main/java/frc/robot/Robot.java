@@ -69,10 +69,6 @@ public class Robot extends LoggedRobot {
     for (int port = 5800; port <= 5807; port++) {
         PortForwarder.add(port, "limelight.local", port);
     };
-
-    Logger.recordOutput("MyPose", poseA);
-    Logger.recordOutput("MyPoseArray", poseA, poseB);
-    Logger.recordOutput("MyPoseArray", new Pose3d[] {poseA, poseB});
   }
 
   /**
@@ -89,6 +85,9 @@ public class Robot extends LoggedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    Logger.recordOutput("MyPose", poseA);
+    Logger.recordOutput("MyPoseArray", poseA, poseB);
+    Logger.recordOutput("MyPoseArray", new Pose3d[] {poseA, poseB});
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
