@@ -10,6 +10,7 @@ import org.littletonrobotics.junction.networktables.NT4Publisher;
 import org.littletonrobotics.junction.wpilog.WPILOGWriter;
 import org.littletonrobotics.urcl.URCL;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -69,10 +70,6 @@ public class Robot extends LoggedRobot {
     for (int port = 5800; port <= 5807; port++) {
         PortForwarder.add(port, "limelight.local", port);
     };
-
-    Logger.recordOutput("MyPose", poseA);
-    Logger.recordOutput("MyPoseArray", poseA, poseB);
-    Logger.recordOutput("MyPoseArray", new Pose3d[] {poseA, poseB});
   }
 
   /**
@@ -88,9 +85,13 @@ public class Robot extends LoggedRobot {
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
+    //poseA = RobotContainer.m_robotDrive.getPose().getX();
+    Logger.recordOutput("MyPose", poseA);
+    Logger.recordOutput("MyPoseArray", poseA, poseB);
+    Logger.recordOutput("MyPoseArray", new Pose3d[] {poseA, poseB});
     CommandScheduler.getInstance().run();
   }
-
+  
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {}
