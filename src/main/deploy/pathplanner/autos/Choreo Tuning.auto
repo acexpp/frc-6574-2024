@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.5645260933888472,
-      "y": 2.4241431649767726
+      "x": 1.35,
+      "y": 5.57
     },
-    "rotation": 0
+    "rotation": 0.0
   },
   "command": {
     "type": "sequential",
@@ -14,12 +14,12 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Drive Back"
+            "pathName": "Tuning Path"
           }
         }
       ]
     }
   },
-  "folder": "Pathplanner Autos",
-  "choreoAuto": false
+  "folder": null,
+  "choreoAuto": true
 }
