@@ -32,8 +32,8 @@ public class MAXSwerveModule {
   private final SparkPIDController m_turningPIDController;
 
   private final SimpleMotorFeedforward m_Feedforward;
-  private final double drivekS = 0.2;
-  private final double drivekV = 1.95;
+  private final double drivekS = 0.02;
+  private final double drivekV = 4.625; //1.95
 
   private double m_chassisAngularOffset = 0;
   private SwerveModuleState m_desiredState = new SwerveModuleState(0.0, new Rotation2d());
