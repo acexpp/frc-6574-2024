@@ -223,12 +223,12 @@ public class RobotContainer {
     m_operatorController.x().onTrue(new ReturnToHome());
     m_operatorController.povUp().onTrue(new ScoreNoteAmp());
     //m_operatorController.povLeft().onTrue(new AutoAdjustWristWithIntake());
-    m_operatorController.leftBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(0.1), shooterW));
-    m_operatorController.leftBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
-    m_operatorController.rightBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(-0.1), shooterW));
-    m_operatorController.rightBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
-    m_operatorController.povLeft().onTrue(new SetElevatorPosition(17.9));
-    m_operatorController.povRight().onTrue(new SetElevatorPosition(RobotConstants.ampElevatorPosition));
+    // m_operatorController.leftBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(0.1), shooterW));
+    // m_operatorController.leftBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
+    // m_operatorController.rightBumper().whileTrue(new RunCommand(() -> shooterW.shooterWristMotor.set(-0.1), shooterW));
+    // m_operatorController.rightBumper().whileFalse(new RunCommand(() -> shooterW.shooterWristMotor.stopMotor(), shooterW));
+    // m_operatorController.povLeft().onTrue(new SetElevatorPosition(17.9));
+    // m_operatorController.povRight().onTrue(new SetElevatorPosition(RobotConstants.ampElevatorPosition));
     // m_operatorController.leftTrigger().whileTrue(new DriveElevatorUp());
     // m_operatorController.rightTrigger().whileTrue(new DriveElevatorDown());
   }
