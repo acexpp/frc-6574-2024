@@ -90,7 +90,7 @@ public class RobotContainer {
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
-  public RobotContainer(boolean isSim) {
+  public RobotContainer(boolean isReal) {
 
     //Start the USB camera feed
     CameraServer.startAutomaticCapture();
@@ -119,7 +119,7 @@ public class RobotContainer {
     );
 
     // If statement for Mechanism2D testing - unused
-    if (isSim) {
+    if (isReal == false) {
       arm = new ArmSubsystem(
         new ArmSimIO()
       );
@@ -198,7 +198,8 @@ public class RobotContainer {
     m_driverController.a().onTrue(new LimelightDriveToTarget());
     m_driverController.b().whileTrue(new AdjustAndShootSubwoofer());
     m_driverController.rightTrigger().onTrue(new ReturnHomeAndIntake());
-    m_driverController.rightBumper().whileTrue(new AdjustAndShootShortDistance());
+    m_driverController.rightBumper().whileTrue(new AdjustAndShootSubwoofer());
+    //m_driverController.rightBumper().whileTrue(new AdjustAndShootShortDistance());
     m_driverController.rightBumper().whileFalse(new ParallelCommandGroup(new RunCommand(() -> shooter.setShooterSpeed(0), shooter), new RunCommand(() -> intake.setIntakeSpeed(0, 0, 0), intake)));
     // Turn these into actual commands eventually
     //m_driverController.leftTrigger().onFalse(new ParallelDeadlineGroup(new WaitCommand(0.25), new SetIntakeSpeeds(0, -0.1, -0.1)));

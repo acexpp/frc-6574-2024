@@ -15,6 +15,7 @@ import com.revrobotics.SparkPIDController;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
 import frc.robot.RobotContainer;
 
 public class ShooterWrist extends SubsystemBase {
@@ -100,6 +101,14 @@ public class ShooterWrist extends SubsystemBase {
   // Returns the encoder value to set the position of the wrist
   public double limelightGetShooterAngle() {
     double distance = RobotContainer.limelight.getDistanceToTarget();
+    // if (LimelightHelpers.getTV("limelight"))
+    // {
+    //   return (5.28487/(distance + 17.3769)) + 0.179797;
+    // }
+    // else
+    // {
+    //   return 0.286;
+    // }
     return (5.28487/(distance + 17.3769)) + 0.179797;
   }
 }
