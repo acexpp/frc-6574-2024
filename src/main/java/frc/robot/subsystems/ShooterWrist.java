@@ -109,7 +109,7 @@ public class ShooterWrist extends SubsystemBase {
     // {
     //   return 0.286;
     // }
-    return (5.28487/(distance + 17.3769)) + 0.179797;
+    return (4874.07/(distance - 3226.24)) + 2.15252;
   }
 }
 
