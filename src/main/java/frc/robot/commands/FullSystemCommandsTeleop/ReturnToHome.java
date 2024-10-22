@@ -6,6 +6,7 @@ package frc.robot.commands.FullSystemCommandsTeleop;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.ElevatorCommands.SetElevatorPosition;
 import frc.robot.commands.SetShooterWristPosition;
@@ -21,7 +22,7 @@ public class ReturnToHome extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup(
         new SetElevatorPosition(0),
-        new SetShooterWristPosition(0.286)
+        new SetShooterWristPosition(Constants.RobotConstants.shooterWristHome)
       ),
       new InstantCommand(() -> RobotContainer.elevator.stopMotors())
     );
